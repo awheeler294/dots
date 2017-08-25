@@ -82,9 +82,9 @@ nnoremap H :set cursorcolumn!<CR>
 hi foldcolumn ctermbg=8
 hi VertSplit ctermbg=8 ctermfg=0
 
-highlight DiffAdd    cterm=bold ctermfg=17  ctermbg=62  gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=52  ctermbg=138 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=106 ctermbg=59  gui=none guifg=bg guibg=Red
+highlight DiffAdd    cterm=bold ctermfg=4   ctermbg=238 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=88  ctermbg=236 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=106 ctermbg=238 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=17  ctermbg=94  gui=none guifg=bg guibg=Red
 
 " default the statusline to green
