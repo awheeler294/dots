@@ -31,6 +31,7 @@ set softtabstop=3	        " Number of spaces per Tab
 set hidden                      " Hide buffers when they are abandoned
 set linebreak                   " Break lines at word
 " set mouse=a                   " Enable mouse usage (all modes)
+set splitright                  " open vsplits to the right
 
 set undolevels=1000             " Number of undo levels
 set undofile                    " Maintain undo history between sessions
