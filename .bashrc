@@ -16,27 +16,44 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 PROMPT=""
-add_branch_to_prompt()
+add_info_to_prompt()
 {
-   BRANCH=""
+   local BRANCH=""
    if git branch &>/dev/null; then
-      BRANCH=$(git branch 2>/dev/null | grep \* |  cut -d " " -f 2)
+      local BRANCH_NAME=""
+      BRANCH_NAME=$(git branch 2>/dev/null | grep \* |  cut -d " " -f 2)
+      [[ -z $BRANCH ]] && BRANCH_NAME="master"
       [[ -z $BRANCH ]] && BRANCH="master"
-      BRANCH="[$BRANCH] "
+      BRANCH="[$BRANCH_NAME] "
+    
+      BRANCH="\[\033[38;5;107m\]$BRANCH\[$(tput sgr0)\]"
+      BRANCH="$BRANCH\n"
    fi
 
-   local PRE=""
-   if [ -n "$BRANCH" ]; then
-     PRE='\[\033[38;5;107m\]$BRANCH\[$(tput sgr0)\]'
-     PRE="$PRE"'\n'
+   local VENV=""
+   if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
+      _OLD_VIRTUAL_PS1="$PS1"
+      if [ "x" != x ] ; then
+         PS1="$PS1"
+      else
+         if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
+            # special case for Aspen magic directories
+            # see http://www.zetadev.com/software/aspen/
+            VENV="[`basename \`dirname \"$VIRTUAL_ENV\"\``]"
+         elif [ "$VIRTUAL_ENV" != "" ]; then
+            VENV="(`basename \"$VIRTUAL_ENV\"`)"
+         fi
+      fi
+      VENV="$VENV "
    fi
 
-   PS1=$PRE$PROMPT
+   PS1="$BRANCH$VENV$PROMPT"
 }
 
 # write to history on every command
+# add python virtual environment
 # get current git branch
-PROMPT_COMMAND='history -a;history -n;add_branch_to_prompt'
+PROMPT_COMMAND='history -a;history -n;add_info_to_prompt'
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
