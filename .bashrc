@@ -39,12 +39,11 @@ add_info_to_prompt()
          if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
             # special case for Aspen magic directories
             # see http://www.zetadev.com/software/aspen/
-            VENV="[`basename \`dirname \"$VIRTUAL_ENV\"\``]"
+            VENV="[`basename \`dirname \"$VIRTUAL_ENV\"\``] "
          elif [ "$VIRTUAL_ENV" != "" ]; then
-            VENV="(`basename \"$VIRTUAL_ENV\"`)"
+            VENV="(`basename \"$VIRTUAL_ENV\"`) "
          fi
       fi
-      VENV="$VENV "
    fi
 
    PS1="$BRANCH$VENV$PROMPT"
