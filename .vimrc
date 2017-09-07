@@ -1,4 +1,10 @@
-execute pathogen#infect()
+" Autoload vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 map <leader>s :source ~/.vimrc<CR>
 set number
 
@@ -20,7 +26,7 @@ endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-set showcmd                     " Show (partial) command in status line.
+"set showcmd                     " Show (partial) command in status line.
 set showmatch                   " Show matching brackets.
 set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
@@ -32,26 +38,23 @@ set hidden                      " Hide buffers when they are abandoned
 set linebreak                   " Break lines at word
 " set mouse=a                   " Enable mouse usage (all modes)
 set splitright                  " open vsplits to the right
+set wildmenu                    " visual autocomplete for command menu
+set incsearch                   " search as characters are entered
+set hlsearch                    " highlight matches
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
 set undolevels=1000             " Number of undo levels
 set undofile                    " Maintain undo history between sessions
 set undodir=~/.vim/undodir
 
 set history=100
-
-"" lightline config
-"set laststatus=2
-"let g:lightline = {
-"   \ 'colorscheme': 'jellybeans',
-"   \ }
-"set noshowmode
+set eventignore=CursorMoved
 
 set laststatus=2
-"hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 function! DefaultStatusLineColor()
    " Focused statusline
-   "hi statusline   guibg=DarkGrey ctermfg=30 guifg=White ctermbg=47
    hi statuslineNC guibg=DarkGrey ctermfg=DarkGray guifg=White ctermbg=8
    " Unfocused statusline
    hi statusline   guibg=DarkGrey ctermfg=8 guifg=White ctermbg=DarkGray
@@ -93,19 +96,26 @@ highlight DiffText   cterm=bold ctermfg=17  ctermbg=94  gui=none guifg=bg guibg=
 " hi statusline guibg=DarkGrey
 " ctermfg=8 guifg=White ctermbg=15
 
-set statusline=\ %f\ [%t]%m%r%h\ %y%=line:\ %4l/%L,\ col:%2v\ \ %3p%%\  
+set statusline=\ %f\ [%t]%m%r%h\ %y%=line:\ %4l/%L,\ col:%2v\ \ %3p%%\ %{LineNoIndicator()} 
 " https://stackoverflow.com/a/4390122
 
 " whitespace chars
 set listchars=eol:¬,tab:▶-,trail:·,extends:>,precedes:<,nbsp:·
 nnoremap <space> :set list!<CR>
 
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'python-mode/python-mode'
+Plug 'mhinz/vim-startify'
+Plug 'drzel/vim-line-no-indicator'
+call plug#end()
+
 " Ctrl-n toggle NERDtree
 map <C-n> :NERDTreeToggle<CR>
 
 " Open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
 
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
