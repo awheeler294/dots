@@ -12,21 +12,18 @@ set number
 " turn on this option as well
 "set background=dark
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
 if has("autocmd")
+   "  jump to the last position when reopening a file
    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
+   " load indentation rules and plugins according to the detected filetype.
    filetype plugin indent on
+   " start in insert mode for new files
+   autocmd BufNewFile * startinsert
 endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd                     " Show (partial) command in status line.
+"set showcmd                    " Show (partial) command in status line.
 set showmatch                   " Show matching brackets.
 set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
@@ -40,9 +37,6 @@ set linebreak                   " Break lines at word
 set splitright                  " open vsplits to the right
 set wildmenu                    " visual autocomplete for command menu
 set incsearch                   " search as characters are entered
-set hlsearch                    " highlight matches
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
 
 set undolevels=1000             " Number of undo levels
 set undofile                    " Maintain undo history between sessions
@@ -105,9 +99,10 @@ nnoremap <space> :set list!<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'python-mode/python-mode'
+"Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
+Plug 'lilydjwg/colorizer'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
@@ -120,3 +115,5 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree |
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()
+
+"let g:colorizer_auto_color = 1
