@@ -85,6 +85,9 @@ highlight DiffDelete cterm=bold ctermfg=88  ctermbg=236 gui=none guifg=bg guibg=
 highlight DiffChange cterm=bold ctermfg=106 ctermbg=238 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=17  ctermbg=94  gui=none guifg=bg guibg=Red
 
+hi MatchParen cterm=bold ctermbg=none ctermfg=122
+set noshowmatch
+
 " default the statusline to green
 " when entering Vim
 " hi statusline guibg=DarkGrey
@@ -103,6 +106,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
+Plug 'guns/xterm-color-table.vim'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
