@@ -69,8 +69,8 @@ call DefaultStatusLineColor()
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * call DefaultStatusLineColor() 
 
-hi CursorLine   cterm=NONE ctermbg=8
-hi CursorColumn cterm=NONE ctermbg=8
+hi CursorLine   cterm=NONE ctermbg=235
+hi CursorColumn cterm=NONE ctermbg=235
 hi Cursor       cterm=NONE ctermbg=DarkGray
 set cursorline
 nnoremap H :set cursorcolumn!<CR>
@@ -102,7 +102,7 @@ nnoremap <space> :set list!<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-"Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
@@ -121,3 +121,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()
 
 "let g:colorizer_auto_color = 1
+
+set nofoldenable
+hi ColorColumn ctermbg=234
