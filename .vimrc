@@ -100,6 +100,13 @@ set statusline=\ %f\ [%t]%m%r%h\ %y%=line:\ %4l/%L,\ col:%2v\ \ %3p%%\ %{LineNoI
 set listchars=eol:¬,tab:▶-,trail:·,extends:>,precedes:<,nbsp:·
 nnoremap <space> :set list!<CR>
 
+" tab managment
+nnoremap <Tab><up>    :tabr<cr>
+nnoremap <Tab><down>  :tabl<cr>
+nnoremap <Tab><left>  :tabp<cr>
+nnoremap <Tab><right> :tabn<cr>
+nnoremap <Tab><Tab>   :tabnew<cr>
+
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'python-mode/python-mode'
