@@ -22,8 +22,7 @@ add_info_to_prompt()
    if git branch &>/dev/null; then
       local BRANCH_NAME=""
       BRANCH_NAME=$(git branch 2>/dev/null | grep \* |  cut -d " " -f 2)
-      [[ -z $BRANCH ]] && BRANCH_NAME="master"
-      [[ -z $BRANCH ]] && BRANCH="master"
+      [[ -z $BRANCH_NAME ]] && BRANCH_NAME="master"
       BRANCH="[$BRANCH_NAME] "
     
       BRANCH="\[\033[38;5;107m\]$BRANCH\[$(tput sgr0)\]"
