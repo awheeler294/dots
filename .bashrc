@@ -40,7 +40,7 @@ add_info_to_prompt()
             # see http://www.zetadev.com/software/aspen/
             VENV="[`basename \`dirname \"$VIRTUAL_ENV\"\``] "
          elif [ "$VIRTUAL_ENV" != "" ]; then
-            VENV="(`basename \"$VIRTUAL_ENV\"`) "
+	    VENV="\[\033[38;5;70m\](`basename \"$VIRTUAL_ENV\"`)\[$(tput sgr0)\] "
          fi
       fi
    fi
