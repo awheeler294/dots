@@ -1,7 +1,7 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-output eDP-1 scale 2
+output eDP-1 scale 2 
 
 input 1452:628:bcm5974 {
    tap enabled
@@ -36,7 +36,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # Default programs
-set $terminal termite
+set $terminal "termite --title=Termite"
 set $browser vivaldi-stable
 
 # start a terminal
@@ -117,7 +117,9 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+bar split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+underscore split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -366,7 +368,7 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3  #000000
+  client.focused          #556064 #556064 #80FFF9 #FDF6E3  #268FA0
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948  #000000
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948  #000000
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2  #000000
