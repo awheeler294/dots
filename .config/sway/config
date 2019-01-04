@@ -7,6 +7,16 @@ input 1452:628:bcm5974 {
    tap enabled
 }
 
+### Idle configuration
+# lock the screen after 300 seconds of inactivity, then turn off
+# your displays after another 90 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle \
+    timeout 300 'swaylock -c 000000' \
+    timeout 390 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -c 000000'
+
 # Load Xresources for X programs
 exec xrdb -merge ~/.Xresources
 
@@ -336,7 +346,7 @@ set $term_color15    #F8F8F8
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	swaybar_command swaybar
+        swaybar_command swaybar
 	status_command i3status
 	position bottom
 
