@@ -12,10 +12,11 @@ input 1452:628:bcm5974 {
 # your displays after another 90 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle \
-    timeout 300 'swaylock -c 000000' \
+    timeout 300 'swaylock' \
     timeout 390 'swaymsg "output * dpms off"' \
        resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -c 000000'
+    timeout 600 'systemctl suspend' \
+    before-sleep 'swaylock'
 
 # Load Xresources for X programs
 exec xrdb -merge ~/.Xresources
