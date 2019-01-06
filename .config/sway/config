@@ -47,7 +47,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # Default programs
-set $terminal "termite --title=Termite"
+set $terminal "termite"
 set $browser vivaldi-stable
 
 # start a terminal
@@ -85,6 +85,7 @@ bindsym $mod+F2 exec $browser
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F4 exec pamac-manager
 bindsym $mod+F5 exec $terminal -e 'mocp'
 #bindsym $mod+t exec --no-startup-id pkill compton
 #bindsym $mod+Ctrl+t exec --no-startup-id compton -b
