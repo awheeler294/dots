@@ -17,7 +17,7 @@ zstyle ':completion:*' rehash true                              # automatically 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-HISTFILE=~/.zhistory
+#HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=500
 #export EDITOR=/usr/bin/nano
@@ -195,3 +195,9 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
+
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                     # hh to be alias for hstr
+export HISTFILE=~/.zsh_history    # ensure history file visibility
+export HSTR_CONFIG=hicolor        # get more colors
+
