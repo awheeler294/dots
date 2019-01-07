@@ -1,11 +1,17 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+set $wallpapers /home/andrew/Pictures/wallpapers
+
 output eDP-1 scale 2 
+output * bg $wallpapers/alien_space_monster_tentacle_action_by_tehstr4ngeones_169.png fill
 
 input 1452:628:bcm5974 {
    tap enabled
 }
+
+# Set backgrounds
+exec set-backgrounds
 
 ### Idle configuration
 # lock the screen after 300 seconds of inactivity, then turn off
