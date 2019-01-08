@@ -67,7 +67,8 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+#bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -221,11 +222,17 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
+# Set workspaces to specific outputs
+workspace $ws2 output DP-1
+workspace $ws9 output DP-1
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
+
+assign [class="HipChat"] $ws9
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -327,8 +334,12 @@ exec --no-startup-id pamac-tray
 # exec --no-startup-id start_conky_green
 #exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id mako
+
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+
+exec hipchat4
+exec --no-startup-id swaymsg 'workspace $ws2; exec $browser'
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
