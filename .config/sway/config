@@ -2,9 +2,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $wallpapers backgrounds
+set $local_bin $HOME/bin
 
 # Randomize background files
-exec set-backgrounds
+exec --no-startup-id /home/andrew/bin/set-backgrounds
 
 output eDP-1 position 0,0 scale 2 
 output DP-1 position 1440,0
@@ -60,7 +61,6 @@ set $terminal "termite"
 set $browser vivaldi-stable
 
 # start a terminal
-#bindsym $mod+Return exec terminal
 bindsym $mod+Return exec $terminal
 
 # kill focused window
@@ -265,7 +265,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -b 'Yes, exit sway' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'"
+
+bindsym $mod+Shift+e exec --no-startup-id $local_bin/exit-menu
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"

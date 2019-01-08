@@ -1,0 +1,72 @@
+/**
+ * ROFI Color theme
+ */
+
+/* global settings and color variables */
+* {
+   maincolor:        #ed8712;
+   highlight:        bold #ed8712;
+   urgentcolor:      #e53714;
+
+   fgwhite:          #cfcfcf;
+   blackdarkest:     #1d1d1d;
+   blackwidget:      #262626;
+   blackentry:       #292929;
+   blackselect:      #303030;
+   darkgray:         #848484;
+   font: "DejaVu Sans Mono Regular 14";
+   background-color: @blackdarkest;
+}
+
+#window {
+   anchor: north;
+   location: north;
+   y-offset: 33%;
+   width: 100%;
+   background-color: @maincolor;
+   margin: 0px 0px 10% 0px;
+   children: [ horibox ];
+}
+#horibox {
+  background-color: @blackdarkest;
+  orientation: horizontal;
+  spacing: 0px;
+  children: [ prompt, textbox-prompt-colon, entry, listview ];
+}
+#prompt {
+   text-color:@blackwidget;
+   padding: 0.7em 0px 0.7em 10px;
+   background-color: @maincolor;
+}
+#textbox-prompt-colon  {
+  expand: false;
+  str: ":";
+  padding: 0.7em 10px 0.7em 0px;
+  text-color: @blackwidget;
+  background-color: @maincolor;
+}
+#entry {
+  padding: 0.7em;
+  text-color: @blackwidget;
+  background-color: @fgwhite;
+  expand: false;
+  width: 10em;
+}
+#listview {
+  background-color: @blackwidget;
+  text-color: @fgwhite;
+  layout: horizontal;
+  spacing: 5px;
+  lines: 100;
+}
+#element {
+  background-color: @blackwidget;
+  text-color: @fgwhite;
+  padding: 0.7em;
+}
+#element selected {
+  border: 0px 1px;
+  text-color: @blackselect;
+  background-color: @darkgray;
+}
+
