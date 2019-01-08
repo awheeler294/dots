@@ -1,6 +1,6 @@
 #!/bin/sh
 while [ "$select" != "Cancel" -a "$select" != "Suspend" -a "$select" != "Hibernate"  -a "$select" != "Logout"  -a "$select" != "Reboot"  -a "$select" != "Shutdown"  ]; do
-    select=$(echo -e 'Suspend\nHibernate\nLogout\nReboot\nShutdown\nCancel' | rofi -dmenu -p "Leave" -theme flat-orange-ribbon.rasi) 
+    select=$(echo -e 'Suspend\nHibernate\nLogout\nReboot\nShutdown\nCancel' | rofi -dmenu -i -p "Leave" -theme flat-orange-ribbon.rasi) 
     [ -z "$select" ] && exit 0
 done
 [ "$select" = "Cancel" ] && exit 0
