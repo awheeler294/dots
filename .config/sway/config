@@ -244,6 +244,7 @@ workspace $ws9 output DP-1
 # assign [class="Skype"] $ws5
 
 assign [class="HipChat"] $ws9
+assign [class="Slack"] $ws9
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -350,6 +351,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 exec hipchat4
+exec slack
 exec --no-startup-id swaymsg 'workspace $ws2; exec $browser'
 
 # Color palette used for the terminal ( ~/.Xresources file )
