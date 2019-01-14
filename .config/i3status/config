@@ -14,8 +14,11 @@ general {
         color_degraded = "#DC322F"
 }
 
+order += "arch_updates"
+#order += "weather_owm"
 order += "mpris"
-order += "volume_status"
+#order += "group multi"
+order += "volume master"
 order += "cpu_usage"
 # order += "load"
 order += "disk /"
@@ -23,16 +26,11 @@ order += "disk /"
 #order += "wireless _first_"
 order += "wifi"
 order += "ethernet _first_"
+order += "keyboard_locks"
 order += "battery all"
 # order += "load"
 order += "tztime local"
 # order += "ipv6"
-
-mpris {
-    format = " {previous}{next} {player}: {state} [[{artist} - {title}]|[{title}]] "
-    format_none = " no player "
-    player_priority = "[mpd, cantata, vlc, bomi, *]"
-}
 
 cpu_usage {
         format = " cpu  %usage "
@@ -57,23 +55,27 @@ ethernet _first_ {
         format_up = " lan: %speed "
         format_down = " no lan "
 }
-
 volume_status {
-        #format = " ♪: %volume "
-        format_muted = " ♪: muted ({percentage}%) "
+         #format = " ♪: %volume "
+         format_muted = " ♪: muted ({percentage}%) "
+         thresholds = [
+          (0,  "#FF0000"),
+          (10, "#E2571E"),
+          (20, "#FF7F00"),
+          (30, "#FFFF00"),
+          (40, "#00FF00"),
+          (50, "#96BF33"),
+          (60, "#0000FF"),
+          (70, "#4B0082"),
+          (80, "#8B00FF"),
+          (90, "#FFFFFF")
+         ]
+ }
+
+volume master {
+        format = " ♪: %volume "
+        format_muted = " ♪: muted (%volume) "
         device = "pulse"
-        thresholds = [
-	 (0,  "#FF0000"),
-	 (10, "#E2571E"),
-	 (20, "#FF7F00"),
-	 (30, "#FFFF00"),
-	 (40, "#00FF00"),
-	 (50, "#96BF33"),
-	 (60, "#0000FF"),
-	 (70, "#4B0082"),
-	 (80, "#8B00FF"),
-	 (90, "#FFFFFF")
-        ]
 }
 
 battery all {
@@ -100,3 +102,32 @@ tztime local {
         #format = " %d.%m. %H:%M "
         format = " %d %B, %Y  %H:%M "
 }
+
+arch_updates {
+    format = 'UPD: {pacman}'        # if include_aur is False
+    format = 'UPD: {pacman}/{aur}'  # if include_aur is True
+    include_aur = true
+    hide_if_zero = true
+}
+
+# hide NUM, CAPS, SCR
+keyboard_locks {
+    format = '\?color=good [\?if=num_lock NUM][\?soft  ]'
+    format += '[\?if=caps_lock CAPS][\?soft  ][\?if=scroll_lock SCR]'
+}
+
+#group multi {
+mpris {
+    #format = " {previous}{next} {player}: {state} [[{artist} - {title}]|[{title}]] "
+    format = " {previous}{next} {player}: {state} [[{title}]] "
+    format_none = " no player "
+    player_priority = "[mpd, cantata, vlc, bomi, *]"
+}
+
+
+weather_owm {
+    api_key = base64('NWUxYTY2OTk2OWY2ZGNhOGFlNDlkNDE2NTI2NTFlOWUK')
+    city = "Orem"
+    country = "US"
+}
+#}
