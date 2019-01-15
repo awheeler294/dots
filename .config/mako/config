@@ -1,6 +1,7 @@
 default-timeout=7000
 #background-color=#556064F0
 background-color=#FFD23FE0
-text-color=#16A085FF
+#text-color=#16A085FF
+text-color=#2E4756FF
 border-color=#595B5BFF
 font=Bitstream Vera Sans:size=10
