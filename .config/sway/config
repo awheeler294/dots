@@ -17,6 +17,8 @@ input 1452:628:bcm5974 {
    tap enabled
 }
 
+input * xkb_numlock enable
+
 ### Idle configuration
 # lock the screen after 300 seconds of inactivity, then turn off
 # your displays after another 90 seconds, and turn your screens back on when
