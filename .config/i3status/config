@@ -14,7 +14,7 @@ general {
         color_degraded = "#DC322F"
 }
 
-order += "arch_updates"
+#order += "arch_updates"
 #order += "weather_owm"
 order += "mpris"
 #order += "group multi"
@@ -26,7 +26,7 @@ order += "disk /"
 #order += "wireless _first_"
 order += "wifi"
 order += "ethernet _first_"
-order += "keyboard_locks"
+#order += "keyboard_locks"
 order += "battery all"
 # order += "load"
 order += "tztime local"
@@ -113,7 +113,7 @@ arch_updates {
 # hide NUM, CAPS, SCR
 keyboard_locks {
     format = '\?color=good [\?if=num_lock NUM][\?soft  ]'
-    format += '[\?if=caps_lock CAPS][\?soft  ][\?if=scroll_lock SCR]'
+    format += '\?color=#E0CA3C [\?if=caps_lock CAPS][\?soft  ][\?if=scroll_lock SCR]'
 }
 
 #group multi {
