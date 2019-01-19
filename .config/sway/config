@@ -91,6 +91,8 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl -d gmux_backlight set +5% ; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d gmux_backlight set 5%- ; notify-send 'brightness down'"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # increase volume
