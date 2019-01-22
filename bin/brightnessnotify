@@ -1,0 +1,20 @@
+#!/bin/sh
+
+brightnesspct() {
+   curr=$(brightnessctl -d $1 get)
+   max=$(brightnessctl -d $1 max)                                                                                                           
+   echo $((200*$curr/$max % 2 + 100*$curr/$max))
+}
+
+CACHE_DIR="${XDG_CACHE_HOME:-"$HOME/.cache"}"/Wildcard-scripts
+[ -d "$CACHE_DIR" ] || mkdir -p -- "$CACHE_DIR"
+CACHE_FILE="$CACHE_DIR/brightnessnotify"
+
+device_name=$1
+message=$2
+
+notify-send.sh \
+   --replace-file=$CACHE_FILE.$device_name \
+   "Brightness" \
+   "$message $(brightnesspct $device_name)%"
+
