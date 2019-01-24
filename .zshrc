@@ -58,6 +58,7 @@ alias df='df -h'                                                # Human-readable
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 alias ll='ls -lha'
+alias ssh='TERM=xterm-color ssh'                                # Force xterm-color on ssh sessions
 
 # Theming section  
 autoload -U compinit colors zcalc
