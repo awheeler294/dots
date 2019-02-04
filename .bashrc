@@ -8,9 +8,9 @@ case $- in
       *) return;;
 esac
 
-if test -t 1; then
-   exec zsh
-fi
+#if test -t 1; then
+#   exec zsh
+#fi
 
 
 # don't put duplicate lines or lines starting with space in the history.

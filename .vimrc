@@ -10,7 +10,7 @@ set number
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+set background=dark
 
 if has("autocmd")
    "  jump to the last position when reopening a file
@@ -49,16 +49,16 @@ set laststatus=2
 
 function! DefaultStatusLineColor()
    " Focused statusline
-   hi statuslineNC guibg=DarkGrey ctermfg=DarkGray guifg=White ctermbg=8
+   hi statusline   guibg=DarkGrey ctermfg=7 guifg=White ctermbg=DarkGray
    " Unfocused statusline
-   hi statusline   guibg=DarkGrey ctermfg=8 guifg=White ctermbg=DarkGray
+   hi statuslineNC guibg=DarkGrey ctermfg=DarkGray guifg=White ctermbg=8
 endfunction
 
 function! InsertStatuslineColor(mode)
    if a:mode == 'i'
-      hi statusline guibg=Cyan ctermfg=DarkYellow  guifg=Black ctermbg=LightGray
+      hi statusline guibg=Purple ctermfg=5  guifg=Black ctermbg=0
    elseif a:mode == 'r'
-      hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+      hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=LightGray
    else
       hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
    endif
