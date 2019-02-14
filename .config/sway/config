@@ -7,7 +7,7 @@ set $local_bin $HOME/bin
 # Randomize background files
 exec --no-startup-id /home/andrew/bin/set-backgrounds
 
-output eDP-1 position 0,0 scale 2 
+output eDP-1 position 0,540 scale 2 
 output DP-1 position 1440,0
 output * bg $wallpapers/default.bgimg fill
 output eDP-1 bg $wallpapers/eDP-1.bgimg fill
