@@ -49,18 +49,18 @@ set laststatus=2
 
 function! DefaultStatusLineColor()
    " Focused statusline
-   hi statuslineNC guibg=DarkGrey ctermfg=DarkGray guifg=White ctermbg=8
+   hi statusline   ctermfg=67  ctermbg=235
    " Unfocused statusline
-   hi statusline   guibg=DarkGrey ctermfg=8 guifg=White ctermbg=DarkGray
+   hi statuslineNC ctermfg=235 ctermbg=67
 endfunction
 
 function! InsertStatuslineColor(mode)
    if a:mode == 'i'
-      hi statusline guibg=Cyan ctermfg=DarkYellow  guifg=Black ctermbg=LightGray
+      hi statusline ctermfg=98 ctermbg=235
    elseif a:mode == 'r'
-      hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+      hi statusline ctermfg=202 ctermbg=235
    else
-      hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+      hi statusline ctermfg=1  ctermbg=0
    endif
 endfunction
 
@@ -69,9 +69,11 @@ call DefaultStatusLineColor()
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * call DefaultStatusLineColor() 
 
+hi ColorColumn ctermbg=235
 hi CursorLine   cterm=NONE ctermbg=235
 hi CursorColumn cterm=NONE ctermbg=235
 hi Cursor       cterm=NONE ctermbg=DarkGray
+set colorcolumn=81
 set cursorline
 nnoremap H :set cursorcolumn!<CR>
 
@@ -85,7 +87,7 @@ highlight DiffDelete cterm=bold ctermfg=88  ctermbg=236 gui=none guifg=bg guibg=
 highlight DiffChange cterm=bold ctermfg=106 ctermbg=238 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=17  ctermbg=94  gui=none guifg=bg guibg=Red
 
-hi MatchParen cterm=bold ctermbg=none ctermfg=122
+hi MatchParen cterm=bold ctermbg=none ctermfg=135
 set noshowmatch
 
 " default the statusline to green
@@ -130,4 +132,4 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "let g:colorizer_auto_color = 1
 
 set nofoldenable
-hi ColorColumn ctermbg=234
+
