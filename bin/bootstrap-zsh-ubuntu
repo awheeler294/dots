@@ -4,3 +4,5 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.con
 git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
 
 sudo apt install zsh zsh-syntax-highlighting
+
+chsh -s $(which zsh)
