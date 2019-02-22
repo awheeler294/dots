@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
+
+sudo apt install zsh zsh-syntax-highlighting
