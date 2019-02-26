@@ -58,6 +58,10 @@ alias df='df -h'                                                # Human-readable
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 alias ll='ls -lha'
+#alias tmux="tmux -2"
+#alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="TERM=xterm-256color tmux"
+#alias tmux="TERM=tmux-256color tmux"
 #alias ssh='TERM=xterm-color ssh'                                # Force xterm-color on ssh sessions
 
 # Theming section  
