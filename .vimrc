@@ -49,14 +49,14 @@ set laststatus=2
 
 function! DefaultStatusLineColor()
    " Focused statusline
-   hi statusline   ctermfg=67  ctermbg=235
+   hi statusline   ctermfg=12  ctermbg=235
    " Unfocused statusline
-   hi statuslineNC ctermfg=235 ctermbg=67
+   hi statuslineNC ctermfg=235 ctermbg=12
 endfunction
 
 function! InsertStatuslineColor(mode)
    if a:mode == 'i'
-      hi statusline ctermfg=98 ctermbg=235
+      hi statusline ctermfg=13 ctermbg=235
    elseif a:mode == 'r'
       hi statusline ctermfg=202 ctermbg=235
    else
