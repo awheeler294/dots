@@ -7,11 +7,18 @@ set $local_bin $HOME/bin
 # Randomize background files
 exec --no-startup-id /home/andrew/bin/set-backgrounds
 
-output eDP-1 position 0,540 scale 2 
-output DP-1 position 1440,0
+set $display_laptop eDP-1
+set $display_right  DP-1
+set $display_left   DP-2
+# 2880x1800 at scale x2 is 1440x900
+output $display_laptop position 5120,540 scale 2 
+output $display_right  position 2560,0
+output $display_left   position 0,0
+
 output * bg $wallpapers/default.bgimg fill
-output eDP-1 bg $wallpapers/eDP-1.bgimg fill
-output DP-1 bg $wallpapers/DP-1.bgimg fill
+output $display_laptop bg $wallpapers/eDP-1.bgimg fill
+output $display_left   bg $wallpapers/DP-1.bgimg fill
+output $display_right  bg $wallpapers/DP-2.bgimg fill
 
 input 1452:628:bcm5974 {
    tap enabled
@@ -248,8 +255,15 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Set workspaces to specific outputs
-workspace $ws2 output DP-1
-workspace $ws9 output DP-1
+workspace $ws1 output $display_left
+workspace $ws2 output $display_left
+workspace $ws3 output $display_left
+workspace $ws4 output $display_right
+workspace $ws5 output $display_right
+workspace $ws6 output $display_right
+workspace $ws7 output $display_laptop
+workspace $ws8 output $display_laptop
+workspace $ws9 output $display_laptop
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -366,8 +380,8 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 exec hipchat4
-exec slack
-exec --no-startup-id swaymsg 'workspace $ws2; exec $browser'
+#exec slack
+exec --no-startup-id swaymsg 'workspace $ws4; exec $browser'
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
