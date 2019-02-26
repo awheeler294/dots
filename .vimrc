@@ -115,7 +115,8 @@ Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
-Plug 'guns/xterm-color-table.vim'
+Plug '6guns/xterm-color-table.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
