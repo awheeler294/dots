@@ -9,9 +9,14 @@
 general {
         colors = true
         interval = 5
-        color_good = "#2AA198"
-        color_bad = "#586E75"
-        color_degraded = "#DC322F"
+        color_good = "#0B6E4F"
+        color_bad = "#90323D"
+        color_degraded = "#C75146"
+
+        #color_good = "#2AA198"
+        #color_bad = "#586E75"
+        #color_degraded = "#DC322F"
+
 }
 
 #order += "arch_updates"

@@ -10,9 +10,9 @@ exec --no-startup-id /home/andrew/bin/set-backgrounds
 # 2880x1800 at scale x2 is 1440x900
 set $display_laptop eDP-1
 # 2560x1440
-set $display_right  DP-1
+set $display_right   DP-1
 # 2560x1440
-set $display_left   DP-2
+set $display_left    DP-2
 
 # Horizontal
 #output $display_laptop position 5120,540 scale 2 
@@ -427,6 +427,21 @@ set $term_color13    #BA8BAF
 set $term_color14    #1ABB9B
 set $term_color15    #F8F8F8
 
+set $main_color      #ED8712
+set $secondary_color #2D728F
+set $urgent_color    #E53714
+set $color_good      #0B6E4F
+set $color_bad       #90323D
+set $color_degraded  #C75146
+set $fg_white        #CFCFCF                                                    
+set $black_darkest   #1D1D1D                                                    
+Set $black_widget    #262626                                                    
+set $black_entry     #292929                                                    
+set $black_select    #303030                                                    
+set $dark_gray       #848484
+set $darker_gray     #373532
+set $light_gray      #505050
+
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
         swaybar_command swaybar
@@ -447,9 +462,9 @@ bar {
         #statusline #F9FAF9
         #separator  #454947
 
-        background #262626
-        statusline #CFCFCF
-        separator  #505050
+        background $black_widget
+        statusline $fg_white
+        separator  $light_gray
 
 #                          border  backgr. text
         #focused_workspace  #F9FAF9 #16a085 #292F34
@@ -457,12 +472,13 @@ bar {
         #inactive_workspace #595B5B #222D31 #EEE8D5
         #binding_mode       #16a085 #2C2C2C #F9FAF9
         #urgent_workspace   #16a085 #FDF6E3 #E5201D
-        
-        focused_workspace  #CFCFCF #ED8712 #303030
-        active_workspace   #505050 #373532 #FDF6E3
-        inactive_workspace #505050 #262626 #EEE8D5
-        binding_mode       #ED8712 #262626 #F9FAF9
-        urgent_workspace   #ED8712 #505050 #E53714
+
+#                          border      background    text
+        focused_workspace  $fg_white   $main_color   $black_select
+        active_workspace   $light_gray $darker_gray  #FDF6E3
+        inactive_workspace $light_gray $black_widget #EEE8D5
+        binding_mode       $main_color $black_widget #F9FAF9
+        urgent_workspace   $main_color $light_gray   $urgent_color
  
     }
 }
@@ -472,11 +488,20 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3  #268FA0
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948  #000000
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948  #000000
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2  #000000
-  client.placeholder      #000000 #0c0c0c #ffffff #000000  #000000
+  #client.focused          #556064 #556064 #80FFF9 #FDF6E3  #268FA0
+  #client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948  #000000
+  #client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948  #000000
+  #client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2  #000000
+  #client.placeholder      #000000 #0c0c0c #ffffff #000000  #000000
+
+  #client.background       #2B2C2B
+
+# class                   border      background    text            indic.   child_border
+  client.focused          $light_gray $darker_gray  $main_color     #FDF6E3  $main_color
+  client.focused_inactive $light_gray $darker_gray  $color_degraded #454948  #000000
+  client.unfocused        $light_gray $black_widget $color_good     #454948  #000000
+  client.urgent           $main_color #FDF6E3       $urgent_color   #268BD2  #000000
+  client.placeholder      #000000     #0c0c0c       #ffffff         #000000  #000000
 
   client.background       #2B2C2B
 
