@@ -391,8 +391,8 @@ exec --no-startup-id mako
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-exec hipchat4
-#exec slack
+#exec hipchat4
+exec slack
 exec --no-startup-id swaymsg 'workspace $ws5; exec $terminal'
 exec --no-startup-id swaymsg 'workspace $ws4; exec $browser'
 
