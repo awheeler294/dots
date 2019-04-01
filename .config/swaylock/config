@@ -1,1 +1,23 @@
-image=$HOME/.config/swaylock/lockscreen-img fit
+color=1D1D1D
+image=DP-1:$HOME/.config/swaylock/lockscreen-img 
+image=eDP-1:$HOME/.config/swaylock/lockscreen-img  
+
+indicator-caps-lock
+indicator-radius=75
+indicator-thickness=15
+
+bs-hl-color=#90323D
+
+inside-color=#373532
+inside-clear-color=#E53714
+ring-clear-color=#ED8712
+
+ring-ver-color=#2D728F
+inside-ver-color=#0B6E4F
+line-ver-color=#1D1D1D
+
+inside-wrong-color=#C75146
+ring-wrong-color=#90323D
+
+ring-color=#2D728F
+key-hl-color=#E53714
