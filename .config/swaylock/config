@@ -2,6 +2,8 @@ color=1D1D1D
 image=DP-1:$HOME/.config/swaylock/lockscreen-img 
 image=eDP-1:$HOME/.config/swaylock/lockscreen-img  
 
+scaling=stretch
+
 indicator-caps-lock
 indicator-radius=75
 indicator-thickness=15
