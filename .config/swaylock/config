@@ -10,9 +10,14 @@ indicator-thickness=15
 
 bs-hl-color=#90323D
 
+ring-color=#2D728F
+key-hl-color=#E53714
 inside-color=#373532
-inside-clear-color=#E53714
-ring-clear-color=#ED8712
+
+inside-clear-color=#373532
+ring-clear-color=#90323D
+text-clear-color=#3D5933
+
 
 ring-ver-color=#2D728F
 inside-ver-color=#0B6E4F
@@ -21,5 +26,3 @@ line-ver-color=#1D1D1D
 inside-wrong-color=#C75146
 ring-wrong-color=#90323D
 
-ring-color=#2D728F
-key-hl-color=#E53714
