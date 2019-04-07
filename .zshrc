@@ -57,9 +57,12 @@ alias cp="cp -i"                                                # Confirm before
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
+<<<<<<< HEAD
 alias ll='grc ls -lha'
 alias slog='grc sudo tail -f /var/log/syslog'
 alias vim='nvim'
+=======
+>>>>>>> 894fefe... initial commit
 #alias tmux="tmux -2"
 #alias tmux="TERM=screen-256color-bce tmux"
 #alias tmux="TERM=xterm-256color tmux"
@@ -212,3 +215,6 @@ export HSTR_CONFIG=hicolor        # get more colors
 
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+
+CUSTOM_FILE=$HOME/.config/zsh/custom
+[ -f $CUSTOM_FILE ] && source $CUSTOM_FILE
