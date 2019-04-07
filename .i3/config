@@ -41,7 +41,8 @@ font pango:Helvetica Neue, FontAwesome 11
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec xfce4-terminal
+#bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec termite
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -312,7 +313,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 #exec --no-startup-id xautolock -time 10 -locker blurlock
-#exec --no-startup-id xautolock -time 10 -locker xflock4
+exec --no-startup-id xautolock -time 10 -locker xflock4
 exec_always --no-startup-id fix_xcursor
 
 exec --no-startup-id blueman-applet
