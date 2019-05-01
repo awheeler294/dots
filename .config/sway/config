@@ -19,8 +19,8 @@ set $display_left    DP-2
 #output $display_right  position 2560,0
 #output $display_left   position 0,0
 # Left screen vertical
-output $display_laptop position 4000,1180 scale 2 
-output $display_right  position 1440,640
+output $display_laptop position 4000,1280 scale 2 
+output $display_right  position 1440,740
 output $display_left   position 0,0 transform 270
 
 
@@ -94,7 +94,10 @@ bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu='rofi -dmenu -i'
 bindsym $mod+n exec --no-startup-id networkmanager_dmenu
 
 # launch rofi-calc (package: AUR rofi-calc)
-bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
+bindsym $mod+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
+
+# window switcher
+bindsym $mod+tab exec --no-startup-id rofi -show window
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -189,7 +192,7 @@ bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+bar split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+underscore split v;exec notify-send 'tile vertically'
-bindsym $mod+Tab split toggle
+#bindsym $mod+Tab split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
