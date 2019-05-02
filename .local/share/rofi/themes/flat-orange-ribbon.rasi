@@ -47,8 +47,8 @@
 }
 #entry {
   padding: 0.7em;
-  text-color: @blackwidget;
-  background-color: @fgwhite;
+  text-color: @fgwhite;
+  background-color: @blackselect;
   expand: false;
   width: 10em;
 }
