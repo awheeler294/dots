@@ -1,7 +1,7 @@
 color=1D1D1D
-image=eDP-1:$HOME/.config/swaylock/lockscreen-img  
-image=DP-1:$HOME/.config/swaylock/lockscreen-img 
-image=DP-2:$HOME/.config/swaylock/lockscreen-img-vert 
+image=eDP-1:$HOME/.config/swaylock/img-eDP-1
+image=DP-1:$HOME/.config/swaylock/img-DP-1
+image=DP-2:$HOME/.config/swaylock/img-DP-2
 
 scaling=stretch
 
