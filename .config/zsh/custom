@@ -1,4 +1,5 @@
 alias ll='ls -lha'
+alias vim='nvim'
 
 # HSTR configuration - add this to ~/.zshrc
 alias hh=hstr                     # hh to be alias for hstr
