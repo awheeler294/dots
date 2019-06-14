@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map <leader>s :source ~/.vimrc<CR>
-set number
+set number relativenumber 
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -29,6 +29,8 @@ set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
 set shiftwidth=3	        " Number of auto-indent spaces
 set softtabstop=3	        " Number of spaces per Tab
+set tabstop=3
+set expandtab
 "set incsearch		        " Incremental search
 "set autowrite		        " Automatically save before commands like :next and :make
 set hidden                      " Hide buffers when they are abandoned
@@ -46,21 +48,22 @@ set history=100
 set eventignore=CursorMoved
 
 set laststatus=2
+set scrolloff=20                " Number of lines to ofset scrolling
 
 function! DefaultStatusLineColor()
    " Focused statusline
-   hi statuslineNC guibg=DarkGrey ctermfg=DarkGray guifg=White ctermbg=8
+   hi statusline   ctermfg=12  ctermbg=235
    " Unfocused statusline
-   hi statusline   guibg=DarkGrey ctermfg=8 guifg=White ctermbg=DarkGray
+   hi statuslineNC ctermfg=235 ctermbg=12
 endfunction
 
 function! InsertStatuslineColor(mode)
    if a:mode == 'i'
-      hi statusline guibg=Cyan ctermfg=DarkYellow  guifg=Black ctermbg=LightGray
+      hi statusline ctermfg=13 ctermbg=235
    elseif a:mode == 'r'
-      hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+      hi statusline ctermfg=202 ctermbg=235
    else
-      hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+      hi statusline ctermfg=1  ctermbg=0
    endif
 endfunction
 
@@ -69,9 +72,11 @@ call DefaultStatusLineColor()
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * call DefaultStatusLineColor() 
 
+hi ColorColumn ctermbg=235
 hi CursorLine   cterm=NONE ctermbg=235
 hi CursorColumn cterm=NONE ctermbg=235
 hi Cursor       cterm=NONE ctermbg=DarkGray
+set colorcolumn=81
 set cursorline
 nnoremap H :set cursorcolumn!<CR>
 
@@ -85,7 +90,7 @@ highlight DiffDelete cterm=bold ctermfg=88  ctermbg=236 gui=none guifg=bg guibg=
 highlight DiffChange cterm=bold ctermfg=106 ctermbg=238 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=17  ctermbg=94  gui=none guifg=bg guibg=Red
 
-hi MatchParen cterm=bold ctermbg=none ctermfg=122
+hi MatchParen cterm=bold ctermbg=none ctermfg=135
 set noshowmatch
 
 " default the statusline to green
@@ -114,6 +119,8 @@ Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
 Plug 'guns/xterm-color-table.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
@@ -130,4 +137,5 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "let g:colorizer_auto_color = 1
 
 set nofoldenable
-hi ColorColumn ctermbg=234
+
+
