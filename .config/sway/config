@@ -114,11 +114,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
-set $percent "$((200*$curr/$max % 2 + 100*$curr/$max))"
-
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 bindsym XF86MonBrightnessUp exec --no-startup-id 'brightnessctl -d gmux_backlight set +5%; $HOME/bin/brightnessnotify gmux_backlight "Screen"'
 bindsym XF86MonBrightnessDown exec --no-startup-id 'brightnessctl -d gmux_backlight set 5%-; $HOME/bin/brightnessnotify gmux_backlight "Screen"'
 
