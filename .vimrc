@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map <leader>s :source ~/.vimrc<CR>
-set number
+set number relativenumber 
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -29,6 +29,8 @@ set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
 set shiftwidth=3	        " Number of auto-indent spaces
 set softtabstop=3	        " Number of spaces per Tab
+set tabstop=3
+set expandtab
 "set incsearch		        " Incremental search
 "set autowrite		        " Automatically save before commands like :next and :make
 set hidden                      " Hide buffers when they are abandoned
@@ -46,21 +48,22 @@ set history=100
 set eventignore=CursorMoved
 
 set laststatus=2
+set scrolloff=20                " Number of lines to ofset scrolling
 
 function! DefaultStatusLineColor()
    " Focused statusline
    hi statusline   ctermfg=12  ctermbg=235
    " Unfocused statusline
-   hi statuslineNC ctermfg=235 ctermbg=67
+   hi statuslineNC ctermfg=235 ctermbg=12
 endfunction
 
 function! InsertStatuslineColor(mode)
    if a:mode == 'i'
-      hi statusline ctermfg=13  ctermbg=235
+      hi statusline ctermfg=13 ctermbg=235
    elseif a:mode == 'r'
       hi statusline ctermfg=202 ctermbg=235
    else
-      hi statusline ctermfg=1   ctermbg=0
+      hi statusline ctermfg=1  ctermbg=0
    endif
 endfunction
 
@@ -115,8 +118,9 @@ Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
-Plug '6guns/xterm-color-table.vim'
+Plug 'guns/xterm-color-table.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
@@ -133,3 +137,4 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "let g:colorizer_auto_color = 1
 
 set nofoldenable
+
