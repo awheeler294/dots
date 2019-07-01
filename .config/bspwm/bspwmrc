@@ -2,18 +2,20 @@
 
 #### AUTOSTART ####
 gnome-keyring-daemon --daemonize --login &
-sxhkd &
-compton &
-xfsettingsd &
+start-pulseaudio-x11 &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+xfce-power-manager &
+.screenlayout/home-layout.sh &
+nitrogen --restore &
 wal -R &
+.config/polybar/launch.sh &
+compton &
+sxhkd &
+#xfsettingsd &
 synclient TapButton1=1 TapButton2=3 TapButton3=2 & #For laptop touchpad
 xset -b & #For annoying beeping sounds
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-xfce-power-manager &
-start-pulseaudio-x11 &
 light-locker &
 thunar --daemon &
-polybar future &
 volumeicon &
 nm-applet &
 pa-applet &
@@ -25,7 +27,9 @@ msm_notifier &
 #### WORKSPACES AND BORDERS #### 
 
 #Monitor allocation and their workspaces
-bspc monitor -d Terminal Sublime Firefox Thunar Evince
+bspc monitor DP-1    -d one two three four 
+bspc monitor DVI-I-1 -d five six seven eight nine 
+bspc monitor DVI-I-0 -d zero
 
 #Border gaps,width, and padding
 bspc config border_width         0
@@ -39,14 +43,13 @@ bspc config bottom_padding       20
 bspc config left_padding         20
 bspc config right_padding 		 20
 
-bspc rule -a URxvt desktop='^1' follow=on
-bspc rule -a Subl3 desktop='^2' follow=on
-bspc rule -a Firefox desktop='^3' follow=on
-bspc rule -a Thunar desktop='^4' follow=on
-bspc rule -a Evince desktop='^5'follow=on
+#bspc rule -a URxvt desktop='^1' follow=on
+#bspc rule -a Subl3 desktop='^2' follow=on
+#bspc rule -a Firefox desktop='^3' follow=on
+#bspc rule -a Thunar desktop='^4' follow=on
+#bspc rule -a Evince desktop='^5'follow=on
 
 #Focus on pointer
 bspc config focus_follows_pointer true
 bspc config pointer_follows_focus true
 
-nitrogen --restore &

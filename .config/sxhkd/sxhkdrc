@@ -1,8 +1,14 @@
 ######### MY PERSONAL KEYBINDS ########### 
 
-super + shift + m
+super + F1 
+   chromium
+super + {F2, b}
+   vivaldi
+super + F3
 	firefox
-super + shift + n
+super + F4
+   pamac-manager
+super + F5
 	thunar
 
 #Scrot [Shots currently go to your Pictures folder]
