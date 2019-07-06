@@ -3,7 +3,7 @@
 super + F1 
    chromium
 super + {F2, b}
-   vivaldi
+   vivaldi-stable
 super + F3
 	firefox
 super + F4
