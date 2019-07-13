@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map <leader>s :source ~/.vimrc<CR>
-set number
+set number relativenumber 
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -29,6 +29,8 @@ set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
 set shiftwidth=3	        " Number of auto-indent spaces
 set softtabstop=3	        " Number of spaces per Tab
+set tabstop=3
+set expandtab
 "set incsearch		        " Incremental search
 "set autowrite		        " Automatically save before commands like :next and :make
 set hidden                      " Hide buffers when they are abandoned
@@ -46,6 +48,7 @@ set history=100
 set eventignore=CursorMoved
 
 set laststatus=2
+set scrolloff=20                " Number of lines to ofset scrolling
 
 function! DefaultStatusLineColor()
    " Focused statusline
@@ -117,6 +120,7 @@ Plug 'drzel/vim-line-no-indicator'
 Plug 'lilydjwg/colorizer'
 Plug 'guns/xterm-color-table.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 " Ctrl-n toggle NERDtree
