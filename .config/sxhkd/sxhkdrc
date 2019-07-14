@@ -270,14 +270,14 @@ super + r
 super + b
 	$BROWSER
     		
-super + {e, f5}
+super + F5
 	thunar
 
-super + f4
+super + F4
    pamac-manager
 
 # Use slightly bigger font for ranger
-super + shift + e
+super + shift + F5
 	default-terminal ranger
 
 Print
