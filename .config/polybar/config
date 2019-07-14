@@ -21,6 +21,7 @@ white = #FFFFFF
 ;                                                ;
 ;-------------------------------------------------
 [bar/future]
+monitor = DVI-D-0
 width = 70%
 height = 40
 offset-x = 15%
@@ -34,11 +35,34 @@ foreground = ${colors.foreground}
 border-size = 2
 border-color = ${colors.foreground}
 
+modules-left = pavolume cpu powermenu
+modules-center = date
+tray-position = right
+font-0 = "TerminessTTF Nerd Font:size=13:weight=bold;2"
+font-1 = "Unifont:size=12:weight=bold;2"
+
+[bar/status]
+monitor = ${env:MONITOR:}
+width = 70%
+height = 40
+offset-x = 15%
+offset-y = 1%
+radius = 0.0
+fixed-center = true
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 2
+border-color = ${colors.foreground}
+
 modules-left = bspwm
 modules-center = date
 modules-right = pavolume cpu powermenu
-font-0 = "Unifont:size=12:weight=bold;2"
-font-1 = "FontAwesome:size=12;"
+font-0 = "TerminessTTF Nerd Font:size=13:weight=bold;2"
+font-1 = "Unifont:size=12:weight=bold;2"
+font-3 = "SpaceMono Nerd Font:size=13:weight=bold;2"
 
 ;-------------------------------------------------
 ;                                                ;
@@ -58,11 +82,16 @@ fuzzy-match = true
 format = <label-state>
 format-padding = 1
 
-ws-icon-0=Terminal;I
-ws-icon-1=Sublime;II
-ws-icon-2=Firefox;III
-ws-icon-3=Thunar;IV
-ws-icon-4=Evince;V
+ws-icon-0=1;I
+ws-icon-1=2;II
+ws-icon-2=3;III
+ws-icon-3=4;IV
+ws-icon-4=5;V
+ws-icon-5=6;VI
+ws-icon-6=7;VII
+ws-icon-7=8;VIII
+ws-icon-8=9;IX
+ws-icon-9=10;X
 
 ;NOTE: YOU CANNOT HAVE NAME AND ICON
 ;TOGETHER ONLY ONE OR THE OTHER!!
@@ -143,10 +172,11 @@ menu-2-1-exec = menu-open-0
 ;-------------------------------------------------
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+interval = 2
 
 format = <label> <ramp-coreload>
-label =CORE USE:%percentage%%
+label = CORE USE:%percentage%%
+label-padding = 3
 label-foreground = ${colors.white}
 
 ramp-coreload-0 = ▁
