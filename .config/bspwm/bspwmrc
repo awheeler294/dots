@@ -1,35 +1,34 @@
 #! /bin/sh
 
 #### AUTOSTART ####
-gnome-keyring-daemon --daemonize --login &
+#gnome-keyring-daemon --daemonize --login
+#gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+.screenlayout/home-layout.sh
+nitrogen --restore
+compton &
+wal -R &
 start-pulseaudio-x11 &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-xfce-power-manager &
-.screenlayout/home-layout.sh &
-nitrogen --restore &
-wal -R &
-.config/polybar/launch.sh &
-compton &
+#xfce4-power-manager &
+$HOME/.config/polybar/launch.sh 2>$HOME/.config/polybar/errors.log
 sxhkd &
 #xfsettingsd &
-synclient TapButton1=1 TapButton2=3 TapButton3=2 & #For laptop touchpad
+#synclient TapButton1=1 TapButton2=3 TapButton3=2 & #For laptop touchpad
 xset -b & #For annoying beeping sounds
 light-locker &
 thunar --daemon &
-volumeicon &
 nm-applet &
 pa-applet &
-blueman-applet &
+#blueman-applet &
 pamac-tray &
-msm_notifier &
-
+#msm_notifier &
 
 #### WORKSPACES AND BORDERS #### 
 
 #Monitor allocation and their workspaces
-bspc monitor DP-1    -d one two three four 
-bspc monitor DVI-I-1 -d five six seven eight nine 
-bspc monitor DVI-I-0 -d zero
+bspc monitor DP-1 -d 1 2 3 4
+bspc monitor DVI-I-1 -d 6 7 8 9 10
+bspc monitor DVI-D-0 -d 5
 
 #Border gaps,width, and padding
 bspc config border_width         0

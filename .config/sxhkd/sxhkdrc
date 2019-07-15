@@ -53,7 +53,7 @@ super + Return
 	urxvt
 
 # program launcher
-super + @space
+super + {@space, d}
 	dmenu_run
 
 # make sxhkd reload its configuration files:
