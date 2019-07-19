@@ -1,21 +1,23 @@
 #! /bin/sh
-gap=15
-PANEL_HEIGHT=25
+gap=5
+PANEL_HEIGHT=10
 export gap
 export PANEL_HEIGHT
 
 #This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
-bspc config window_gap $gap;
-bspc config top_padding $(($PANEL_HEIGHT-$gap))
-bspc config left_padding -$gap
-bspc config right_padding -$gap
-bspc config bottom_padding -$gap
+bspc config window_gap $gap
+#bspc config top_padding $(($PANEL_HEIGHT-$gap))
+bspc config top_padding $gap
+bspc config left_padding $gap
+bspc config right_padding $gap
+#bspc config bottom_padding $(($PANEL_HEIGHT-$gap))
+bspc config bottom_padding $gap
 
 #Various settings
-bspc config gapless_monocle     false #Default setup uses negative padding, and gapless monocle looks really weird like that
-bspc config borderless_monocle  true
+bspc config gapless_monocle false #Default setup uses negative padding, and gapless monocle looks really weird like that
+bspc config borderless_monocle  false
 bspc config single_monocle true
-bspc config paddingless_monocle false
+#bspc config paddingless_monocle false
 #bspc config ignore_ewmh_focus      true
 #bspc config initial_polarity second_child
 bspc config remove_disabled_monitors true
@@ -35,7 +37,8 @@ bspc config focus_follows_pointer true
 #bspc config pointer_follows_focus true #Some keybindings automatically enable and disable this setting
 
 #Settings for manual splitting
-bspc config split_ratio         0.52
+#bspc config split_ratio         0.52
+bspc config split_ratio         0.48
 
 #bspc monitor -d i ii iii iv v vi vii viii ix x
 #bspc monitor -d One Two Three Four Five Six Seven Eight Nine Ten
@@ -44,7 +47,36 @@ bspc config split_ratio         0.52
 #bspc monitor -d I II III IV V VI
 
 ###This creates and names desktops for multiple monitors.
-workspaces_multimonitor &
+M=$(bspc query -M | wc -l)
+if [[ "$M" == 1 ]]; then
+   bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+elif [[ "$M" == 2 ]]; then
+   bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3 4 5
+   bspc monitor $(bspc query -M | awk NR==2) -d 6 7 8 9 10
+elif [[ "$M" == 3 ]]; then
+   bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3 4
+   bspc monitor $(bspc query -M | awk NR==2) -d 5 6 7
+   bspc monitor $(bspc query -M | awk NR==3) -d 8 9 10
+elif [[ "$M" == 4 ]]; then
+   bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3
+   bspc monitor $(bspc query -M | awk NR==2) -d 4 5 6
+   bspc monitor $(bspc query -M | awk NR==3) -d 7 8
+   bspc monitor $(bspc query -M | awk NR==4) -d 9 10
+elif [[ "$M" == 5 ]]; then
+   bspc monitor $(bspc query -M | awk NR==1) -d 1 2
+   bspc monitor $(bspc query -M | awk NR==2) -d 3 4 
+   bspc monitor $(bspc query -M | awk NR==3) -d 5 6
+   bspc monitor $(bspc query -M | awk NR==4) -d 7 8
+   bspc monitor $(bspc query -M | awk NR==5) -d 9 10
+else
+   I=1
+   for monitor in $(bspc query -M); do
+   bspc monitor $monitor \
+      -n "$I" \
+      -d $I/{a,b,c}
+   let I++
+   done
+fi
 
 bspc rule -a screenkey --unmanage
 bspc rule -a gcolor2 state=floating center=true

@@ -10,7 +10,7 @@
 ;                                                ;
 ;-------------------------------------------------
 [colors]
-background = #16060B
+background = #8016060B
 foreground = #798D8F 
 blue  = #244E64 
 white = #FFFFFF
@@ -23,9 +23,9 @@ white = #FFFFFF
 [bar/main]
 ;${env:<ENVIRONMENT-VARIABLE>:<fallback-value>}
 monitor = ${env:MONITOR:DP-0}
-width = 70%
-height = 40
-offset-x = 15%
+width = 98%
+height = 30
+offset-x = 15
 offset-y = 1%
 radius = 0.0
 fixed-center = true
@@ -44,10 +44,10 @@ font-1 = "Unifont:size=12:weight=bold;2"
 
 [bar/status]
 monitor = ${env:MONITOR:}
-width = 70%
-height = 40
-offset-x = 15%
-offset-y = 1%
+width = 98%
+height = 30
+offset-x = 1%
+offset-y = 5
 radius = 0.0
 fixed-center = true
 bottom = true
@@ -73,7 +73,7 @@ font-3 = "SpaceMono Nerd Font:size=13:weight=bold;2"
 [module/bspwm]
 type = internal/bspwm
 pin-workspaces = true
-inline-mode = true
+inline-mode = false
 enable-click = true
 enable-scroll = true
 reverse-scroll = true
@@ -117,8 +117,8 @@ label-empty-padding = 1
 [module/date]
 type = internal/date
 interval = 1.0
-date = %m-%d-%Y
-time = %r
+date = %a, %d %B %Y
+time = %R
 
 ; if `date-alt` or `time-alt` is defined, clicking
 ; the module will toggle between formats
@@ -234,11 +234,11 @@ format-volume = <ramp-volume> <label-volume>
 
 ; Available tokens:
 ;   %percentage% (default)
-label-muted =  muted
+label-muted = "  muted"
 label-muted-foreground = #666
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
+ramp-volume-0 = " "
 
 ;[module/pavolume]
 ;type = custom/script
