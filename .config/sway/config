@@ -18,10 +18,16 @@ set $display_left    DP-2
 #output $display_laptop position 5120,540 scale 2 
 #output $display_right  position 2560,0
 #output $display_left   position 0,0
+
 # Left screen vertical
 output $display_laptop position 4000,1280 scale 2 
 output $display_right  position 1440,740
 output $display_left   position 0,0 transform 270
+
+# Home Office
+#output $display_right  resolution 1920x1080
+#output $display_right  position 0,0
+#output $display_laptop position 1920,1280 scale 2 
 
 
 output * bg $wallpapers/default.bgimg fill
@@ -282,9 +288,10 @@ workspace $ws3 output $display_left
 workspace $ws4 output $display_right
 workspace $ws5 output $display_right
 workspace $ws6 output $display_right
-workspace $ws7 output $display_laptop
+workspace $ws7 output $display_right
 workspace $ws8 output $display_laptop
 workspace $ws9 output $display_laptop
+workspace $ws10 output $display_laptop
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -292,8 +299,8 @@ workspace $ws9 output $display_laptop
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
 
-assign [class="HipChat"] $ws7
-assign [class="Slack"] $ws7
+assign [class="HipChat"] $ws8
+assign [class="Slack"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -402,9 +409,9 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 #exec hipchat4
-exec slack
 exec --no-startup-id swaymsg 'workspace $ws5; exec $terminal'
 exec --no-startup-id swaymsg 'workspace $ws4; exec $browser'
+exec --no-startup-id swaymsg 'workspace $ws8; exec slack'
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
