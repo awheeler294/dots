@@ -10,7 +10,9 @@
 ;                                                ;
 ;-------------------------------------------------
 [colors]
-background = #8016060B
+; #16060B polybar puts the alpha channel in the first
+; position instead of the last like everyone else
+background = #E016060B
 foreground = #798D8F 
 blue  = #244E64 
 white = #FFFFFF
@@ -61,6 +63,7 @@ border-color = ${colors.foreground}
 modules-left = bspwm
 modules-center = date
 modules-right = pulseaudio cpu powermenu
+tray-position = right
 font-0 = "TerminessTTF Nerd Font:size=13:weight=bold;2"
 font-1 = "Unifont:size=12:weight=bold;2"
 font-3 = "SpaceMono Nerd Font:size=13:weight=bold;2"

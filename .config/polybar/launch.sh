@@ -6,9 +6,9 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-PRIMARY_MONITOR="$(xrandr --listmonitors | grep "0:" | cut -d ' ' -f6)"
+#PRIMARY_MONITOR="$(xrandr --listmonitors | grep "0:" | cut -d ' ' -f6)"
 # Launch bar
-MONITOR="$PRIMARY_MONITOR" polybar main &
+#MONITOR="$PRIMARY_MONITOR" polybar main &
 
 echo "$(polybar --list-monitors | cut -d":" -f1)"
 for m in $(polybar --list-monitors | cut -d":" -f1); do
