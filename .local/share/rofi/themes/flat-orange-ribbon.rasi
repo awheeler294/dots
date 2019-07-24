@@ -48,7 +48,7 @@
 #entry {
   padding: 0.7em;
   text-color: @fgwhite;
-  background-color: @blackselect;
+  background-color: @blackwidget;
   expand: false;
   width: 10em;
 }
@@ -66,7 +66,7 @@
 }
 #element selected {
   border: 0px 1px;
-  text-color: @blackselect;
-  background-color: @darkgray;
+  text-color: @fgwhite;
+  background-color: @blackselect;
 }
 
