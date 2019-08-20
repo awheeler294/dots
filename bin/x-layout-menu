@@ -1,0 +1,6 @@
+#!/bin/sh
+SCREEN_LAYOUT_PATH=$HOME/.screenlayout/
+select=$(echo -e "$(ls $SCREEN_LAYOUT_PATH)" | rofi -dmenu -i -p "Screen Layouts") 
+[ -z "$select" ] && exit 0
+$SCREEN_LAYOUT_PATH/$select
+exit 0
