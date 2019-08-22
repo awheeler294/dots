@@ -57,7 +57,8 @@ highlight = #726E4A
 
 # Colors from color0 to color254 can be set
 color0 = #3f3f3f
-color1 = #705050
+#color1 = #705050
+color1 = #d65050
 color2 = #60b48a
 color3 = #dfaf8f
 color4 = #506070
