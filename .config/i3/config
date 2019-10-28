@@ -412,7 +412,8 @@ for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="VirtualBox"] floating enable; border none
 
-exec --no-startup-id ~/.screenlayout/home_layout.sh
+#exec --no-startup-id ~/.screenlayout/home_layout.sh
+exec --no-startup-id autorandr --change
 # exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id xwinwrap -ov -ni -fs -- mpv -vo x11 -wid WID --keepaspect=no --loop Pictures/waterfall.gif
