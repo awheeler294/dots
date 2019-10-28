@@ -4,6 +4,7 @@ WALLPAPER_DIR=$HOME/Pictures/gif/
 wals=$(ls $WALLPAPER_DIR | shuf)
 wals_len=$(wc -w <<< $wals)
 
+pkill conky
 pkill xwinwrap
 
 #echo $wals
