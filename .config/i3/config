@@ -26,7 +26,7 @@ font xft:URWGothic-Book 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-set $terminal kitty
+set $terminal termite
 set $browser vivaldi-stable
 set $file-manager pcmanfm
 set $package-manager pamac-manager
