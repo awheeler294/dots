@@ -135,6 +135,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()
 
 "let g:colorizer_auto_color = 1
+"let g:colorizer_hex_alpha_first = 1
 
 set nofoldenable
 
