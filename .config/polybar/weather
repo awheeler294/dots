@@ -1,0 +1,53 @@
+#!/bin/python
+
+import urllib.request, urllib.parse, json
+from time import sleep
+import sys
+import socket
+
+#city = "Insert Your City"
+#api_key = "Insert Your API Key"
+#units = "Insert your units (Default: Kelvin, Options: Metric, Imperial"
+#unit_key = "Insert your Unit Key(K, C, F)"
+
+city = "Provo, US"
+api_key = "5e1a669969f6dca8ae49d41652651e9e"
+units = "Imperial"
+unit_key = "F"
+
+max_attempts = 10
+timeout = 10
+attempts = 0
+weather = False
+
+REMOTE_SERVER = "www.openweathermap.org"
+
+def is_connected():
+  try:
+    host = socket.gethostbyname(REMOTE_SERVER)
+    s = socket.create_connection((host, 80), 2)
+    return True
+
+  except Exception as e:
+#    print(e)
+    pass
+  return False
+
+while attempts < max_attempts:
+
+  if (is_connected()):
+    url = "http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units={}".format(urllib.parse.quote(city), api_key, units)
+    weather = json.loads(str(urllib.request.urlopen(url).read())[2:-1])
+
+    info = weather["weather"][0]["description"].capitalize()
+    temp = int(float(weather["main"]["temp"]))
+
+    print("%s, %i °%s" % (info, temp, unit_key))
+    sys.exit(0)
+
+#  logf.write("{0} \n", str(e))
+#  logf.write("weather: {0} \n", str(weather))
+#  logf.write("attempts: {0} \n", str(attempts))
+
+  attempts += 1
+  sleep(timeout)
