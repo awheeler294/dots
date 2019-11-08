@@ -54,10 +54,11 @@ module-margin-left = 2%
 module-margin-right = 2%
 
 font-0 = Bitstream Vera Sans Roman:pixelsize=14;1
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=14;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=14;1"
-font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=14;1"
-font-4 = "Font Awesome style=Regular:pixelsize=14;1"
+font-1 = "NotoSansMono Nerd Font:style=ExtraBold:pixelsize=14;1"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=14;1"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=14;1"
+font-4 = "Font Awesome 5 Brands:style=Regular:pixelsize=14;1"
+font-5 = "Font Awesome style=Regular:pixelsize=14;1"
 
 modules-left = i3
 modules-center = date time weather
@@ -637,9 +638,9 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
-adapter = ACAD
-full-at = 98
+battery = BAT0
+adapter = AC
+full-at = 95
 
 format-charging = <ramp-capacity> <label-charging>
 format-charging-underline = ${colors.used}
@@ -709,7 +710,7 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 interval = 1200
 format = <label>
-format-prefix = " "
+#format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 exec = ~/.config/polybar/weather
 
