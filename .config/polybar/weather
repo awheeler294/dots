@@ -5,12 +5,10 @@ from time import sleep
 import sys
 import socket
 
-#city = "Insert Your City"
 #api_key = "Insert Your API Key"
 #units = "Insert your units (Default: Kelvin, Options: Metric, Imperial"
 #unit_key = "Insert your Unit Key(K, C, F)"
 
-city = "Provo, US"
 api_key = "5e1a669969f6dca8ae49d41652651e9e"
 units = "Imperial"
 unit_key = "F"
@@ -21,6 +19,34 @@ attempts = 0
 weather = False
 
 REMOTE_SERVER = "www.openweathermap.org"
+LOCATION_API = "https://location.services.mozilla.com/v1/geolocate?key=geoclue"
+
+icons = {
+    '01d': '',  # clear sky (day)
+    '01n': '',  # clear sky (night)
+    '02d': '杖', # few clouds (day)
+    '02n': '',  # few clouds (night)
+    '03d': '摒', # scattered clouds (day)
+    '03n': '',  # scattered clouds (night)
+    '04d': '',  # broken clouds (day)
+    '04n': '',  # broken clouds (night)
+    '09d': '',  # shower rain (day)
+    '09d': '',  # shower rain (night)
+    '10d': '歹', # rain (day)
+    '10d': '',  # rain (night)
+    '11d': '朗', # thunderstorm (day)
+    '11d': '',  # thunderstorm (night)
+    '13d': '流', # snow (day)
+    '13d': '',  # snow (night)
+    '50d': '敖', # mist (day)
+    '50d': '',  # mist (night)
+}
+
+def get_icon(icon_code, format_type='text'):
+    if format_type == 'text':
+        return icons[icon_code]
+    elif format_type == 'api':
+        return urllib.request.urlopen("http://openweathermap.org/img/wn/{}@2x.png".format(icon_code)).read()
 
 def is_connected():
   try:
@@ -33,16 +59,22 @@ def is_connected():
     pass
   return False
 
+location = json.loads(urllib.request.urlopen(LOCATION_API).read().decode())['location']
+
 while attempts < max_attempts:
 
   if (is_connected()):
-    url = "http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units={}".format(urllib.parse.quote(city), api_key, units)
+    url = "http://api.openweathermap.org/data/2.5/weather?appid={}&lat={}&lon={}&units={}".format(
+        api_key, location['lat'], location['lng'], units
+    )
     weather = json.loads(str(urllib.request.urlopen(url).read())[2:-1])
 
     info = weather["weather"][0]["description"].capitalize()
     temp = int(float(weather["main"]["temp"]))
+    icon_code = weather["weather"][0]["icon"]
+    icon = get_icon(icon_code, 'text')
 
-    print("%s, %i °%s" % (info, temp, unit_key))
+    print("%s %s, %i °%s" % (icon, info, temp, unit_key))
     sys.exit(0)
 
 #  logf.write("{0} \n", str(e))
