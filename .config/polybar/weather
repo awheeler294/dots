@@ -18,7 +18,8 @@ timeout = 10
 attempts = 0
 weather = False
 
-REMOTE_SERVER = "www.openweathermap.org"
+OWM_SERVER = "www.openweathermap.org"
+LOCATION_SERVER = "https://location.services.mozilla.com"
 LOCATION_API = "https://location.services.mozilla.com/v1/geolocate?key=geoclue"
 
 icons = {
@@ -48,38 +49,38 @@ def get_icon(icon_code, format_type='text'):
     elif format_type == 'api':
         return urllib.request.urlopen("http://openweathermap.org/img/wn/{}@2x.png".format(icon_code)).read()
 
-def is_connected():
-  try:
-    host = socket.gethostbyname(REMOTE_SERVER)
-    s = socket.create_connection((host, 80), 2)
-    return True
+def is_connected(server):
+    try:
+        host = socket.gethostbyname(server)
+        s = socket.create_connection((host, 80), 2)
+        return True
 
-  except Exception as e:
-#    print(e)
-    pass
-  return False
+    except Exception as e:
+#       print(e)
+        pass
+    return False
 
-location = json.loads(urllib.request.urlopen(LOCATION_API).read().decode())['location']
 
 while attempts < max_attempts:
 
-  if (is_connected()):
-    url = "http://api.openweathermap.org/data/2.5/weather?appid={}&lat={}&lon={}&units={}".format(
-        api_key, location['lat'], location['lng'], units
-    )
-    weather = json.loads(str(urllib.request.urlopen(url).read())[2:-1])
+    if (is_connected("location.services.mozilla.com") and is_connected(OWM_SERVER)):
+        location = json.loads(urllib.request.urlopen(LOCATION_API).read().decode())['location']
+        url = "http://api.openweathermap.org/data/2.5/weather?appid={}&lat={}&lon={}&units={}".format(
+            api_key, location['lat'], location['lng'], units
+        )
+        weather = json.loads(str(urllib.request.urlopen(url).read())[2:-1])
 
-    info = weather["weather"][0]["description"].capitalize()
-    temp = int(float(weather["main"]["temp"]))
-    icon_code = weather["weather"][0]["icon"]
-    icon = get_icon(icon_code, 'text')
+        info = weather["weather"][0]["description"].capitalize()
+        temp = int(float(weather["main"]["temp"]))
+        icon_code = weather["weather"][0]["icon"]
+        icon = get_icon(icon_code, 'text')
 
-    print("%s %s, %i °%s" % (icon, info, temp, unit_key))
-    sys.exit(0)
+        print("%s %s, %i °%s" % (icon, info, temp, unit_key))
+        sys.exit(0)
 
-#  logf.write("{0} \n", str(e))
-#  logf.write("weather: {0} \n", str(weather))
-#  logf.write("attempts: {0} \n", str(attempts))
+#        logf.write("{0} \n", str(e))
+#        logf.write("weather: {0} \n", str(weather))
+#        logf.write("attempts: {0} \n", str(attempts))
 
-  attempts += 1
-  sleep(timeout)
+        attempts += 1
+        sleep(timeout)
