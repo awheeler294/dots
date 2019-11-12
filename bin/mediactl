@@ -1,0 +1,27 @@
+#!/bin/bash
+
+CTL=$HOME/.config/polybar/player-mpris-tail.py
+
+case $1 in
+   play)
+      if [[ ! -n $($CTL list) ]]; 
+      then
+         notify-send 'launch player'
+         exec -a youtube chromium-browser --app=http://www.youtube.com
+      else
+         notify-send 'play-pause'
+         $CTL play-pause
+      fi
+      ;;
+
+   quit)
+      notify-send 'quit player'
+      pkill -f youtube
+      ;;
+   
+   *)
+      notify-send "$1"
+      $CTL $1
+      ;;
+
+esac
