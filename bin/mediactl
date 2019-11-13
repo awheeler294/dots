@@ -2,16 +2,24 @@
 
 CTL=$HOME/.config/polybar/player-mpris-tail.py
 
+function launch_player {
+   notify-send 'launch player'
+   exec -a youtube chromium-browser --app=http://www.youtube.com
+}
+
 case $1 in
    play)
       if [[ ! -n $($CTL list) ]]; 
       then
-         notify-send 'launch player'
-         exec -a youtube chromium-browser --app=http://www.youtube.com
+         launch_player
       else
          notify-send 'play-pause'
          $CTL play-pause
       fi
+      ;;
+
+   launch)
+      launch_player
       ;;
 
    quit)

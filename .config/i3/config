@@ -64,8 +64,8 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym XF86AudioPlay exec ~/bin/mediactl play
 bindsym XF86AudioPrev exec ~/bin/mediactl previous
 bindsym XF86AudioNext exec ~/bin/mediactl next
-bindsym $mod+p exec ~/bin/mediactl quit
-
+bindsym $mod+p exec ~/bin/mediactl launch
+bindsym $mod+Shift+p exec ~/bin/mediactl quit
 
 # Start Applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
