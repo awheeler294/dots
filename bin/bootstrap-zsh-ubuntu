@@ -5,4 +5,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.con
 
 sudo apt install zsh zsh-syntax-highlighting
 
+echo "chsh -s $(which zsh)"
 chsh -s $(which zsh)
