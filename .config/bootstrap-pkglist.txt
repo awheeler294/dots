@@ -68,8 +68,6 @@ gnome-keyring
 gparted
 grc
 grep
-grub
-grub-theme-manjaro-dev
 gst-libav
 gst-plugins-bad
 gst-plugins-base
@@ -156,6 +154,7 @@ mousepad
 nano
 ncdu
 neovim
+nerd-fonts-complete
 netctl
 network-manager-applet
 networkmanager
@@ -182,6 +181,7 @@ perl
 perl-file-mimeinfo
 pkgconf
 polkit-gnome
+polybar
 poppler-data
 powertop
 procps-ng
@@ -268,7 +268,6 @@ xorg-xprop
 xterm
 yadm
 yay
-zensu
 zsh
 zsh-autosuggestions
 zsh-completions
