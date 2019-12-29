@@ -1,0 +1,22 @@
+output DP-1
+off
+output HDMI-1
+off
+output DP-2
+off
+output HDMI-2
+off
+output DVI-I-3-2
+mode 2560x1440
+pos 0x0
+rate 59.95
+rotate left
+output DVI-I-2-1
+mode 2560x1440
+pos 1440x744
+primary
+rate 59.95
+output eDP-1
+mode 1920x1080
+pos 4000x1172
+rate 60.00
