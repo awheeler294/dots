@@ -27,12 +27,12 @@ endif
 set showmatch                   " Show matching brackets.
 set ignorecase                  " Do case insensitive matching
 set smartcase                   " Do smart case matching
-set shiftwidth=3	        " Number of auto-indent spaces
-set softtabstop=3	        " Number of spaces per Tab
+set shiftwidth=3	              " Number of auto-indent spaces
+set softtabstop=3	              " Number of spaces per Tab
 set tabstop=3
 set expandtab
-"set incsearch		        " Incremental search
-"set autowrite		        " Automatically save before commands like :next and :make
+"set incsearch		               " Incremental search
+"set autowrite		               " Automatically save before commands like :next and :make
 set hidden                      " Hide buffers when they are abandoned
 set linebreak                   " Break lines at word
 " set mouse=a                   " Enable mouse usage (all modes)
@@ -50,27 +50,27 @@ set eventignore=CursorMoved
 set laststatus=2
 set scrolloff=20                " Number of lines to ofset scrolling
 
-function! DefaultStatusLineColor()
-   " Focused statusline
-   hi statusline   ctermfg=12  ctermbg=235
-   " Unfocused statusline
-   hi statuslineNC ctermfg=235 ctermbg=12
-endfunction
+"function! DefaultStatusLineColor()
+"   " Focused statusline
+"   hi statusline   ctermfg=12  ctermbg=235
+"   " Unfocused statusline
+"   hi statuslineNC ctermfg=235 ctermbg=12
+"endfunction
+"
+"function! InsertStatuslineColor(mode)
+"   if a:mode == 'i'
+"      hi statusline ctermfg=13 ctermbg=235
+"   elseif a:mode == 'r'
+"      hi statusline ctermfg=202 ctermbg=235
+"   else
+"      hi statusline ctermfg=1  ctermbg=0
+"   endif
+"endfunction
+"
+"call DefaultStatusLineColor() 
 
-function! InsertStatuslineColor(mode)
-   if a:mode == 'i'
-      hi statusline ctermfg=13 ctermbg=235
-   elseif a:mode == 'r'
-      hi statusline ctermfg=202 ctermbg=235
-   else
-      hi statusline ctermfg=1  ctermbg=0
-   endif
-endfunction
-
-call DefaultStatusLineColor() 
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * call DefaultStatusLineColor() 
+"au InsertEnter * call InsertStatuslineColor(v:insertmode)
+"au InsertLeave * call DefaultStatusLineColor() 
 
 hi ColorColumn ctermbg=235
 hi CursorLine   cterm=NONE ctermbg=235
@@ -98,12 +98,14 @@ set noshowmatch
 " hi statusline guibg=DarkGrey
 " ctermfg=8 guifg=White ctermbg=15
 
-set statusline=\ %f\ [%t]%m%r%h\ %y%=line:\ %4l/%L,\ col:%2v\ \ %3p%%\ %{LineNoIndicator()} 
+"set statusline=\ %f\ [%t]%m%r%h\ %y%=line:\ %4l/%L,\ col:%2v\ \ %3p%%\ %{LineNoIndicator()} 
 " https://stackoverflow.com/a/4390122
 
 " whitespace chars
 set listchars=eol:¬,tab:▶-,trail:·,extends:>,precedes:<,nbsp:·
 nnoremap <space> :set list!<CR>
+
+set pastetoggle=<F2>
 
 " tab managment
 nnoremap <Tab><up>    :tabr<cr>
@@ -113,16 +115,81 @@ nnoremap <Tab><right> :tabn<cr>
 nnoremap <Tab><Tab>   :tabnew<cr>
 
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-Plug 'python-mode/python-mode'
+Plug 'preservim/nerdcommenter'
+"Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'
 Plug 'drzel/vim-line-no-indicator'
-Plug 'lilydjwg/colorizer'
+"Plug 'lilydjwg/colorizer'
 Plug 'guns/xterm-color-table.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'itchyny/lightline.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
+" coc config
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
+autocmd CursorHold * silent call CocActionAsync('highlight')
+set termguicolors
+
+" lightline config
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'ayu_mirage',
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
+
+let g:lightline.component = {
+      \   'indicator': '%{LineNoIndicator()}',
+      \   'cocstatus': '%{coc#status()}',
+      \ }
+
+let g:lightline.active = {
+      \   'left': [
+      \     [ 'mode', 'paste', ],
+      \     [ 'relativepath', 'readonly', 'modified', ],
+      \     [ 'cocstatus', ],
+      \   ],
+      \   'right': [
+      \     [ 'indicator' ],
+      \     [ 'lineinfo' ],
+      \     [ 'gitbranch'],
+      \   ]
+      \ }
+
+let g:lightline.inactive = {
+      \   'left': [
+      \     [ 'filename' , 'readonly', 'modified'],
+      \   ],
+      \   'right': [
+      \     [ 'indicator' ],
+      \     [ 'lineinfo' ],
+      \   ],
+      \ }
+
+" ayu config
+let ayucolor="mirage"
+color ayu
+
+" vim-line-no-indicator Config
+let g:line_no_indicator_chars = ['⎺', '⎻', '─', '⎼', '⎽']
+
+"NERCCommenter config
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" NERDtree config
 " Ctrl-n toggle NERDtree
 map <C-n> :NERDTreeToggle<CR>
 
