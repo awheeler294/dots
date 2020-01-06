@@ -50,6 +50,8 @@ set eventignore=CursorMoved
 set laststatus=2
 set scrolloff=20                " Number of lines to ofset scrolling
 
+set pastetoggle=<F3>
+
 function! DefaultStatusLineColor()
    " Focused statusline
    hi statusline   ctermfg=12  ctermbg=235
