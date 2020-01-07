@@ -1,3 +1,13 @@
 #!/bin/bash
 
+leftscreen=DVI-I-3-2
+rightscreen=DVI-I-2-1
+laptopscreen=eDP-1
+
+i3-msg "[workspace=\"^(1|2|3)\"] move workspace to output $leftscreen;"
+i3-msg "[workspace=\"^(4|5|6|7)\"] move workspace to output $rightscreen;"
+i3-msg "[workspace=\"^(8|9|10)\"] move workspace to output $laptopscreen;"
+
 nitrogen --restore
+
+$HOME/.config/polybar/launch.sh

@@ -48,17 +48,24 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+# Media Controls
+bindsym XF86AudioPlay exec ~/bin/mediactl play
+bindsym XF86AudioPrev exec ~/bin/mediactl previous
+bindsym XF86AudioNext exec ~/bin/mediactl next
+bindsym $mod+p exec ~/bin/mediactl launch
+bindsym $mod+Shift+p exec ~/bin/mediactl quit
 
 # Start Applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
@@ -76,6 +83,9 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+# type a shrug
+bindsym $mod+u --release exec --no-startup-id "xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'"
 
 # focus_follows_mouse no
 
@@ -162,6 +172,8 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -172,6 +184,8 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -182,6 +196,8 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+0 move container to workspace $ws10
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -192,12 +208,16 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
+assign [class="Slack"] $ws8
+assign [class="Vivaldi-stable"] $ws4
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -237,10 +257,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -294,11 +314,14 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+#exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+
+exec --no-startup-id slack
+exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -331,37 +354,40 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
-
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
-
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# # Start i3bar to display a workspace bar (plus the system information i3status if available)
+# bar {
+# 	i3bar_command i3bar
+# 	status_command i3status
+# 	position bottom
+# 
+# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# tray_output primary
+# #	tray_output eDP1
+# 
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# #   font xft:URWGothic-Book 11
+# 	strip_workspace_numbers yes
+# 
+#     colors {
+#         background #222D31
+#         statusline #F9FAF9
+#         separator  #454947
+# 
+# #                      border  backgr. text
+#         focused_workspace  #F9FAF9 #16a085 #292F34
+#         active_workspace   #595B5B #353836 #FDF6E3
+#         inactive_workspace #595B5B #222D31 #EEE8D5
+#         binding_mode       #16a085 #2C2C2C #F9FAF9
+#         urgent_workspace   #16a085 #FDF6E3 #E5201D
+#     }
+# }
+# 
+# # hide/unhide i3status bar
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
