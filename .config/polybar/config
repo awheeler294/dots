@@ -61,13 +61,8 @@ font-4 = "Font Awesome 5 Brands:style=Regular:pixelsize=14;1"
 font-5 = "Font Awesome style=Regular:pixelsize=14;1"
 
 modules-left = i3
-modules-center = player-mpris-tail date time weather
-;modules-right = wlan cpu memory-compact filesystem-compact volume temperature battery
+modules-center = date time weather
 modules-right = temperature battery xkeyboard-capslock xkeyboard-numlock
-
-tray-position = ${env:TRAY_POSITION:right}
-tray-padding = 2
-tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -81,193 +76,48 @@ tray-background = ${colors.background}
 ;scroll-down = i3wm-wsprev
 
 
-[bar/bar1-bottom]
-monitor = ${env:MONITOR:eDP1}
-width = 100%
-height = 37
-bottom = true
+[bar/primary-bar]
+monitor = ${env:MONITOR:eDP-1}
+width = ${bar/default-bar.width}
+height = ${bar/default-bar.height}
+bottom = ${bar/default-bar.bottom}
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 0.0
-fixed-center = false
+radius = ${bar/default-bar.radius}
+fixed-center = ${bar/default-bar.fixed-center}
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${bar/default-bar.background}
+foreground = ${bar/default-bar.foreground}
 
-line-size = 3
-line-color = #f00
+line-size = ${bar/default-bar.line-size}
+line-color = ${bar/default-bar.line-color}
 
-border-left-size= 5
-border-right-size= 5
-border-top-size= 0
-border-bottom-size= 5
-border-color = #00000000
+border-left-size = ${bar/default-bar.border-left-size}
+border-right-size = ${bar/default-bar.border-right-size}
+border-top-size = ${bar/default-bar.border-top-size}
+border-bottom-size = ${bar/default-bar.border-bottom-size}
+border-color = ${bar/default-bar.border-color}
 
-padding-left = 7
-padding-right = 7
+padding-left = ${bar/default-bar.padding-left}
+padding-right = ${bar/default-bar.padding-right}
 
-module-margin-left = 4
-module-margin-right = 4
+module-margin-left = ${bar/default-bar.module-margin-left}
+module-margin-right = ${bar/default-bar.module-margin-right}
 
-font-0 = Bitstream Vera Sans Roman:pixelsize=16;1
-font-1 = font awesome:fontformat=truetype:size=14:antialias=false;0
-
-modules-left = wlan
-modules-center = cpu volume
-modules-right = memory filesystem
-
-
-[bar/bar2]
-monitor = ${env:MONITOR:HDMI1}
-width = ${bar/bar1.width}
-height = ${bar/bar1.height}
-bottom = ${bar/bar1.bottom}
-
-;offset-x = 1%
-;offset-y = 1%
-radius = ${bar/bar1.radius}
-fixed-center = ${bar/bar1.fixed-center}
-
-background = ${bar/bar1.background}
-foreground = ${bar/bar1.foreground}
-
-line-size = ${bar/bar1.line-size}
-line-color = ${bar/bar1.line-color}
-
-border-left-size = ${bar/bar1.border-left-size}
-border-right-size = ${bar/bar1.border-right-size}
-border-top-size = ${bar/bar1.border-top-size}
-border-bottom-size = ${bar/bar1.border-bottom-size}
-border-color = ${bar/bar1.border-color}
-
-padding-left = ${bar/bar1.padding-left}
-padding-right = ${bar/bar1.padding-right}
-
-module-margin-left = ${bar/bar1.module-margin-left}
-module-margin-right = ${bar/bar1.module-margin-right}
-
-font-0 = ${bar/bar1.font-0}
-font-1 = ${bar/bar1.font-1}
+font-0 = ${bar/default-bar.font-0}
+font-1 = ${bar/default-bar.font-1}
+font-2 = ${bar/default-bar.font-2}
+font-3 = ${bar/default-bar.font-3}
+font-4 = ${bar/default-bar.font-4}
+font-5 = ${bar/default-bar.font-5}
 
 modules-left = i3
-modules-center = weather time date-verbose
-;modules-right = wlan cpu memory-compact filesystem-compact volume temperature battery
-modules-right = temperature battery
+modules-center = player-mpris-tail date time weather
+modules-right = temperature battery xkeyboard-capslock xkeyboard-numlock
 
-
-[bar/bar2-bottom]
-monitor = ${env:MONITOR:HDMI1}
-width = ${bar/bar1-bottom.width}
-height = ${bar/bar1-bottom.height}
-bottom = ${bar/bar1-bottom.bottom}
-
-;offset-x = 1%
-;offset-y = 1%
-radius = ${bar/bar1-bottom.radius}
-fixed-center = ${bar/bar1.fixed-center}
-
-background = ${bar/bar1-bottom.background}
-foreground = ${bar/bar1-bottom.foreground}
-
-line-size = ${bar/bar1-bottom.line-size}
-line-color = ${bar/bar1-bottom.line-color}
-
-border-left-size = ${bar/bar1-bottom.border-left-size}
-border-right-size = ${bar/bar1-bottom.border-right-size}
-border-top-size = ${bar/bar1-bottom.border-top-size}
-border-bottom-size = ${bar/bar1-bottom.border-bottom-size}
-border-color = ${bar/bar1-bottom.border-color}
-
-padding-left = ${bar/bar1-bottom.padding-left}
-padding-right = ${bar/bar1-bottom.padding-right}
-
-module-margin-left = ${bar/bar1-bottom.module-margin-left}
-module-margin-right = ${bar/bar1-bottom.module-margin-right}
-
-font-0 = ${bar/bar1-bottom.font-0}
-font-1 = ${bar/bar1-bottom.font-1}
-
-modules-left = wlan
-modules-center = cpu volume
-modules-right = memory filesystem
-
-
-[bar/bar3]
-monitor = ${env:MONITOR:DP1}
-width = ${bar/bar1.width}
-height = ${bar/bar1.height}
-bottom = ${bar/bar1.bottom}
-
-;offset-x = 1%
-;offset-y = 1%
-radius = ${bar/bar1.radius}
-fixed-center = ${bar/bar1.fixed-center}
-
-background = ${bar/bar1.background}
-foreground = ${bar/bar1.foreground}
-
-line-size = ${bar/bar1.line-size}
-line-color = ${bar/bar1.line-color}
-
-border-left-size = ${bar/bar1.border-left-size}
-border-right-size = ${bar/bar1.border-right-size}
-border-top-size = ${bar/bar1.border-top-size}
-border-bottom-size = ${bar/bar1.border-bottom-size}
-border-color = ${bar/bar1.border-color}
-
-padding-left = ${bar/bar1.padding-left}
-padding-right = ${bar/bar1.padding-right}
-
-module-margin-left = ${bar/bar1.module-margin-left}
-module-margin-right = ${bar/bar1.module-margin-right}
-
-font-0 = ${bar/bar1.font-0}
-font-1 = ${bar/bar1.font-1}
-
-
-modules-left = i3
-modules-center = weather time date-verbose
-;modules-right = wlan cpu memory-compact filesystem-compact volume temperature battery
-;modules-right = wlan cpu memory-compact filesystem-compact volume temperature battery
-modules-right = temperature battery
-
-
-[bar/bar3-bottom]
-monitor = ${env:MONITOR:DP1}
-width = ${bar/bar1-bottom.width}
-height = ${bar/bar1-bottom.height}
-bottom = ${bar/bar1-bottom.bottom}
-
-;offset-x = 1%
-;offset-y = 1%
-radius = ${bar/bar1-bottom.radius}
-fixed-center = ${bar/bar1.fixed-center}
-
-background = ${bar/bar1-bottom.background}
-foreground = ${bar/bar1-bottom.foreground}
-
-line-size = ${bar/bar1-bottom.line-size}
-line-color = ${bar/bar1-bottom.line-color}
-
-border-left-size = ${bar/bar1-bottom.border-left-size}
-border-right-size = ${bar/bar1-bottom.border-right-size}
-border-top-size = ${bar/bar1-bottom.border-top-size}
-border-bottom-size = ${bar/bar1-bottom.border-bottom-size}
-border-color = ${bar/bar1-bottom.border-color}
-
-padding-left = ${bar/bar1-bottom.padding-left}
-padding-right = ${bar/bar1-bottom.padding-right}
-
-module-margin-left = ${bar/bar1-bottom.module-margin-left}
-module-margin-right = ${bar/bar1-bottom.module-margin-right}
-
-font-0 = ${bar/bar1-bottom.font-0}
-font-1 = ${bar/bar1-bottom.font-1}
-
-modules-left = wlan
-modules-center = cpu volume
-modules-right = memory filesystem
-
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background}
 
 
 [module/xwindow]
