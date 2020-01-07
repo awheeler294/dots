@@ -46,32 +46,53 @@ scrollback_lines = 10000
 
 #foreground = #dcdccc
 #foreground_bold = #ffffff
-#background = #3f3f3f
 
-# 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.95)
-
-# If unset, will reverse foreground and background
-#highlight = #2f2f2f
-#highlight = #726E4A
+## 20% background transparency (requires a compositor)
+#background = rgba(63, 63, 63, 0.95)
+#
+## If unset, will reverse foreground and background
 highlight = #636256
+#
+## Colors from color0 to color254 can be set
+#color0 = #3f3f3f
+#color1 = #d65050
+#color2 = #60b48a
+#color3 = #dfaf8f
+#color4 = #506070
+#color5 = #dc8cc3
+#color6 = #8cd0d3
+#color7 = #dcdccc
+#color8 = #709080
+#color9 = #dca3a3
+#color10 = #c3bf9f
+#color11 = #f0dfaf
+#color12 = #94bff3
+#color13 = #ec93d3
+#color14 = #93e0e3
+#color15 = #ffffff
 
-# Colors from color0 to color254 can be set
-color0 = #3f3f3f
-#color1 = #705050
-color1 = #d65050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
+# ayu mirage
+#cursor = #ffcc66
+#cursor_foreground = #ffcc66
+
+foreground = #bfbab0
+foreground_bold = #bfbab0
+background = rgba(31, 36, 48, 0.92)
+
+color0 = #1f2430
+color1 = #ff3333
+color2 = #bae67e
+color3 = #ffd580
+color4 = #73d0ff
+color5 = #f28779
+color6 = #95e6cb
+color7 = #CBCCC6
+color8 = #292b30
+color9 = #ff6666
+color10 = #cee6ac
+color11 = #ffe6b3
+color12 = #a6e1ff
+color13 = #ffd6da
 color14 = #93e0e3
 color15 = #ffffff
 
