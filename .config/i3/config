@@ -323,6 +323,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 exec --no-startup-id slack
+exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

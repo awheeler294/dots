@@ -7,19 +7,17 @@ killall -q polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 primary_output=$(xrandr --query | grep " primary" | cut -d" " -f1)
-#echo "primary_output: $primary_output"
-
-tp=none
+echo "primary_output: $primary_output"
 
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
    
    if [[ $m == $primary_output ]]; then
-      tp=right
+      echo "MONITOR: $m"
+      MONITOR=$m polybar --reload primary-bar &
+   else
+      echo "MONITOR: $m"
+      MONITOR=$m polybar --reload default-bar &
    fi
-
-   #echo "MONITOR: $m TRAY_POSITION: $tp"
-   MONITOR=$m TRAY_POSITION=$tp polybar --reload default-bar &
-
 done
 
 #echo "Bars launched..."
