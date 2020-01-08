@@ -11,6 +11,7 @@
 ; colors are ARGB, with alpha first :(
 
 ;background = ${xrdb:color0:#202020}
+; #202020
 background = #90202020
 background-alt = #404040
 ;foreground = ${xrdb:color7:#202020}
