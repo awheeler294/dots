@@ -32,15 +32,15 @@ icons = {
     '04d': '',  # broken clouds (day)
     '04n': '',  # broken clouds (night)
     '09d': '',  # shower rain (day)
-    '09d': '',  # shower rain (night)
+    '09n': '',  # shower rain (night)
     '10d': '歹', # rain (day)
-    '10d': '',  # rain (night)
+    '10n': '',  # rain (night)
     '11d': '朗', # thunderstorm (day)
-    '11d': '',  # thunderstorm (night)
+    '11n': '',  # thunderstorm (night)
     '13d': '流', # snow (day)
-    '13d': '',  # snow (night)
+    '13n': '',  # snow (night)
     '50d': '敖', # mist (day)
-    '50d': '',  # mist (night)
+    '50n': '',  # mist (night)
 }
 
 def get_icon(icon_code, format_type='text'):
