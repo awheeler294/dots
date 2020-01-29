@@ -12,18 +12,28 @@
 
 ;background = ${xrdb:color0:#202020}
 ; #202020
-background = #90202020
-background-alt = #404040
+;background = #90202020
+; #0d1016
+background = #900d1016
+;background-alt = #404040
+background-alt = #273747
 ;foreground = ${xrdb:color7:#202020}
-foreground = #dfdfdf
+;foreground = #dfdfdf
+foreground = #b3b1ad
 ;foreground-alt = #505050
-foreground-alt = #666666
-primary = #2aa198
-secondary = #887711
-alert = #881122
-free = #006666
-used = #3F447F
-total = #ADB0D8
+foreground-alt = #3d424d
+;primary = #2aa198
+primary = #e6b450 
+;secondary = #887711
+secondary = #ff8f40
+;alert = #881122
+alert = #ff3333
+;free = #006666
+free = #91b362
+;used = #3F447F
+used = #6994bf
+;total = #ADB0D8
+total = #ffee99
 
 
 [bar/default-bar]
