@@ -75,8 +75,10 @@ highlight = #636256
 #cursor = #ffcc66
 #cursor_foreground = #ffcc66
 
+# modified from https://github.com/dnordstrom/dotfiles/blob/master/termite/config.ayu-mirage
 foreground = #bfbab0
 foreground_bold = #bfbab0
+# #1f2430
 background = rgba(31, 36, 48, 0.92)
 
 color0 = #1f2430
@@ -86,7 +88,7 @@ color3 = #ffd580
 color4 = #73d0ff
 color5 = #f28779
 color6 = #95e6cb
-color7 = #cbccc6
+color7 = #707a8c
 color8 = #5c6773
 color9 = #ff6666
 color10 = #cee6ac
@@ -94,7 +96,8 @@ color11 = #ffe6b3
 color12 = #a6e1ff
 color13 = #ffd6da
 color14 = #93e0e3
-color15 = #ffffff
+color15 = #fafafa
+
 
 [hints]
 font = Monospace 12
