@@ -234,7 +234,8 @@ label-occupied = %index%
 label-occupied-padding = 2
 
 label-urgent = %index%!
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.primary}
+label-urgent-background-underline = ${colors.background-alt}
 label-urgent-padding = 2
 
 label-empty = %index%
@@ -275,7 +276,8 @@ label-visible-padding = 2
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.primary}
+label-urgent-background = ${colors.foreground-alt}
 label-urgent-padding = 2
 
 
