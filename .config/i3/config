@@ -27,7 +27,7 @@ font xft:URWGothic-Book 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-set $terminal termite
+set $terminal "termite --title Termite"
 set $browser vivaldi-stable
 set $file-manager pcmanfm
 set $package-manager pamac-manager
