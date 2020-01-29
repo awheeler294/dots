@@ -89,6 +89,9 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # type a shrug
 bindsym $mod+u --release exec --no-startup-id "xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'"
 
+# force autorandr
+bindsym $mod+o exec --no-startup-id "exec notify-send 'force autorandr'; autorandr --change --force"
+
 # focus_follows_mouse no
 
 # change focus
@@ -129,7 +132,7 @@ bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+bar split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+underscore split v;exec notify-send 'tile vertically'
-bindsym $mod+tab split toggle
+bindsym $mod+Tab split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -152,11 +155,11 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+` move scratchpad
+bindsym $mod+Shift+grave move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+` scratchpad show
+bindsym $mod+grave scratchpad show
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
