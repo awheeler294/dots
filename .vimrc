@@ -50,6 +50,11 @@ set eventignore=CursorMoved
 set laststatus=2
 set scrolloff=20                " Number of lines to ofset scrolling
 
+" reload when file changes on disk
+" for tmux add 'set -g focus-events on' to .tmux.conf
+set autoread
+" trigger autoread when changing buffers inside while inside vim
+au FocusGained,BufEnter * :checktime
 "function! DefaultStatusLineColor()
 "   " Focused statusline
 "   hi statusline   ctermfg=12  ctermbg=235
