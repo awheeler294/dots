@@ -12,12 +12,14 @@ set $mode-key F13
 new_window pixel 1
 new_float normal
 
+for_window [class=".*"] border pixel 2
+
 # Hide borders
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+#bindsym $mod+u border none
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -77,8 +79,9 @@ bindsym $mod+F3 exec $file-manager
 bindsym $mod+Shift+F3 exec gksu $file-manager
 bindsym $mod+F4 exec $package-manager
 bindsym $mod+F5 exec $terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+bindsym $mod+t exec --no-startup-id pkill picom
+bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -311,7 +314,7 @@ bindsym $mod+l exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id autorandr --change
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -326,7 +329,8 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 exec --no-startup-id slack
-exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
+for_window [instance="start_in_scratchpad"] move scratchpad
+exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -405,9 +409,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #  client.background       #2B2C2B
 
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #ffa659 #34455a #ffcc66 #FDF6E3  #ffcc66
-  client.focused_inactive #34455a #2d3b4d #ffcc66 #454948
-  client.unfocused        #34455a #2d3b4d #ffa759 #454948
+  client.focused          #ffcc66 #34455a #ffcc66 #FDF6E3  #ffcc66
+  client.focused_inactive #ffa659 #2d3b4d #ffa759 #454948
+  client.unfocused        #454948 #2d3b4d #ffa759 #454948
   client.urgent           #ff3333 #ffa659 #223b4d #454948
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
@@ -494,8 +498,9 @@ mode "$mode_command" {
    # bindsym $mod+F3 exec ranger
    bindsym F4 exec $package-manager
    bindsym F5 exec $terminal -e 'mocp'
-   bindsym t exec --no-startup-id pkill compton
-   bindsym Ctrl+t exec --no-startup-id compton -b
+   bindsym F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+   bindsym t exec --no-startup-id pkill picom
+   bindsym Ctrl+t exec --no-startup-id picom -b
    bindsym Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
    bindsym Ctrl+x --release exec --no-startup-id xkill
 
