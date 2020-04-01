@@ -3,6 +3,8 @@
 git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
 
-sudo apt install zsh zsh-syntax-highlighting
+sudo add-apt-repository ppa:neovim-ppa/stable #only needed on 16.04
+sudo apt update
+sudo apt install zsh zsh-syntax-highlighting grc neovim nodejs
 
 chsh -s $(which zsh)
