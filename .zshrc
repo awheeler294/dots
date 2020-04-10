@@ -60,7 +60,6 @@ alias gitu='git add . && git commit && git push'
 alias ll='grc ls -lha'
 alias slog='grc sudo tail -f /var/log/syslog'
 alias vim='nvim'
->>>>>> d04d13b... use manjaro .zshrc
 
 # Theming section  
 autoload -U compinit colors zcalc
