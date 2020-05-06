@@ -6,20 +6,20 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
-# Launch bar1 and bar2
-#polybar bar1 &
-#polybar bar1-bottom &
-#polybar bar2 &
-#polybar bar2-bottom &
-#polybar bar3 &
-#polybar bar3-bottom &
+primary_output=$(xrandr --query | grep " primary" | cut -d" " -f1)
+#echo "primary_output: $primary_output"
 
-if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload default-bar &
-  done
-else
-  polybar --reload example &
-fi
+tp=none
 
-echo "Bars launched..."
+for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+   
+   if [[ $m == $primary_output ]]; then
+      tp=right
+   fi
+
+   #echo "MONITOR: $m TRAY_POSITION: $tp"
+   MONITOR=$m TRAY_POSITION=$tp polybar --reload default-bar &
+
+done
+
+#echo "Bars launched..."

@@ -10,7 +10,8 @@ import socket
 #units = "Insert your units (Default: Kelvin, Options: Metric, Imperial"
 #unit_key = "Insert your Unit Key(K, C, F)"
 
-city = "Provo, US"
+#city = "Provo, US"
+city = "American Fork, US"
 api_key = "5e1a669969f6dca8ae49d41652651e9e"
 units = "Imperial"
 unit_key = "F"

@@ -8,12 +8,14 @@
 ;=====================================================
 
 [colors]
+; colors are ARGB, with alpha first :(
+
 ;background = ${xrdb:color0:#202020}
 background = #90202020
-background-alt = #444
+background-alt = #404040
 ;foreground = ${xrdb:color7:#202020}
 foreground = #dfdfdf
-;foreground-alt = #555
+;foreground-alt = #505050
 foreground-alt = #666666
 primary = #2aa198
 secondary = #887711
@@ -26,7 +28,7 @@ total = #ADB0D8
 [bar/default-bar]
 monitor = ${env:MONITOR:eDP1}
 width = 100%
-height = 37
+height = 32
 bottom = true
 ;offset-x = 1%
 ;offset-y = 1%
@@ -39,35 +41,32 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-left-size= 50
-border-right-size= 50
-#border-top-size= 5
+border-left-size= 0
+border-right-size= 0
 border-top-size= 0
-#border-bottom-size= 0
-border-bottom-size= 5
+border-bottom-size= 0
 border-color = #00000000
 
-padding-left = 7
-padding-right = 7
+padding-left = 4%
+padding-right = 4%
 
-module-margin-left = 4
-module-margin-right = 4
+module-margin-left = 2%
+module-margin-right = 2%
 
-font-0 = Bitstream Vera Sans Roman:pixelsize=16;1
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=16;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=16;1"
-font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=16;1"
-font-4 = "Font Awesome style=Regular:pixelsize=16;1"
+font-0 = Bitstream Vera Sans Roman:pixelsize=14;1
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=14;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=14;1"
+font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=14;1"
+font-4 = "Font Awesome style=Regular:pixelsize=14;1"
 
 modules-left = i3
 modules-center = date time weather
 ;modules-right = wlan cpu memory-compact filesystem-compact volume temperature battery
 modules-right = temperature battery xkeyboard-capslock xkeyboard-numlock
 
-tray-position = right
+tray-position = ${env:TRAY_POSITION:right}
 tray-padding = 2
-;tray-transparent = true
-tray-background = ${colors.background-alt}
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -393,27 +392,27 @@ pin-workspaces = true
 strip-wsnumbers = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = #000000
 label-mode-background = ${colors.secondary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index% %name%
+label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index% %name%
+label-unfocused = %index%
 label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index% %name%
+label-visible = %index%
 label-visible-background = ${colors.background}
 label-visible-padding = 2
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index% %name%
+label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 

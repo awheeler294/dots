@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map <leader>s :source ~/.vimrc<CR>
-set number relativenumber 
+set number norelativenumber 
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -129,7 +129,7 @@ Plug 'drzel/vim-line-no-indicator'
 "Plug 'lilydjwg/colorizer'
 Plug 'guns/xterm-color-table.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
+"Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'itchyny/lightline.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/vim-gitbranch'
@@ -180,6 +180,13 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -191,6 +198,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -201,16 +212,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
