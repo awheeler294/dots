@@ -159,12 +159,24 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
+function load_plugin() {
+   for plugin_path in /usr/share/zsh/plugins/ ${HOME}/.config/zsh-plugins/
+   
+   do
+      if [ -f "$plugin_path"/"$1" ]; then
+         source "$plugin_path"/"$1"
+         return
+      fi
+   done
+
+   echo "Could not load $1"
+}
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-source /usr/share//zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+load_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
-source ${HOME}/.config/zsh-plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+load_plugin zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -199,7 +211,7 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   *)
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
-		source ${HOME}/.config/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
+		load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
