@@ -1,0 +1,35 @@
+#!/bin/bash
+
+CTL=$HOME/.config/polybar/player-mpris-tail.py
+
+function launch_player {
+   notify-send 'launch player'
+   $HOME/bin/ssb-launcher http://www.youtube.com --profile_name youtube --process_name youtube --browser chromium-browser
+}
+
+case $1 in
+   play)
+      if [[ ! -n $($CTL list) ]]; 
+      then
+         launch_player
+      else
+         notify-send 'play-pause'
+         $CTL play-pause
+      fi
+      ;;
+
+   launch)
+      launch_player
+      ;;
+
+   quit)
+      notify-send 'quit player'
+      pkill -f youtube
+      ;;
+   
+   *)
+      notify-send "$1"
+      $CTL $1
+      ;;
+
+esac

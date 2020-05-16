@@ -3,6 +3,7 @@
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
+set $mode-key F13
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -11,12 +12,14 @@ set $mod Mod4
 new_window pixel 1
 new_float normal
 
+for_window [class=".*"] border pixel 2
+
 # Hide borders
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+#bindsym $mod+u border none
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -26,10 +29,11 @@ font xft:URWGothic-Book 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-set $terminal kitty
-set $browser brave
+set $terminal "termite --title Termite"
+set $browser vivaldi-stable
 set $file-manager pcmanfm
 set $package-manager pamac-manager
+set $launcher dmenu_recency
 
 # start a terminal
 bindsym $mod+Return exec $terminal
@@ -39,7 +43,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id $launcher
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -48,17 +52,24 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+# Media Controls
+bindsym XF86AudioPlay exec ~/bin/mediactl play
+bindsym XF86AudioPrev exec ~/bin/mediactl previous
+bindsym XF86AudioNext exec ~/bin/mediactl next
+bindsym $mod+p exec ~/bin/mediactl launch
+bindsym $mod+Shift+p exec ~/bin/mediactl quit
 
 # Start Applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
@@ -68,8 +79,9 @@ bindsym $mod+F3 exec $file-manager
 bindsym $mod+Shift+F3 exec gksu $file-manager
 bindsym $mod+F4 exec $package-manager
 bindsym $mod+F5 exec $terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+bindsym $mod+t exec --no-startup-id pkill picom
+bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -77,13 +89,19 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+# type a shrug
+bindsym $mod+u --release exec --no-startup-id "xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'"
+
+# force autorandr
+bindsym $mod+o exec --no-startup-id "exec notify-send 'force autorandr'; autorandr --change --force"
+
 # focus_follows_mouse no
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -92,10 +110,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -108,12 +126,16 @@ workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
+# move workspaces between monitors
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left
+
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+bar split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+underscore split v;exec notify-send 'tile vertically'
-bindsym $mod+tab split toggle
+bindsym $mod+Tab split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -136,11 +158,11 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+` move scratchpad
+bindsym $mod+Shift+grave move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+` scratchpad show
+bindsym $mod+grave scratchpad show
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
@@ -158,6 +180,8 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -168,6 +192,8 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -178,6 +204,8 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+0 move container to workspace $ws10
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -188,12 +216,16 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
+assign [class="Slack"] $ws8
+assign [class="Vivaldi-stable"] $ws4
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -208,11 +240,11 @@ for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
+#for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
+#for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -233,10 +265,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -277,11 +309,12 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+l exec --no-startup-id blurlock
 
 # Autostart applications
+exec --no-startup-id autorandr --change
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -289,11 +322,15 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+#exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+
+exec --no-startup-id slack
+for_window [instance="start_in_scratchpad"] move scratchpad
+exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -326,47 +363,60 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
-
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
-
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# # Start i3bar to display a workspace bar (plus the system information i3status if available)
+# bar {
+# 	i3bar_command i3bar
+# 	status_command i3status
+# 	position bottom
+# 
+# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# tray_output primary
+# #	tray_output eDP1
+# 
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# #   font xft:URWGothic-Book 11
+# 	strip_workspace_numbers yes
+# 
+#     colors {
+#         background #222D31
+#         statusline #F9FAF9
+#         separator  #454947
+# 
+# #                      border  backgr. text
+#         focused_workspace  #F9FAF9 #16a085 #292F34
+#         active_workspace   #595B5B #353836 #FDF6E3
+#         inactive_workspace #595B5B #222D31 #EEE8D5
+#         binding_mode       #16a085 #2C2C2C #F9FAF9
+#         urgent_workspace   #16a085 #FDF6E3 #E5201D
+#     }
+# }
+# 
+# # hide/unhide i3status bar
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+#  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+#
+#  client.background       #2B2C2B
+
+# class                   border  backgr. text    indic.   child_border
+  client.focused          #ffcc66 #34455a #ffcc66 #FDF6E3  #ffcc66
+  client.focused_inactive #ffa659 #2d3b4d #ffa759 #454948
+  client.unfocused        #454948 #2d3b4d #ffa759 #454948
+  client.urgent           #ff3333 #ffa659 #223b4d #454948
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
   client.background       #2B2C2B
+
 
 #############################
 ### settings for i3-gaps: ###
@@ -423,4 +473,125 @@ mode "$mode_gaps_outer" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+}
+
+
+#bindsym $mode-key --release exec notify-send "Command" 
+#bindsym Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+# Command mode
+bindsym $mode-key --release mode "$mode_command"
+set $mode_command Command Mode
+mode "$mode_command" {
+   # start a terminal
+   bindsym Return exec $terminal
+
+   # kill focused window
+   bindsym q kill
+
+   # start program launcher
+   bindsym d exec --no-startup-id $launcher
+
+   # Start Applications
+   bindsym Ctrl+b exec $terminal -e 'bmenu'
+   bindsym F2 exec $browser
+   bindsym F3 exec $file-manager
+   # bindsym $mod+F3 exec ranger
+   bindsym F4 exec $package-manager
+   bindsym F5 exec $terminal -e 'mocp'
+   bindsym F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+   bindsym t exec --no-startup-id pkill picom
+   bindsym Ctrl+t exec --no-startup-id picom -b
+   bindsym Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+   bindsym Ctrl+x --release exec --no-startup-id xkill
+
+   # type a shrug
+   bindsym u --release exec --no-startup-id "xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'"
+
+   # focus_follows_mouse no
+
+   # change focus
+   bindsym Left focus left
+   bindsym Down focus down
+   bindsym Up focus up
+   bindsym Right focus right
+
+   # move focused window
+   bindsym Shift+Left move left
+   bindsym Shift+Down move down
+   bindsym Shift+Up move up
+   bindsym Shift+Right move right
+
+   # workspace back and forth (with/without active container)
+   bindsym b workspace back_and_forth
+   bindsym Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+   # move workspaces between monitors
+   bindsym greater move workspace to output right
+   bindsym less move workspace to output left
+
+   # split orientation
+   bindsym bar split h;exec notify-send 'tile horizontally'
+   bindsym underscore split v;exec notify-send 'tile vertically'
+
+   # toggle fullscreen mode for the focused container
+   bindsym f fullscreen toggle
+
+   # change container layout (stacked, tabbed, toggle split)
+   bindsym s layout stacking
+   bindsym w layout tabbed
+   bindsym e layout toggle split
+
+   # change focus between tiling / floating windows
+   bindsym space focus mode_toggle
+
+   # move the currently focused window to the scratchpad
+   bindsym Shift+` move scratchpad
+
+   # Show the next scratchpad window or hide the focused scratchpad window.
+   # If there are multiple scratchpad windows, this command cycles through them.
+   bindsym ` scratchpad show
+
+   #navigate workspaces next / previous
+   bindsym Ctrl+Right workspace next
+   bindsym Ctrl+Left workspace prev
+
+   # switch to workspace
+   bindsym 1 workspace $ws1
+   bindsym 2 workspace $ws2
+   bindsym 3 workspace $ws3
+   bindsym 4 workspace $ws4
+   bindsym 5 workspace $ws5
+   bindsym 6 workspace $ws6
+   bindsym 7 workspace $ws7
+   bindsym 8 workspace $ws8
+   bindsym 9 workspace $ws9
+   bindsym 0 workspace $ws10
+
+   # Move focused container to workspace
+   bindsym Ctrl+1 move container to workspace $ws1
+   bindsym Ctrl+2 move container to workspace $ws2
+   bindsym Ctrl+3 move container to workspace $ws3
+   bindsym Ctrl+4 move container to workspace $ws4
+   bindsym Ctrl+5 move container to workspace $ws5
+   bindsym Ctrl+6 move container to workspace $ws6
+   bindsym Ctrl+7 move container to workspace $ws7
+   bindsym Ctrl+8 move container to workspace $ws8
+   bindsym Ctrl+9 move container to workspace $ws9
+   bindsym Ctrl+0 move container to workspace $ws10
+
+   # Move to workspace with focused container
+   bindsym Shift+1 move container to workspace $ws1; workspace $ws1
+   bindsym Shift+2 move container to workspace $ws2; workspace $ws2
+   bindsym Shift+3 move container to workspace $ws3; workspace $ws3
+   bindsym Shift+4 move container to workspace $ws4; workspace $ws4
+   bindsym Shift+5 move container to workspace $ws5; workspace $ws5
+   bindsym Shift+6 move container to workspace $ws6; workspace $ws6
+   bindsym Shift+7 move container to workspace $ws7; workspace $ws7
+   bindsym Shift+8 move container to workspace $ws8; workspace $ws8
+   bindsym Shift+9 move container to workspace $ws9; workspace $ws9
+   bindsym Shift+0 move container to workspace $ws10; workspace $ws10
+
+    # exit system mode: "Command" or "Escape"
+    bindsym $mode-key --release mode "default"
+    bindsym Escape mode "default"
 }

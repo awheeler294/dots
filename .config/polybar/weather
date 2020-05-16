@@ -1,0 +1,86 @@
+#!/bin/python
+
+import urllib.request, urllib.parse, json
+from time import sleep
+import sys
+import socket
+
+#api_key = "Insert Your API Key"
+#units = "Insert your units (Default: Kelvin, Options: Metric, Imperial"
+#unit_key = "Insert your Unit Key(K, C, F)"
+
+api_key = "5e1a669969f6dca8ae49d41652651e9e"
+units = "Imperial"
+unit_key = "F"
+
+max_attempts = 10
+timeout = 10
+attempts = 0
+weather = False
+
+OWM_SERVER = "www.openweathermap.org"
+LOCATION_SERVER = "https://location.services.mozilla.com"
+LOCATION_API = "https://location.services.mozilla.com/v1/geolocate?key=geoclue"
+
+icons = {
+    '01d': '',  # clear sky (day)
+    '01n': '',  # clear sky (night)
+    '02d': '杖', # few clouds (day)
+    '02n': '',  # few clouds (night)
+    '03d': '摒', # scattered clouds (day)
+    '03n': '',  # scattered clouds (night)
+    '04d': '',  # broken clouds (day)
+    '04n': '',  # broken clouds (night)
+    '09d': '',  # shower rain (day)
+    '09n': '',  # shower rain (night)
+    '10d': '歹', # rain (day)
+    '10n': '',  # rain (night)
+    '11d': '朗', # thunderstorm (day)
+    '11n': '',  # thunderstorm (night)
+    '13d': '流', # snow (day)
+    '13n': '',  # snow (night)
+    '50d': '敖', # mist (day)
+    '50n': '',  # mist (night)
+}
+
+def get_icon(icon_code, format_type='text'):
+    if format_type == 'text':
+        return icons[icon_code]
+    elif format_type == 'api':
+        return urllib.request.urlopen("http://openweathermap.org/img/wn/{}@2x.png".format(icon_code)).read()
+
+def is_connected(server):
+    try:
+        host = socket.gethostbyname(server)
+        s = socket.create_connection((host, 80), 2)
+        return True
+
+    except Exception as e:
+#       print(e)
+        pass
+    return False
+
+
+while attempts < max_attempts:
+
+    if (is_connected("location.services.mozilla.com") and is_connected(OWM_SERVER)):
+        location = json.loads(urllib.request.urlopen(LOCATION_API).read().decode())['location']
+        url = "http://api.openweathermap.org/data/2.5/weather?appid={}&lat={}&lon={}&units={}".format(
+            api_key, location['lat'], location['lng'], units
+        )
+        weather = json.loads(str(urllib.request.urlopen(url).read())[2:-1])
+
+        info = weather["weather"][0]["description"].capitalize()
+        temp = int(float(weather["main"]["temp"]))
+        icon_code = weather["weather"][0]["icon"]
+        icon = get_icon(icon_code, 'text')
+
+        print("%s %s, %i °%s" % (icon, info, temp, unit_key))
+        sys.exit(0)
+
+#        logf.write("{0} \n", str(e))
+#        logf.write("weather: {0} \n", str(weather))
+#        logf.write("attempts: {0} \n", str(attempts))
+
+        attempts += 1
+        sleep(timeout)

@@ -14,16 +14,17 @@ general {
         color_degraded = "#DC322F"
 }
 
+# order += "ipv6"
 order += "cpu_usage"
-# order += "load"
 order += "disk /"
 # order += "disk /home"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
 # order += "load"
+order += "memory"
 order += "tztime local"
-# order += "ipv6"
+order += "time"
 
 cpu_usage {
         format = " cpu  %usage "
@@ -36,10 +37,7 @@ load {
 
 disk "/" {
         # format = " hdd %avail "
-        format = " ⛁ %avail %percentage_used used "
-        #format = " %free (%avail)/ %total "
-        #format = " %percentage_used used, %percentage_free free, %percentage_avail avail "
-
+        format = " ⛁ %avail "
 }
 
 ethernet _first_ {
@@ -50,12 +48,12 @@ ethernet _first_ {
 
 battery all {
         # format = "%status %percentage %remaining %emptytime"
-        format = " %status %percentage "
+        format = " %status %percentage"
         format_down = "No battery"
         last_full_capacity = true
         integer_battery_capacity = true
         # status_chr = ""
-        status_chr = ""
+        status_chr = "⚡"
         # status_bat = "bat"
         # status_bat = "☉"
         # status_bat = ""
@@ -63,15 +61,23 @@ battery all {
         # status_unk = "?"
         status_unk = ""
         # status_full = ""
-        #status_full = "☻"
-        status_full = ""
+        status_full = "☻"
         low_threshold = 15
         threshold_type = time
+}
+
+memory {
+        format = "%used | %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
 }
 
 tztime local {
         # format = "%Y-%m-%d %H:%M:%S"
         # format = " %d.%m. %H:%M "
-        # format = " %A %B %-d %Y %R "
-        format = " %Y-%m-%d %H:%M "
+        format = "%a %d %B %Y"
+}
+
+time {
+        format = "%H:%M "
 }

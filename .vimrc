@@ -136,6 +136,9 @@ Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
 " coc config
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
+set termguicolors
+
 "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
 let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
 set termguicolors
@@ -336,6 +339,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()
 
 "let g:colorizer_auto_color = 1
+"let g:colorizer_hex_alpha_first = 1
 
 set nofoldenable
 
