@@ -33,7 +33,7 @@ set $terminal "termite --title Termite"
 set $browser vivaldi-stable
 set $file-manager pcmanfm
 set $package-manager pamac-manager
-set $launcher dmenu_recency
+set $launcher dmenu_recency -i -nb '#1f2430' -nf '#cbccc6' -sb '#34455a' -sf '#edf0f5'
 
 # start a terminal
 bindsym $mod+Return exec $terminal
@@ -79,7 +79,7 @@ bindsym $mod+F3 exec $file-manager
 bindsym $mod+Shift+F3 exec gksu $file-manager
 bindsym $mod+F4 exec $package-manager
 bindsym $mod+F5 exec $terminal -e 'mocp'
-bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -104,9 +104,9 @@ bindsym $mod+o exec --no-startup-id "exec notify-send 'force autorandr'; autoran
 #bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
 bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 
 # move focused window
@@ -225,6 +225,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
 assign [class="Slack"] $ws8
+assign [class="Mattermost"] $ws8
+assign [class="chat.google.com"] $ws8
 assign [class="Vivaldi-stable"] $ws4
 
 # Open specific applications in floating mode
@@ -289,7 +291,6 @@ bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym j resize shrink width 5 px or 5 ppt
@@ -328,9 +329,12 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
+# Running both Slack and Mattermost clients because if I run only Mattermost
+# Slack sends all notifications to my phone :(
 exec --no-startup-id slack
-for_window [instance="start_in_scratchpad"] move scratchpad
-exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
+exec --no-startup-id mattermost-desktop
+exec --no-startup-id 'i3-msg "workspace 8; layout tabbed"'
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -388,6 +392,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # 
 # #                      border  backgr. text
 #         focused_workspace  #F9FAF9 #16a085 #292F34
+#         focused_workspace  #F9FAF9 #16a085 #292F34
 #         active_workspace   #595B5B #353836 #FDF6E3
 #         inactive_workspace #595B5B #222D31 #EEE8D5
 #         binding_mode       #16a085 #2C2C2C #F9FAF9
@@ -410,13 +415,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # class                   border  backgr. text    indic.   child_border
   client.focused          #ffcc66 #34455a #ffcc66 #FDF6E3  #ffcc66
-  client.focused_inactive #ffa659 #2d3b4d #ffa759 #454948
+  client.focused_inactive #ffa759 #2d3b4d #ffa759 #454948
   client.unfocused        #454948 #2d3b4d #ffa759 #454948
-  client.urgent           #ff3333 #ffa659 #223b4d #454948
+  client.urgent           #ff3333 #ffa759 #223b4d #454948
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
   client.background       #2B2C2B
-
 
 #############################
 ### settings for i3-gaps: ###
@@ -498,7 +502,7 @@ mode "$mode_command" {
    # bindsym $mod+F3 exec ranger
    bindsym F4 exec $package-manager
    bindsym F5 exec $terminal -e 'mocp'
-   bindsym F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat -name start_in_scratchpad
+   bindsym F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
    bindsym t exec --no-startup-id pkill picom
    bindsym Ctrl+t exec --no-startup-id picom -b
    bindsym Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -595,3 +599,6 @@ mode "$mode_command" {
     bindsym $mode-key --release mode "default"
     bindsym Escape mode "default"
 }
+
+exec --no-startup-id 'i3_msg "workspace 4"' 
+#exec --no-startup-id $HOME/.config/i3/post-init
