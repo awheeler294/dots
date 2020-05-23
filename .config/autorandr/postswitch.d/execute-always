@@ -1,2 +1,2 @@
 #!/bin/sh
-picom --daemon
+notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"

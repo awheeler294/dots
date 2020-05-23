@@ -75,7 +75,7 @@ while attempts < max_attempts:
         icon_code = weather["weather"][0]["icon"]
         icon = get_icon(icon_code, 'text')
 
-        print("%s %s, %i °%s" % (icon, info, temp, unit_key))
+        print("%s  %s, %i °%s" % (icon, info, temp, unit_key))
         sys.exit(0)
 
 #        logf.write("{0} \n", str(e))
