@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map <leader>s :source ~/.vimrc<CR>
-set number relativenumber 
+set number 
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -110,7 +110,17 @@ set noshowmatch
 set listchars=eol:¬,tab:▶-,trail:·,extends:>,precedes:<,nbsp:·
 nnoremap <space> :set list!<CR>
 
+" copy/paste keybindings
 set pastetoggle=<F2>
+nmap <C-c> "+y
+vmap <C-c> "+y
+
+vmap <C-x> "+d
+nmap <C-x> "+d
+
+nmap <C-v> "+p
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pi
 
 " tab managment
 nnoremap <Tab><up>    :tabr<cr>
@@ -129,7 +139,7 @@ Plug 'drzel/vim-line-no-indicator'
 "Plug 'lilydjwg/colorizer'
 Plug 'guns/xterm-color-table.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
+"Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'itchyny/lightline.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/vim-gitbranch'
