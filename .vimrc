@@ -120,7 +120,7 @@ nmap <C-x> "+d
 
 nmap <C-v> "+p
 vmap <C-v> c<ESC>"+p
-imap <C-v> <ESC>"+pi
+imap <C-v> <ESC>"+pa
 
 " tab managment
 nnoremap <Tab><up>    :tabr<cr>
