@@ -26,36 +26,36 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 
 
 ## Keybindings section
-bindkey -e
-bindkey '^[[7~' beginning-of-line                               # Home key
-bindkey '^[[H' beginning-of-line                                # Home key
+bindkey -v                                        # vi mode
+bindkey '^[[7~' beginning-of-line                 # Home key
+bindkey '^[[H' beginning-of-line                  # Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
+  bindkey "${terminfo[khome]}" beginning-of-line  # [Home] - Go to beginning of line
 fi
-bindkey '^[[8~' end-of-line                                     # End key
-bindkey '^[[F' end-of-line                                     # End key
+bindkey '^[[8~' end-of-line                       # End key
+bindkey '^[[F' end-of-line                        # End key
 if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
+  bindkey "${terminfo[kend]}" end-of-line         # [End] - Go to end of line
 fi
-bindkey '^[[2~' overwrite-mode                                  # Insert key
-bindkey '^[[3~' delete-char                                     # Delete key
-bindkey '^[[C'  forward-char                                    # Right key
-bindkey '^[[D'  backward-char                                   # Left key
-bindkey '^[[5~' history-beginning-search-backward               # Page up key
-bindkey '^[[6~' history-beginning-search-forward                # Page down key
+bindkey '^[[2~' overwrite-mode                    # Insert key
+bindkey '^[[3~' delete-char                       # Delete key
+bindkey '^[[C'  forward-char                      # Right key
+bindkey '^[[D'  backward-char                     # Left key
+bindkey '^[[5~' history-beginning-search-backward # Page up key
+bindkey '^[[6~' history-beginning-search-forward  # Page down key
 
 # Navigate words with ctrl+arrow keys
-bindkey '^[Oc' forward-word                                     #
-bindkey '^[Od' backward-word                                    #
-bindkey '^[[1;5D' backward-word                                 #
-bindkey '^[[1;5C' forward-word                                  #
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '^[[Z' undo                                             # Shift+tab undo last action
+bindkey '^[Oc' forward-word                       #
+bindkey '^[Od' backward-word                      #
+bindkey '^[[1;5D' backward-word                   #
+bindkey '^[[1;5C' forward-word                    #
+bindkey '^H' backward-kill-word                   # delete previous word with ctrl+backspace
+bindkey '^[[Z' undo                               # Shift+tab undo last action
 
 ## Alias section 
-alias cp="cp -i"                                                # Confirm before overwriting something
-alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
+alias cp="cp -i"                                  # Confirm before overwriting something
+alias df='df -h'                                  # Human-readable sizes
+alias free='free -m'                              # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 alias ll='grc ls -lha'
 alias slog='grc sudo tail -f /var/log/syslog'
@@ -64,7 +64,7 @@ alias vim='nvim'
 #alias tmux="TERM=screen-256color-bce tmux"
 #alias tmux="TERM=xterm-256color tmux"
 #alias tmux="TERM=tmux-256color tmux"
-#alias ssh='TERM=xterm-color ssh'                                # Force xterm-color on ssh sessions
+#alias ssh='TERM=xterm-color ssh'                  # Force xterm-color on ssh sessions
 
 # Theming section  
 autoload -U compinit colors zcalc
@@ -146,6 +146,15 @@ git_prompt_string() {
 # Right prompt with exit status of previous command marked with ✓ or ✗
  #RPROMPT="%(?.%{$fg[green]%}✓ %{$reset_color%}.%{$fg[red]%}✗ %{$reset_color%})"
 
+# Show vi mode in prompt
+function zle-line-init zle-keymap-select {
+   VIM_PROMPT="%{$bg[blue]%}%{$fg[black]%} Normal %{$reset_color%} "
+   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_string) $EPS1"
+   zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
