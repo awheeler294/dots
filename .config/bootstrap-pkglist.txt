@@ -17,6 +17,8 @@ nerd-fonts-complete
 openssh
 polybar
 powertop
+python-xlib
+qtile
 ranger
 reiserfsprogs
 rsync
