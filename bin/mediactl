@@ -4,7 +4,7 @@ CTL=$HOME/.config/polybar/player-mpris-tail.py
 
 function launch_player {
    notify-send 'launch player'
-   $HOME/bin/ssb-launcher http://www.youtube.com --profile_name youtube --process_name youtube --browser chromium-browser
+   $HOME/bin/ssb-launcher http://www.youtube.com --profile_name Andrew --process_name youtube --browser chromium-browser
 }
 
 case $1 in
