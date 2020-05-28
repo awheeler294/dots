@@ -1,6 +1,7 @@
 alacritty
 arandr
 autorandr
+caffeine-ng
 chromium
 firefox
 gimp
