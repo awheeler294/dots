@@ -73,8 +73,6 @@ color = ColorScheme(
     ui_selection_active   = '#73d0ff',
     ui_selection_border   = '#3c526a',
 )
-border_width               = 2
-margin                     = 14
 
 def get_next_screen(qtile):
     return (qtile.screens.index(qtile.current_screen) + 1) % len(qtile.screens)
@@ -157,7 +155,15 @@ keys = [
     Key([mod, "control"], "period", lazy.function(move_group_to_next_screen())),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+groups = []
+for group_name in "1234567890":
+    if group_name == "8":
+        group = Group(group_name)
+        #group = Group(group_name, layout="layout.TreeTab")
+    else:
+        group = Group(group_name)
+
+    groups.append(group)
 
 for i in groups:
     keys.extend([
@@ -171,26 +177,30 @@ for i in groups:
         Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
     ])
 
+layout_theme = {
+        'border_focus':  color.common_accent,
+        'border_normal': color.ui_panel_border,
+        'border_width':  2,
+        'margin':        14,
+}
+
 layouts = [
-    layout.MonadTall(
-        border_focus=color.common_accent, 
-        border_normal=color.ui_panel_border,
-        border_width=border_width,
-        margin=margin,
-        ratio=.5),
-    layout.Max(),
-    layout.Stack(num_stacks=2),
+    layout.MonadTall(ratio=.5, **layout_theme),
+    layout.Max(**layout_theme),
+    layout.Stack(num_stacks=2, **layout_theme),
     # Try more layouts by unleashing below layouts.
-    layout.Bsp(),
+    layout.Bsp(**layout_theme),
     # layout.Columns(),
     # layout.Matrix(),
     # layout.MonadWide(),
-    layout.RatioTile(),
+    layout.RatioTile(**layout_theme),
     # layout.Tile(),
-    layout.TreeTab(),
+    layout.TreeTab(**layout_theme),
     # layout.VerticalTile(),
-    layout.Zoomy(),
+    layout.Zoomy(**layout_theme),
 ]
+
+floating_layout = layout.Floating()
 
 def get_monitors():
     try:
@@ -295,22 +305,24 @@ main = None
 follow_mouse_focus = True
 cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-])
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        {'wmclass': 'confirm'},
+        {'wmclass': 'dialog'},
+        {'wmclass': 'download'},
+        {'wmclass': 'error'},
+        {'wmclass': 'file_progress'},
+        {'wmclass': 'notification'},
+        {'wmclass': 'splash'},
+        {'wmclass': 'toolbar'},
+        {'wmclass': 'confirmreset'},  # gitk
+        {'wmclass': 'makebranch'},  # gitk
+        {'wmclass': 'maketag'},  # gitk
+        {'wmclass': 'ssh-askpass'},  # ssh-askpass
+        {'wname': 'branchdialog'},  # gitk
+        {'wname': 'pinentry'},  # GPG key password entry
+    ],
+    **layout_theme
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
