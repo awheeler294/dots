@@ -16,5 +16,7 @@ picom -b &
 nm-applet &
 pamac-tray &
 pa-applet &
+caffeine &
+nitrogen --restore &
 #trayer --edge bottom --align right --monitor primary --width 6 --padding 10 --iconspacing 7 --SetDockType true --SetPartialStrut true --transparent true --alpha 0 --tint 0x1f2430 &
 
