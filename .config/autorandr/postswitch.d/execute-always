@@ -1,4 +1,3 @@
 #!/bin/sh
 notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"
-nitrogen --restore
 $HOME/bin/reload-bar.sh

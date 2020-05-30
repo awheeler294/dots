@@ -3,6 +3,7 @@ arandr
 autorandr
 caffeine-ng
 chromium
+feh
 firefox
 gimp
 git
@@ -24,8 +25,8 @@ ranger
 reiserfsprogs
 rsync
 slack-desktop
-spectrwm
 snapd
+spectrwm
 termite
 tmux
 ttf-bitstream-vera
@@ -37,10 +38,10 @@ ttf-liberation
 vi
 vim
 vivaldi
+xorg-xev
 yadm
 zsh
 zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
-xorg-xev
