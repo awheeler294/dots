@@ -140,7 +140,7 @@ keys = [
 
     Key([mod], "q",                 lazy.window.kill()), 
     Key([mod], "f",                 lazy.window.toggle_fullscreen()),
-    Key([mod, "shift"], "space",    lazy.window.toggle_fullscreen()),
+    Key([mod, "shift"], "space",    lazy.window.toggle_floating()),
 
     # Rotate through groups on this screen
     Key([mod], "bracketleft",       lazy.screen.prev_group(skip_managed=True)),
