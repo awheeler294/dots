@@ -1,3 +1,6 @@
 #!/bin/sh
 notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"
-$HOME/bin/reload-bar.sh
+
+if [ $GDMSESSION == "i3" ]; then
+   $HOME/.config/polybar/launch.sh
+fi
