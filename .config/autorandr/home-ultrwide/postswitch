@@ -1,0 +1,9 @@
+#!/bin/bash
+
+leftscreen=HDMI-1
+laptopscreen=eDP-1
+
+i3-msg "[workspace=\"^(8|9|10)\"] move workspace to output $laptopscreen;"
+i3-msg "[workspace=\"^(1|2|3|4|5|6|7)\"] move workspace to output $leftscreen;"
+
+feh --bg-max Pictures/wallpapers/ultrawide/longque-chen-space-investigation.jpg Pictures/wallpapers/169/alena-aenami-sundown.jpg 
