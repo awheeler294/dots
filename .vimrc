@@ -112,14 +112,14 @@ nnoremap <space> :set list!<CR>
 
 " copy/paste keybindings
 set pastetoggle=<F2>
-nmap <C-c> "+y
-vmap <C-c> "+y
+nmap <leader>y "+y
+vmap <leader>y "+y
 
-vmap <C-x> "+d
-nmap <C-x> "+d
+vmap <leader>d "+d
+nmap <leader>d "+d
 
-nmap <C-v> "+p
-vmap <C-v> c<ESC>"+p
+nmap <leader>p "+p
+vmap <leader>p c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
 " tab managment
