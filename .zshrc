@@ -167,7 +167,7 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
 function load_plugin() {
-   for plugin_path in /usr/share/zsh/plugins/ ${HOME}/.config/zsh-plugins/
+   for plugin_path in ${HOME}/.config/zsh-plugins/ /usr/share/zsh/plugins/ /usr/share
    
    do
       if [ -f "$plugin_path"/"$1" ]; then
