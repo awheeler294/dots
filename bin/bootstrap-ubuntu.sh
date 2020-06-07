@@ -11,7 +11,7 @@ sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt upgrade
 
-sudo apt install zsh zsh-syntax-highlighting grc neovim nodejs npm tree python3-pip
+sudo apt install zsh zsh-syntax-highlighting grc neovim nodejs npm tree python3-pip tmux
 pip3 install --user jedi
 
 wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo -P /tmp/
