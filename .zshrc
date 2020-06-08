@@ -74,10 +74,17 @@ colors
 # enable substitution for prompt
 setopt prompt_subst
 
+function hostname_if_ssh() {
+   if [[ -n $SSH_CONNECTION ]]; then
+      #echo "%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[blue]%}%m "
+      echo "%{$fg[blue]%}%m "
+   fi
+}
+
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
 # Maia prompt
-PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
+PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
 # Print a greeting message when shell is started
 echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
 ## Prompt on right side:
@@ -167,7 +174,7 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
 function load_plugin() {
-   for plugin_path in /usr/share/zsh/plugins/ ${HOME}/.config/zsh-plugins/
+   for plugin_path in ${HOME}/.config/zsh-plugins/ /usr/share/zsh/plugins/ /usr/share
    
    do
       if [ -f "$plugin_path"/"$1" ]; then
