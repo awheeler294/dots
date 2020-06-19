@@ -49,7 +49,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 2
 line-color = #f00000
 
 border-left-size= 0
@@ -58,22 +58,22 @@ border-top-size= 0
 border-bottom-size= 0
 border-color = #00000000
 
-padding-left = 4%
-padding-right = 4%
+padding-left = 1%
+padding-right = 1%
 
 module-margin-left = 1%
 module-margin-right = 1%
 
-font-0 = "Mononoki Nerd Font:pixelsize=16"
+font-0 = "Mononoki Nerd Font:pixelsize=16;4"
 font-1 = "NotoSansMono Nerd Font:style=ExtraBold:pixelsize=14"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=14"
 font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=14"
 font-4 = "Font Awesome style=Regular:pixelsize=14"
 font-5 = Bitstream Vera Sans Roman:pixelsize=14
 
-modules-left = i3
-modules-center = date time weather
-modules-right = battery-txt xkeyboard-capslock xkeyboard-numlock
+modules-left = i3 xkeyboard-capslock xkeyboard-numlock xwindow
+modules-center =
+modules-right = time date battery-txt 
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -122,9 +122,9 @@ font-3 = ${bar/default-bar.font-3}
 font-4 = ${bar/default-bar.font-4}
 font-5 = ${bar/default-bar.font-5}
 
-modules-left = i3
-modules-center = player-mpris-tail date time weather
-modules-right = battery-txt xkeyboard-capslock xkeyboard-numlock
+modules-left = ${bar/default-bar.modules-left}
+modules-center =
+modules-right = time date weather battery-txt
 
 tray-position = right
 tray-padding = 2
@@ -178,7 +178,8 @@ blacklist-1 = num lock
 
 format-prefix =
 format = <label-indicator>
-format-prefix-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.alert}
+format-prefix-foreground = ${colors.secondary}
 format-prefix-underline = ${colors.secondary}
 
 label-indicator-on = %name%
