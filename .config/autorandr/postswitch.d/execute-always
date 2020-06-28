@@ -1,6 +1,11 @@
 #!/bin/sh
 notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"
 
-if [ $GDMSESSION == "i3" ]; then
+#for E in $(printenv); do
+#   notify-send "$E"
+#done
+
+notify-send "GDMSESSION: $GDMSESSION"
+if [ $GDMSESSION == "i3" ] || [ $GDMSESSION == "bspwm" ]; then
    $HOME/.config/polybar/launch.sh
 fi

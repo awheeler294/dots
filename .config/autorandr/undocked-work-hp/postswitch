@@ -1,3 +1,9 @@
 #!/bin/bash
 
-feh --bg-max Pictures/wallpapers/169/alena-aenami-sundown.jpg
+bg=Pictures/wallpapers/169/alena-aenami-sundown.jpg
+feh --bg-max $bg
+
+lockscreen_bg=/tmp/lockscreen_bg
+
+convert $bg -resize 1920x1080\! $lockscreen_bg
+betterlockscreen -u $lockscreen_bg &

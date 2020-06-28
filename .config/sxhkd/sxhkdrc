@@ -1,0 +1,86 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	termite --title Termite
+
+# program launcher
+super + d
+	dmenu_recency -i -nb '#1f2430' -nf '#cbccc6' -sb '#34455a' -sf '#edf0f5'
+
+# browser
+super + F2
+   vivaldi-stable
+
+# file manager
+super + F3
+   pcmanfm
+super + shift + F3
+   gksudo pcmanfm
+
+# package manager
+super + F4
+   pamac-manager
+
+# google chat
+super + F5 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
+
+# launch categorized menu
+super + z 
+   morc_menu
+
+# compositor
+super + t
+   picom -b
+super + ctrl + t 
+   pkill picom
+
+# screenshots
+Print 
+   i3-scrot
+@super + Print
+   i3-scrot -w
+@super + shift + Print
+   i3-scrot -s
+
+# xkill
+@super + ctrl + x
+   xkill
+
+# type a shrug
+@super + u
+   xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'
+
+@super + shift + u 
+   xdotool type --clearmodifiers --delay 15 '¯\\\_(ツ)_/¯'
+
+
+# force autorandr
+super + o
+   notify-send 'force autorandr'; autorandr --change --force
+
+# audio control panel
+super + ctrl + m
+   pavucontrol
+
+# Media Controls
+XF86AudioPlay
+   ~/bin/mediactl play
+XF86AudioPrev 
+   ~/bin/mediactl previous
+XF86AudioNext 
+   ~/bin/mediactl next
+super + p 
+   ~/bin/mediactl launch
+super + shift + p 
+   ~/bin/mediactl quit
+
+# lock screen
+super + l
+   xset s activate
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
