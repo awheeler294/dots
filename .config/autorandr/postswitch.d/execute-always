@@ -1,4 +1,5 @@
 #!/bin/sh
+notify-send "postswitch.d"
 notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"
 
 #for E in $(printenv); do

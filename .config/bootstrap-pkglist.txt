@@ -20,6 +20,8 @@ mattermost-desktop-bin
 ncdu
 neovim
 nerd-fonts-complete
+nodejs
+npm
 openssh
 polybar
 powertop
@@ -31,6 +33,7 @@ rsync
 slack-desktop
 snapd
 spectrwm
+sxhkd
 termite
 tmux
 ttf-bitstream-vera

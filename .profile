@@ -25,7 +25,7 @@ autorun pamac-tray
 autorun pa-applet
 autorun caffeine
 autorun xset s 600
-autorun xss-lock -l -- betterlockscreen -l dimblur -- --screen=1
+autorun xss-lock -l -- $HOME/bin/betterlockscreen -l dimblur
 autorun xfce4-power-manager
 autorun clipit
 autorun sxhkd
