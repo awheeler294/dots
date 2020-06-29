@@ -23,6 +23,7 @@ echo "primary_output: $primary_output"
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
    
    if [[ $m == $primary_output ]]; then
+      echo "primanry"
       echo "MONITOR: $m"
       MONITOR=$m polybar --reload $log_flag $primary_bar &
    else

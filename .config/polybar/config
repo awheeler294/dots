@@ -130,6 +130,7 @@ tray-position = right
 tray-padding = 2
 tray-background = ${colors.background}
 
+
 [bar/primary-bspwm]
 monitor = ${env:MONITOR:eDP-1}
 width = ${bar/default-bar.width}
@@ -173,6 +174,7 @@ tray-position = right
 tray-padding = 2
 tray-background = ${colors.background}
 
+
 [bar/bspwm-bar]
 monitor = ${env:MONITOR:eDP-1}
 width = ${bar/default-bar.width}
@@ -211,10 +213,6 @@ font-5 = ${bar/default-bar.font-5}
 modules-left = bspwm xkeyboard-capslock xkeyboard-numlock xwindow
 modules-center =
 modules-right = ${bar/default-bar.modules-right}
-
-tray-position = right
-tray-padding = 2
-tray-background = ${colors.background}
 
 
 [module/xwindow]
