@@ -312,11 +312,15 @@ update () {
     fi
 
     echo "Rendering final locker images..."
-	convert "$CUR_W_RESIZE" -draw "fill #$loginbox $rectangles" "$CUR_L_RESIZE"
-	convert "$CUR_W_DIM" -draw "fill #$loginbox $rectangles" "$CUR_L_DIM"
-	convert "$CUR_W_BLUR" -draw "fill #$loginbox $rectangles" "$CUR_L_BLUR"
-	convert "$CUR_W_DIMBLUR" -draw "fill #$loginbox $rectangles" "$CUR_L_DIMBLUR"
-	convert "$CUR_W_PIXEL" -draw "fill #$loginbox $rectangles" "$CUR_L_PIXEL"
+	 convert "$CUR_W_RESIZE" -draw "fill #$loginbox $rectangles" "$CUR_L_RESIZE"
+	 convert "$CUR_W_DIM" -draw "fill #$loginbox $rectangles" "$CUR_L_DIM"
+	 convert "$CUR_W_BLUR" -draw "fill #$loginbox $rectangles" "$CUR_L_BLUR"
+	 convert "$CUR_W_DIMBLUR" -draw "fill #$loginbox $rectangles" "$CUR_L_DIMBLUR"
+	 convert "$CUR_W_PIXEL" -draw "fill #$loginbox $rectangles" "$CUR_L_PIXEL"
+
+	 echo
+	 echo 'All required changes have been applied'
+
 }
 
 

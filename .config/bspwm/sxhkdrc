@@ -4,7 +4,7 @@
 
 # quit/restart bspwm
 super + ctrl + r
-	bspc notify-send "Reload Bspwm" && wm -r
+	notify-send "Reload Bspwm" && bspc wm -r
 
 super + shift + e
    bspc quit
