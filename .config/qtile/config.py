@@ -97,10 +97,15 @@ browser         = "vivaldi-stable"
 file_manager    = "pcmanfm"
 package_manager = "pamac-manager"
 audio_control   = "pavucontrol"
+screen_locker   = "blurlock"
 launcher        = "dmenu_recency -i -nb '{}' -nf '{}' -sb '{}' -sf '{}'".format(
         color.common_bg, color.common_fg, 
         color.ui_selection_bg , color.ui_selection_fg
 )
+
+default_font     = 'Mononoki Nerd Font'
+default_fontsize = 18
+
 
 keys = [
     # Switch between windows in current stack pane
@@ -133,6 +138,7 @@ keys = [
     Key([mod], "F3",                lazy.spawn(file_manager)),
     Key([mod], "F4",                lazy.spawn(package_manager)),
     Key([mod], "d",                 lazy.spawn(launcher)),
+    Key([mod], "l",                 lazy.spawn(screen_locker)),
     Key([mod, "control"], "m",      lazy.spawn(audio_control)),
 
     Key([mod], "Tab",               lazy.next_layout()),
@@ -194,10 +200,20 @@ layouts = [
     layout.Bsp(**layout_theme),
     # layout.Columns(),
     # layout.Matrix(),
-    # layout.MonadWide(),
+    layout.MonadWide(**layout_theme),
     layout.RatioTile(**layout_theme),
     # layout.Tile(),
-    layout.TreeTab(**layout_theme),
+    layout.TreeTab(
+        active_bg=color.ui_selection_bg, 
+        active_fg=color.ui_selection_fg,
+        inactive_bg=color.ui_selection_inactive,
+        inactive_fg=color.common_fg,
+        bg_color=color.common_bg,
+        font=default_font,
+        fontsize=default_fontsize,
+        section_fg=color.common_fg,
+        section_fontsize=default_fontsize-2,
+        **layout_theme),
     # layout.VerticalTile(),
     layout.Zoomy(**layout_theme),
 ]
@@ -228,8 +244,8 @@ def get_monitors():
     return monitors
 
 widget_defaults = dict(
-    font='Mononoki Nerd Font',
-    fontsize=18,
+    font=default_font,
+    fontsize=default_fontsize,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()

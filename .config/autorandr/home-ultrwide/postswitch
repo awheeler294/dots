@@ -1,0 +1,33 @@
+#!/bin/bash
+
+leftscreen=HDMI-1
+laptopscreen=eDP-1
+
+if [ $GDMSESSION == "i3" ]; then
+   i3-msg "[workspace=\"^(8|9|10)\"] move workspace to output $laptopscreen;"
+   i3-msg "[workspace=\"^(1|2|3|4|5|6|7)\"] move workspace to output $leftscreen;"
+fi
+
+if [ $GDMSESSION == "bspwm" ]; then
+   bspc monitor $leftscreen   -d 1 2 3 4 5 6 7  
+   bspc monitor $laptopscreen -d 8 9 10
+fi
+
+bg_left=Pictures/wallpapers/ultrawide/longque-chen-space-investigation.jpg
+bg_laptop=Pictures/wallpapers/169/alena-aenami-sundown.jpg
+
+feh --bg-max $bg_left $bg_laptop 
+
+bg_left_scaled=$(mktemp)
+trap "rm -f $bg_left_scaled" 0 2 3 15
+
+bg_laptop_scaled=$(mktemp)
+trap "rm -f $bg_laptop_scaled" 0 2 3 15
+
+lockscreen_bg=/tmp/lockscreen_bg
+
+convert $bg_left -background black -gravity center -extent 3440x1440 $bg_left_scaled
+convert $bg_laptop -background black -gravity south -extent 1920x1440 $bg_laptop_scaled
+convert $bg_left_scaled $bg_laptop_scaled +append $lockscreen_bg
+
+betterlockscreen -u $lockscreen_bg &

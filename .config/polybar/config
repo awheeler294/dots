@@ -14,18 +14,18 @@
 ; #202020
 ;background = #90202020
 ; #0d1016
-background = #900d1016
+background = #1f2430
 ;background-alt = #404040
 background-alt = #273747
 ;foreground = ${xrdb:color7:#202020}
 ;foreground = #dfdfdf
-foreground = #b3b1ad
+foreground = #edf0f5
 ;foreground-alt = #505050
-foreground-alt = #3d424d
+foreground-alt = #707a9c
 ;primary = #2aa198
-primary = #e6b450 
+primary = #ffcc66 
 ;secondary = #887711
-secondary = #ff8f40
+secondary = #ffa759
 ;alert = #881122
 alert = #ff3333
 ;free = #006666
@@ -49,8 +49,8 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
+line-size = 2
+line-color = #f00000
 
 border-left-size= 0
 border-right-size= 0
@@ -58,23 +58,22 @@ border-top-size= 0
 border-bottom-size= 0
 border-color = #00000000
 
-padding-left = 4%
-padding-right = 4%
+padding-left = 1%
+padding-right = 1%
 
-module-margin-left = 2%
-module-margin-right = 2%
+module-margin-left = 1%
+module-margin-right = 1%
 
-font-0 = Bitstream Vera Sans Roman:pixelsize=14
+font-0 = "Mononoki Nerd Font:pixelsize=16;4"
 font-1 = "NotoSansMono Nerd Font:style=ExtraBold:pixelsize=14"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=14"
 font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=14"
 font-4 = "Font Awesome style=Regular:pixelsize=14"
-font-5 = "Mononoki Nerd Font:pixelsize=14"
- 
+font-5 = Bitstream Vera Sans Roman:pixelsize=14
 
-modules-left = i3
-modules-center = date time weather
-modules-right = temperature battery xkeyboard-capslock xkeyboard-numlock
+modules-left = i3 xkeyboard-capslock xkeyboard-numlock xwindow
+modules-center =
+modules-right = time date battery-txt 
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -123,13 +122,97 @@ font-3 = ${bar/default-bar.font-3}
 font-4 = ${bar/default-bar.font-4}
 font-5 = ${bar/default-bar.font-5}
 
-modules-left = i3
-modules-center = player-mpris-tail date time weather
-modules-right = temperature battery xkeyboard-capslock xkeyboard-numlock
+modules-left = ${bar/default-bar.modules-left}
+modules-center =
+modules-right = time date weather battery-txt
 
 tray-position = right
 tray-padding = 2
 tray-background = ${colors.background}
+
+
+[bar/primary-bspwm]
+monitor = ${env:MONITOR:eDP-1}
+width = ${bar/default-bar.width}
+height = ${bar/default-bar.height}
+bottom = ${bar/default-bar.bottom}
+;offset-x = 1%
+;offset-y = 1%
+radius = ${bar/default-bar.radius}
+fixed-center = ${bar/default-bar.fixed-center}
+
+background = ${bar/default-bar.background}
+foreground = ${bar/default-bar.foreground}
+
+line-size = ${bar/default-bar.line-size}
+line-color = ${bar/default-bar.line-color}
+
+border-left-size = ${bar/default-bar.border-left-size}
+border-right-size = ${bar/default-bar.border-right-size}
+border-top-size = ${bar/default-bar.border-top-size}
+border-bottom-size = ${bar/default-bar.border-bottom-size}
+border-color = ${bar/default-bar.border-color}
+
+padding-left = ${bar/default-bar.padding-left}
+padding-right = ${bar/default-bar.padding-right}
+
+module-margin-left = ${bar/default-bar.module-margin-left}
+module-margin-right = ${bar/default-bar.module-margin-right}
+
+font-0 = ${bar/default-bar.font-0}
+font-1 = ${bar/default-bar.font-1}
+font-2 = ${bar/default-bar.font-2}
+font-3 = ${bar/default-bar.font-3}
+font-4 = ${bar/default-bar.font-4}
+font-5 = ${bar/default-bar.font-5}
+
+modules-left = bspwm xkeyboard-capslock xkeyboard-numlock xwindow
+modules-center =
+modules-right = ${bar/primary-bar.modules-right}
+
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background}
+
+
+[bar/bspwm-bar]
+monitor = ${env:MONITOR:eDP-1}
+width = ${bar/default-bar.width}
+height = ${bar/default-bar.height}
+bottom = ${bar/default-bar.bottom}
+;offset-x = 1%
+;offset-y = 1%
+radius = ${bar/default-bar.radius}
+fixed-center = ${bar/default-bar.fixed-center}
+
+background = ${bar/default-bar.background}
+foreground = ${bar/default-bar.foreground}
+
+line-size = ${bar/default-bar.line-size}
+line-color = ${bar/default-bar.line-color}
+
+border-left-size = ${bar/default-bar.border-left-size}
+border-right-size = ${bar/default-bar.border-right-size}
+border-top-size = ${bar/default-bar.border-top-size}
+border-bottom-size = ${bar/default-bar.border-bottom-size}
+border-color = ${bar/default-bar.border-color}
+
+padding-left = ${bar/default-bar.padding-left}
+padding-right = ${bar/default-bar.padding-right}
+
+module-margin-left = ${bar/default-bar.module-margin-left}
+module-margin-right = ${bar/default-bar.module-margin-right}
+
+font-0 = ${bar/default-bar.font-0}
+font-1 = ${bar/default-bar.font-1}
+font-2 = ${bar/default-bar.font-2}
+font-3 = ${bar/default-bar.font-3}
+font-4 = ${bar/default-bar.font-4}
+font-5 = ${bar/default-bar.font-5}
+
+modules-left = bspwm xkeyboard-capslock xkeyboard-numlock xwindow
+modules-center =
+modules-right = ${bar/default-bar.modules-right}
 
 
 [module/xwindow]
@@ -179,7 +262,8 @@ blacklist-1 = num lock
 
 format-prefix =
 format = <label-indicator>
-format-prefix-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.alert}
+format-prefix-foreground = ${colors.secondary}
 format-prefix-underline = ${colors.secondary}
 
 label-indicator-on = %name%
@@ -226,22 +310,24 @@ label-unmounted-foreground = ${module/filesystem.label-unmounted-foreground}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
 
-label-occupied = %index%
-label-occupied-padding = 2
+label-dimmed-focused-underline = ${colors.background-alt}
 
-label-urgent = %index%!
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%!
 label-urgent-background = ${colors.primary}
 label-urgent-background-underline = ${colors.background-alt}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 
 [module/i3]
@@ -255,31 +341,32 @@ pin-workspaces = true
 
 strip-wsnumbers = true
 
-label-mode-padding = 2
-label-mode-foreground = #000000
+label-mode-padding = 1
+label-mode-foreground = ${colors.background}
 label-mode-background = ${colors.secondary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-background = ${colors.background}
-label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-padding = 1
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${colors.background}
-label-visible-padding = 2
+label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-foreground = ${colors.primary}
 label-urgent-background = ${colors.foreground-alt}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 
 [module/mpd]
@@ -518,6 +605,31 @@ format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${colors.primary}
 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+
+[module/battery-txt]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 95
+
+format-charging-prefix = "CRG: "
+format-charging =  <label-charging>
+format-charging-underline = ${colors.background}
+
+format-discharging-prefix = "BAT: "
+format-discharging =  <label-discharging>
+format-discharging-underline = ${colors.background}
+
+format-full-prefix = "BAT: "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${colors.background}
+
+#format-full-prefix = " "
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 

@@ -1,8 +1,11 @@
 alacritty
 arandr
 autorandr
+betterlockscreen
+bspwm
 caffeine-ng
 chromium
+discord
 feh
 firefox
 gimp
@@ -11,11 +14,14 @@ gparted
 grc
 hstr
 i3-gaps
+imagemagick
 kitty
 mattermost-desktop-bin
 ncdu
 neovim
 nerd-fonts-complete
+nodejs
+npm
 openssh
 polybar
 powertop
@@ -27,6 +33,7 @@ rsync
 slack-desktop
 snapd
 spectrwm
+sxhkd
 termite
 tmux
 ttf-bitstream-vera
@@ -39,6 +46,7 @@ vi
 vim
 vivaldi
 xorg-xev
+xss-lock
 yadm
 zsh
 zsh-autosuggestions
