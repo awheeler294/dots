@@ -80,13 +80,13 @@ fi
 read -r -p "Extend .bashrc? [Y/n]" response
 response=${response,,} # tolower
 if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> .bashrc 
+   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> $HOME/.bashrc 
 fi
 
 read -r -p "Extend .profile? [Y/n]" response
 response=${response,,} # tolower
 if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> .bashrc 
+   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.bashrc 
 fi
 
 read -r -p "set Vivaldi as default browser? [Y/n]" response
@@ -102,3 +102,4 @@ wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminf
 tic -x /tmp/termite.terminfo
 chsh -s $(which zsh)
 
+echo 'SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> $HOME/.pam_environment
