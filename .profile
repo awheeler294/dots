@@ -16,8 +16,8 @@ function autorun {
    fi
 }
 
-#autorun autorandr --change
-autorun pulseaudio
+##autorun autorandr --change
+#autorun sleep 1 && pulseaudio
 autorun picom -b
 autorun /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 autorun nm-applet
@@ -29,7 +29,7 @@ autorun xss-lock -l -- $HOME/bin/betterlockscreen_mm -l dimblur
 autorun xfce4-power-manager
 autorun clipit
 autorun sxhkd
-#trayer --edge bottom --align right --monitor primary --width 6 --padding 10 --iconspacing 7 --SetDockType true --SetPartialStrut true --transparent true --alpha 0 --tint 0x1f2430 &
+##trayer --edge bottom --align right --monitor primary --width 6 --padding 10 --iconspacing 7 --SetDockType true --SetPartialStrut true --transparent true --alpha 0 --tint 0x1f2430 &
 
 if [ -d $HOME/.config/autorun.d ] ; then
     for f in $HOME/.config/autorun.d/?*.sh ; do
