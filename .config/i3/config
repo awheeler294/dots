@@ -36,7 +36,7 @@ bindsym $mod+q kill
 # Start Applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
 bindsym $mod+F5 exec $terminal -e 'mocp'
-bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
+bindsym $mod+F6 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat --browser google-chrome
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 # change focus

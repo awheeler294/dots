@@ -18,16 +18,19 @@ bg_laptop=Pictures/wallpapers/169/alena-aenami-sundown.jpg
 
 feh --bg-max $bg_left $bg_laptop 
 
-bg_left_scaled=$(mktemp)
-trap "rm -f $bg_left_scaled" 0 2 3 15
+cache_path="$HOME/.cache/lockscreen"
+[ -d $cache_path ] || mkdir -p $cache_path
+lockscreen_bg="$cache_path/lockscreen_bg_$AUTORANDR_CURRENT_PROFILE"
 
-bg_laptop_scaled=$(mktemp)
-trap "rm -f $bg_laptop_scaled" 0 2 3 15
+if [ ! -f $lockscreen_bg ]
+then
+   convert \
+      \( $bg_left -resize 3440x1440\! -background black -gravity center -extent 3440x1440 \) \
+      \( $bg_laptop -resize 1920x1080\! -background black -gravity south -extent 1920x1440 \) \
+       +append $lockscreen_bg
+   #convert $bg_left -background black -gravity center -extent 3440x1440 $bg_left_scaled
+   #convert $bg_laptop -background black -gravity south -extent 1920x1440 $bg_laptop_scaled
+   #convert $bg_left_scaled $bg_laptop_scaled +append $lockscreen_bg
+fi
 
-lockscreen_bg=/tmp/lockscreen_bg
-
-convert $bg_left -background black -gravity center -extent 3440x1440 $bg_left_scaled
-convert $bg_laptop -background black -gravity south -extent 1920x1440 $bg_laptop_scaled
-convert $bg_left_scaled $bg_laptop_scaled +append $lockscreen_bg
-
-betterlockscreen -u $lockscreen_bg &
+$HOME/bin/betterlockscreen_mm -u $lockscreen_bg --span &

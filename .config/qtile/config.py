@@ -109,11 +109,13 @@ default_fontsize = 18
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "j",    lazy.layout.up()),
-    Key([mod], "Up",   lazy.layout.up()),
-    Key([mod], "k",    lazy.layout.down()),
-    Key([mod], "Down", lazy.layout.down()),
+    Key([mod], "j",               lazy.layout.up()),
+    Key([mod], "Up",              lazy.layout.up()),
+    Key([mod], "k",               lazy.layout.down()),
+    Key([mod], "Down",            lazy.layout.down()),
     
+    Key([mod], "Left",            lazy.layout.previous()),
+    Key([mod], "Right",           lazy.layout.next()),
     # Move windows up or down in current stack
     Key([mod, "control"], "j",    lazy.layout.shuffle_up()),
     Key([mod, "control"], "Up",   lazy.layout.shuffle_up()),
