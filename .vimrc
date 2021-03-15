@@ -145,6 +145,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 call plug#end()
 
 " coc config
@@ -343,8 +345,11 @@ let g:NERDCommentEmptyLines = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " Open a NERDTree automatically when vim starts up if no files were specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
+
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Obsession | endif
 
 " Open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
@@ -365,3 +370,6 @@ nmap <leader> m <Plug>MarkdownPreviewToggle
 
 set nofoldenable
 
+" This option creates & uses a 'default' session to be used in case when 
+" launching vim and a corresponding session hasn't been found yet.
+let g:prosession_default_session = 0
