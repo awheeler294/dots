@@ -150,12 +150,10 @@ Plug 'dhruvasagar/vim-prosession'
 call plug#end()
 
 " coc config
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-rust-analyzer', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
 set termguicolors
 
 "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-java', 'coc-rls', 'coc-yaml', 'coc-python', 'coc-go', 'coc-gitignore', 'coc-python', 'coc-pairs', 'coc-sh', 'coc-docker', 'coc-sql', 'coc-highlight']
-set termguicolors
 
 " if hidden is not set, TextEdit might fail.
 set hidden
