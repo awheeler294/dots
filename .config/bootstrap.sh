@@ -72,7 +72,7 @@ if item_in_array "$OS" "$pop"; then
 
    sudo apt-get install software-properties-common
 
-   xargs -a <(awk '! /^ *(#|$)/' ".config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
+   xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
    pip3 install --user jedi
 
 fi

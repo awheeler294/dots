@@ -13,7 +13,6 @@ git
 gparted
 grc 
 hstr
-i3-gaps
 imagemagick
 kitty
 ncdu
@@ -22,15 +21,12 @@ nodejs
 npm 
 polybar
 python3-pip
-qtile
 ranger
 rsync 
 spectrwm
 sxhkd
 tree 
-termite
 tmux
-vi
 vim
 zsh 
 zsh-syntax-highlighting 
