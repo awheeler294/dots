@@ -1,0 +1,50 @@
+#!/bin/bash
+
+alias grep='grep -i'
+
+echo "aliases"
+if hash exa 2>/dev/null; then
+
+   echo "found exa"
+   # use exa for ls and tree
+   alias ls='exa --icons'
+   alias ll='exa --icons -lha'
+   alias tree='exa --icons lha --tree'
+
+else
+
+   if hash grc 2>/dev/null; then
+      
+      echo "found grc"
+      alias ls='grc ls'
+      alias slog='grc sudo tail -f /var/log/syslog'
+
+   elif [ -x /usr/bin/dircolors ]; then
+   
+      echo "found dircolors"
+      # enable color support of ls and also add handy aliases
+      test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+      alias ls='ls --color=auto'
+      #alias dir='dir --color=auto'
+      #alias vdir='vdir --color=auto'
+
+      alias grep='grep --color=auto'
+      alias fgrep='fgrep --color=auto'
+      alias egrep='egrep --color=auto'
+   fi
+
+   # some more ls aliases
+   alias ll='ls -alhF'
+   #alias la='ls -A'
+   #alias l='ls -CF'
+fi
+
+if hash nvim 2>/dev/null; then
+   echo "found nvim"
+   alias vim='nvim'
+fi
+
+
+alias cp="cp -i"       # Confirm before overwriting something            
+alias df='df -h'       # Human-readable sizes
+alias free='free -m'   # Show sizes in MB
