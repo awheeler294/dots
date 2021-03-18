@@ -2,10 +2,10 @@
 
 alias grep='grep -i'
 
-echo "aliases"
+#echo "aliases"
 if hash exa 2>/dev/null; then
 
-   echo "found exa"
+   #echo "found exa"
    # use exa for ls and tree
    alias ls='exa --icons'
    alias ll='exa --icons -lha'
@@ -13,15 +13,18 @@ if hash exa 2>/dev/null; then
 
 else
 
+   echo "exa not found"
+
    if hash grc 2>/dev/null; then
       
-      echo "found grc"
+      echo "using grc"
+
       alias ls='grc ls'
       alias slog='grc sudo tail -f /var/log/syslog'
 
    elif [ -x /usr/bin/dircolors ]; then
    
-      echo "found dircolors"
+      echo "using dircolors"
       # enable color support of ls and also add handy aliases
       test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
       alias ls='ls --color=auto'
@@ -40,8 +43,9 @@ else
 fi
 
 if hash nvim 2>/dev/null; then
-   echo "found nvim"
    alias vim='nvim'
+else
+   echo "nvim not found"
 fi
 
 

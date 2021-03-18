@@ -54,7 +54,7 @@ bindkey '^[[Z' undo                               # Shift+tab undo last action
 
 
 if [ -f ~/.config/extend-rc/aliases ]; then
-   echo "source aliases"
+   #echo "source aliases"
     . ~/.config/extend-rc/aliases
 else
 
