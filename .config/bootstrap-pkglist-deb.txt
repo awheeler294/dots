@@ -1,9 +1,11 @@
 alacritty
 arandr
 autorandr
+bat
 bspwm
 chromium
 discord
+exa
 feh
 firefox
 gimp
