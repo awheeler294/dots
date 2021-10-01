@@ -1,0 +1,18 @@
+#!/bin/bash
+
+primary_output=$(xrandr --query | grep " primary" | cut -d" " -f1)
+resolution=$(xrandr --query | grep " primary" | cut -d " " -f 4 | cut -d "+" -f 1)
+
+case $resolution in 
+   3440x1440)
+      xrandr --output $primary_output --mode 2560x1440
+
+      "$@"
+
+      xrandr --output $primary_output --mode $resolution
+      ;;
+   
+   *)
+      exec "$@"
+      ;;
+esac
