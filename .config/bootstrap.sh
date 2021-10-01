@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 function item_in_array {
    local item="$1"
    local arr="$2"
@@ -58,22 +60,42 @@ fi
 manjaro=("Manjaro Linux" ManjaroLinux) 
 if item_in_array "$OS" "$manjaro"; then
    echo "Found Manjaro Linux"
-   yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
+   read -r -p "Execute bootstrap? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
+      pip install --user jedi
+   fi
+fi
+
+endeavour=("EndeavourOS" ManjaroLinux) 
+if item_in_array "$OS" "$endeavour"; then
+   echo "Found Endeavour OS"
+   read -r -p "Execute bootstrap? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
+      pip install --user jedi
+   fi
 fi
 
 pop=("Pop!_OS" Pop)
 if item_in_array "$OS" "$pop"; then
    echo "Found Pop OS"
-   git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
-   git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
+   read -r -p "Execute bootstrap? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
+      git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
 
-   sudo apt update
-   sudo apt upgrade
+      sudo apt update
+      sudo apt upgrade
 
-   sudo apt-get install software-properties-common
+      sudo apt-get install software-properties-common
 
-   xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
-   pip3 install --user jedi
+      xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
+      pip3 install --user jedi
+   fi
 
 fi
 

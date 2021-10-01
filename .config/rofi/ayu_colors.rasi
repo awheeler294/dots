@@ -1,0 +1,59 @@
+/*******************************************************
+ * ROFI Arc Dark colors for EndeavourOS
+ * Maintainer: joekamprad <joekamprad@endeavouros.com>
+ *******************************************************/
+
+//configuration {
+//  // ! State:      'bg'      'fg'     'bgalt'  'hlbg'   'hlfg'
+//   color-normal: "#1d1f21, #bfbab0, #1d1f21, #101010, #73d0ff";
+//	  color-urgent: "#1d1f21, #bfbab0, #1d1f21, #1d1f21, #95e6cb";
+//	  color-active: "#1d1f21, #bfbab0, #1d1f21, #1d1f21, #95e6cb";
+//  // !             'background' 'border' 'separator'
+//	  color-window: "#1d1f21,    #454948, #ff8f40";
+//   
+//   terminal: "alacritty";
+//}
+
+* {
+
+    border-color:                #1d1f21;
+    spacing:                     2;
+    separatorcolor:              #ff8f40;
+    background-color:            #1d1f21;
+
+    foreground:                  #bfbab0;
+    background:                  #1d1f21;
+    
+    normal-foreground:           @foreground;
+    normal-background:           @background;
+    
+    alternate-normal-foreground: @foreground;
+    alternate-normal-background: @background;
+
+    active-foreground:           @foreground;
+    active-background:           @background;
+    
+    alternate-active-foreground: @active-foreground;
+    alternate-active-background: @background;
+
+    urgent-foreground:           @foreground;
+    urgent-background:           @background;
+    
+    alternate-urgent-foreground: @urgent-foreground;
+    alternate-urgent-background: @background;
+
+    red:                         rgba ( 220, 50, 47, 100 % );
+    blue:                        rgba ( 38, 139, 210, 100 % );
+
+    lightfg:                     #101010;
+    lightbg:                     #73d0ff;
+    
+    selected-normal-foreground:  @lightfg;
+    selected-normal-background:  @lightbg;
+    
+    selected-active-foreground:  @lightfg;
+    selected-active-background:  @lightbg;
+    
+    selected-urgent-foreground:  @lightfg;
+    selected-urgent-background:  @lightbg;
+}
