@@ -75,7 +75,7 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
@@ -300,6 +300,9 @@ colors:
   #primary:
   #  background: '#1f2430'
   #  foreground: '#bfbab0'
+  primary:
+     background: '#1d1f21'
+     foreground: '#bfbab0'
 
   # Normal colors
   normal:
@@ -369,7 +372,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 0.95
 
 #selection:
   # This string contains all characters that are used as separators for
