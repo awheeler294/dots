@@ -1,0 +1,6 @@
+[Desktop Entry]
+#Exec=/usr/bin/xset s 600 dpms 900 900 900
+Exec=/usr/bin/xset dpms 0 0 900
+Name=xset
+Comment=user preference utility for X
+Type=Application

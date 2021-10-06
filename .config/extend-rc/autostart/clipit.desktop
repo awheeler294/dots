@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=pgrep -x clipit >/dev/null && clipit
+Name=clipit
+Type=Application

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=/usr/bin/pa-applet
+Name=pa-applet
+Type=Application
