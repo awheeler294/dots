@@ -17,6 +17,11 @@ super + z
    dmenu_extended_run
 	#dmenu_recency -i -nb '#1f2430' -nf '#cbccc6' -sb '#34455a' -sf '#edf0f5'
 
+# Steam
+super + F1
+   notify-send 'steam-runtime'; steam-runtime
+super + shift + F1
+   notify-send 'steam-native'; steam-native
 
 # browser
 super + F2
@@ -34,12 +39,6 @@ super + F4
 
 # google chat
 super + F5 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
-
-# Steam
-super + F6
-   steam-runtime
-super + shift + F6
-   steam-native
 
 # launch categorized menu
 super + z 
