@@ -46,9 +46,9 @@ super + z
 
 # compositor
 super + t
-   picom -b
+   picom -b && notify-send 'Launch picom'
 super + ctrl + t 
-   pkill picom
+   pkill picom && notify-send 'Kill picom'
 
 # screenshots
 Print 
@@ -92,6 +92,10 @@ super + p
    ~/bin/mediactl launch
 super + shift + p 
    ~/bin/mediactl quit
+
+# Headset Battery
+super + shift + h
+   notify-send "$(headsetcontrol -b | sed -n -e 's/^.*Found //p')" "$(headsetcontrol -b | grep Battery)"
 
 # lock screen
 super + l
