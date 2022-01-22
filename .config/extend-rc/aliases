@@ -52,7 +52,7 @@ fi
 alias cp="cp -i"       # Confirm before overwriting something            
 alias df='df -h'       # Human-readable sizes
 alias free='free -m'   # Show sizes in MB
-alias ssh='TERM=xterm-color ssh'
+alias ssh='TERM=xterm-256color ssh'
 steam-id() {
    grep -n "name" ~/.steam/steam/steamapps/*.acf | sed -e 's/^.*_//;s/\.acf:.:/ /;s/name//;s/"//g;s/\t//g;s/ /-/' | awk -F"-" '{printf "%-40s %s\n", $2, $1}' | sort
 }
