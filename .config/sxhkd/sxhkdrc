@@ -95,7 +95,7 @@ super + shift + p
 
 # Headset Battery
 super + shift + h
-   notify-send "$(headsetcontrol -b | sed -n -e 's/^.*Found //p')" "$(headsetcontrol -b | grep Battery)"
+   notify-send "$(headsetcontrol -b | (read _ name; echo $name))" "$(headsetcontrol -b | grep Battery)"
 
 # lock screen
 super + l
