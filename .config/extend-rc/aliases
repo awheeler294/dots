@@ -8,8 +8,8 @@ if hash exa 2>/dev/null; then
    #echo "found exa"
    # use exa for ls and tree
    alias ls='exa --icons'
-   alias ll='exa --icons -lha'
-   alias tree='exa --icons lha --tree'
+   alias ll='exa --icons -lhag'
+   alias tree='exa --icons --tree'
 
 else
 
