@@ -69,8 +69,12 @@ Print
 @super + shift + u 
    xdotool type --clearmodifiers --delay 15 '¯\\\_(ツ)_/¯'
 
-# force autorandr
+# select autorandr profile
 super + o
+   autorandr| rofi -dmenu -p "autorandr" | cut -d ' ' -f 1 | xargs --no-run-if-empty autorandr --change --force
+
+# force autorandr
+super + shift + o
    notify-send 'force autorandr'; autorandr --change --force
 
 # restart polybar
