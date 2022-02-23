@@ -7,6 +7,6 @@ notify-send "AutoRandR: $AUTORANDR_CURRENT_PROFILE"
 #done
 
 notify-send "GDMSESSION: $GDMSESSION"
-if [ $GDMSESSION == "i3" ] || [ $GDMSESSION == "bspwm" ]; then
+if [ "$GDMSESSION" == "i3" ] || [ "$GDMSESSION" == "bspwm" ]; then
    $HOME/.config/polybar/launch.sh
 fi
