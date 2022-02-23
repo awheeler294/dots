@@ -24,6 +24,33 @@ function item_in_array {
    return 1
 }
 
+function global_setup {
+   read -r -p "Extend .bashrc? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> $HOME/.bashrc 
+   fi
+
+   read -r -p "Extend .profile? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.profile 
+   fi
+
+   read -r -p "set Vivaldi as default browser? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      xdg-mime default vivaldi-stable.desktop x-scheme-handler/http
+      xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
+   fi
+
+   pip install --user jedi
+
+   chsh -s $(which zsh)
+
+   echo 'SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> $HOME/.pam_environment
+}
+
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -64,7 +91,7 @@ if item_in_array "$OS" "$manjaro"; then
    response=${response,,} # tolower
    if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
       yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
-      pip install --user jedi
+      global_setup
    fi
 fi
 
@@ -75,7 +102,7 @@ if item_in_array "$OS" "$endeavour"; then
    response=${response,,} # tolower
    if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
       yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
-      pip install --user jedi
+      global_setup
    fi
 fi
 
@@ -94,34 +121,8 @@ if item_in_array "$OS" "$pop"; then
       sudo apt-get install software-properties-common
 
       xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
-      pip3 install --user jedi
+      
+      global_setup
    fi
 
 fi
-
-read -r -p "Extend .bashrc? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> $HOME/.bashrc 
-fi
-
-read -r -p "Extend .profile? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.bashrc 
-fi
-
-read -r -p "set Vivaldi as default browser? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   xdg-mime default vivaldi-stable.desktop x-scheme-handler/http
-   xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
-fi
-
-pip install --user jedi
-
-wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo -P /tmp/
-tic -x /tmp/termite.terminfo
-chsh -s $(which zsh)
-
-echo 'SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> $HOME/.pam_environment
