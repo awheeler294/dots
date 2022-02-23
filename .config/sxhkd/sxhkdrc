@@ -5,7 +5,6 @@
 # terminal emulator
 super + Return
 	alacritty
-	#termite --title Termite
 
 # program launcher
 super + d
