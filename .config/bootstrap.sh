@@ -24,6 +24,28 @@ function item_in_array {
    return 1
 }
 
+function arch_install {
+   sudo pacman -S yay
+   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman.txt
+}
+
+function arch_install_arm {
+   sudo pacman -S yay
+   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman-arm.txt
+}
+
+function ubuntu_install {
+   git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
+   git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
+
+   sudo apt update
+   sudo apt upgrade
+
+   sudo apt-get install software-properties-common
+
+   xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
+}
+
 function global_setup {
    read -r -p "Extend .bashrc? [Y/n]" response
    response=${response,,} # tolower
@@ -80,49 +102,22 @@ else
     OS=$(uname -s)
     VER=$(uname -r)
 fi
+echo
+echo "OS:" "$OS"
+echo "VER:" "$VER"
+echo
+echo "Please choose bootstrap type:"
+echo "[A] Arch Linux"
+echo "[R] Arch Linux Arm"
+echo "[U] Ubuntu"
 
-#echo "$OS"
-#echo "$VER"
-
-manjaro=("Manjaro Linux" ManjaroLinux) 
-if item_in_array "$OS" "$manjaro"; then
-   echo "Found Manjaro Linux"
-   read -r -p "Execute bootstrap? [Y/n]" response
+while true; do
+   read -r -p " " response
    response=${response,,} # tolower
-   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-      yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
-      global_setup
-   fi
-fi
-
-endeavour=("EndeavourOS" ManjaroLinux) 
-if item_in_array "$OS" "$endeavour"; then
-   echo "Found Endeavour OS"
-   read -r -p "Execute bootstrap? [Y/n]" response
-   response=${response,,} # tolower
-   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-      yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
-      global_setup
-   fi
-fi
-
-pop=("Pop!_OS" Pop)
-if item_in_array "$OS" "$pop"; then
-   echo "Found Pop OS"
-   read -r -p "Execute bootstrap? [Y/n]" response
-   response=${response,,} # tolower
-   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-      git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
-      git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
-
-      sudo apt update
-      sudo apt upgrade
-
-      sudo apt-get install software-properties-common
-
-      xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
-      
-      global_setup
-   fi
-
-fi
+   case $response in   
+      [Aa]* ) arch_install; global_setup; break;;
+      [Rr]* ) arch_install_arm; global_setup; break;;
+      [Uu]* ) ubuntu_install; global_setup; break;;
+      * ) echo "Please answer A, U, R.";;
+   esac
+done

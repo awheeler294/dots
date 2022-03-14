@@ -53,7 +53,7 @@ reiserfsprogs
 rofi
 rsync
 slack-desktop
-smbclient 
+smbclient
 snapd
 spectrwm
 sxhkd
