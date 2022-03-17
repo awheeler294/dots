@@ -2,36 +2,13 @@
 
 set -e
 
-function item_in_array {
-   local item="$1"
-   local arr="$2"
-
-   #echo "item_in_array"
-   #echo "item: $item"
-   #echo "arr: $arr"
-
-   for ((i = 0; i < ${#arr[@]}; i++))
-   do
-      e="${arr[$i]}"
-      #echo "e: $e"
-      if [ "$item" == "$e" ]; then
-         #echo "Found $e"
-         # found
-         return 0
-      fi
-   done
-
-   return 1
-}
-
 function arch_install {
-   sudo pacman -S yay
    yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman.txt
 }
 
 function arch_install_arm {
-   sudo pacman -S yay
-   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman-arm.txt
+   sudo pacman -S --needed - < $HOME/.config/arch_base_devel.pkglist
+   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman-arm.pkglist
 }
 
 function ubuntu_install {
