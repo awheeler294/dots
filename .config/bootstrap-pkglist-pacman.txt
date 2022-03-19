@@ -30,6 +30,7 @@ kitty
 lightdm
 lightdm-gtk-greeter
 lightdm-gtk-greeter-settings
+lsb-release
 lxappearance-gtk3
 mattermost-desktop-bin
 mpv
@@ -71,6 +72,8 @@ vi
 viewnior
 vim
 vivaldi
+xfce4-terminal
+xorg-server
 xorg-xev
 xss-lock
 yadm
