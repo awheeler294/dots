@@ -25,6 +25,7 @@ gvfs-smb
 hstr
 htop
 i3-gaps
+i3-scrot
 imagemagick
 kitty
 lightdm
@@ -72,6 +73,7 @@ vi
 viewnior
 vim
 vivaldi
+xclip
 xfce4-terminal
 xorg-server
 xorg-xev
