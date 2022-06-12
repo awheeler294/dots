@@ -178,7 +178,8 @@ assign [class="zoom"] $ws9
 assign [class="Vivaldi-stable"] $ws4
 assign [title="Friends List"] $ws9
 
-for_window [title="Friends List"] resize srink width 10000 px or 10000 ppt; resize grow width 226 px or 226 ppt;
+for_window [class="Steam" title="Friends List"] no_focus 
+for_window [class="Steam" title="Friends List"] resize shrink width 0 px or 30 ppt;
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -265,10 +266,10 @@ mode "resize" {
         bindsym semicolon resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
