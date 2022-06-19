@@ -1,25 +1,53 @@
 #!/bin/bash
 
-function item_in_array {
-   local item="$1"
-   local arr="$2"
+set -e
 
-   #echo "item_in_array"
-   #echo "item: $item"
-   #echo "arr: $arr"
+function arch_install {
+   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman.txt
+}
 
-   for ((i = 0; i < ${#arr[@]}; i++))
-   do
-      e="${arr[$i]}"
-      #echo "e: $e"
-      if [ "$item" == "$e" ]; then
-         #echo "Found $e"
-         # found
-         return 0
-      fi
-   done
+function arch_install_arm {
+   sudo pacman -S --needed - < $HOME/.config/arch_base_devel.pkglist
+   yay -S --needed --sudoloop --save - < $HOME/.config/bootstrap-pkglist-pacman-arm.pkglist
+}
 
-   return 1
+function ubuntu_install {
+   git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
+   git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
+
+   sudo apt update
+   sudo apt upgrade
+
+   sudo apt-get install software-properties-common
+
+   xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
+}
+
+function global_setup {
+   read -r -p "Extend .bashrc? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> $HOME/.bashrc 
+   fi
+
+   read -r -p "Extend .profile? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.profile 
+   fi
+
+   read -r -p "set Vivaldi as default browser? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      xdg-mime default vivaldi-stable.desktop x-scheme-handler/http
+      xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
+   fi
+
+   pip install --user jedi
+
+   chsh -s $(which zsh)
+
+   echo 'SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> $HOME/.pam_environment
 }
 
 if [ -f /etc/os-release ]; then
@@ -51,55 +79,22 @@ else
     OS=$(uname -s)
     VER=$(uname -r)
 fi
+echo
+echo "OS:" "$OS"
+echo "VER:" "$VER"
+echo
+echo "Please choose bootstrap type:"
+echo "[A] Arch Linux"
+echo "[R] Arch Linux Arm"
+echo "[U] Ubuntu"
 
-#echo "$OS"
-#echo "$VER"
-
-manjaro=("Manjaro Linux" ManjaroLinux) 
-if item_in_array "$OS" "$manjaro"; then
-   echo "Found Manjaro Linux"
-   yay -S --needed - < $HOME/.config/bootstrap-pkglist-pacman.txt
-fi
-
-pop=("Pop!_OS" Pop)
-if item_in_array "$OS" "$pop"; then
-   echo "Found Pop OS"
-   git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
-   git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
-
-   sudo apt update
-   sudo apt upgrade
-
-   sudo apt-get install software-properties-common
-
-   xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
-   pip3 install --user jedi
-
-fi
-
-read -r -p "Extend .bashrc? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --bashrc" >> $HOME/.bashrc 
-fi
-
-read -r -p "Extend .profile? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.bashrc 
-fi
-
-read -r -p "set Vivaldi as default browser? [Y/n]" response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-   xdg-mime default vivaldi-stable.desktop x-scheme-handler/http
-   xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
-fi
-
-pip install --user jedi
-
-wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo -P /tmp/
-tic -x /tmp/termite.terminfo
-chsh -s $(which zsh)
-
-echo 'SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> $HOME/.pam_environment
+while true; do
+   read -r -p " " response
+   response=${response,,} # tolower
+   case $response in   
+      [Aa]* ) arch_install; global_setup; break;;
+      [Rr]* ) arch_install_arm; global_setup; break;;
+      [Uu]* ) ubuntu_install; global_setup; break;;
+      * ) echo "Please answer A, U, R.";;
+   esac
+done

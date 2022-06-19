@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=$HOME/.config/polybar/launch.sh
+Name=launch.sh
+Type=Application

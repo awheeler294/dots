@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=QT_QPA_PLATFORMTHEME=qt5ct /usr/bin/optimus-manager-qt
+Name=optimus-manager-qt
+Type=Application

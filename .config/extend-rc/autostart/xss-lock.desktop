@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/xss-lock -l -- i3lock --color 1d1f21ff --ignore-empty-password --show-failed-attempts --clock --insidever-color=1f2430ff --insidewrong-color=ff6666ff --inside-color=0a0e14ff --ringver-color=73d0ffff --ringwrong-color=ff3333ff --ring-color=86b300ff --keyhl-color=4cbf99ff --bshl-color=ff3333ff --separator-color=01060eff --verif-color=cbccc6ff --wrong-color=0a0e14ff --layout-color=cbccc6ff --time-color=cbccc6ff --time-str="%H:%M" --date-color=cbccc6ff --date-str="%A, %e %B %Y" --time-size=42 --date-size=20 --radius 160
+Name=xss-lock
+Comment=use external locker as X screen saver
+Type=Application

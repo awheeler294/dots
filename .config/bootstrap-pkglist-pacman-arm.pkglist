@@ -5,13 +5,10 @@ arc-gtk-theme
 arc-x-icons-theme
 autorandr
 bat
-betterlockscreen
 bspwm
 caffeine-ng
 chromium
 cifs-utils
-clipit
-discord
 dmenu-extended-git
 exa
 feh
@@ -22,18 +19,14 @@ git
 gparted
 grc
 gvfs-smb
-hstr
 htop
 i3-gaps
-i3-scrot
 imagemagick
 kitty
 lightdm
 lightdm-gtk-greeter
 lightdm-gtk-greeter-settings
-lsb-release
 lxappearance-gtk3
-mattermost-desktop-bin
 mpv
 ncdu
 neovim
@@ -42,7 +35,6 @@ network-manager-applet
 nodejs
 npm
 openssh
-pa-applet-git
 pcmanfm
 polkit-gnome
 polybar
@@ -54,7 +46,6 @@ ranger
 reiserfsprogs
 rofi
 rsync
-slack-desktop
 smbclient
 snapd
 spectrwm
@@ -72,8 +63,6 @@ tumbler
 vi
 viewnior
 vim
-vivaldi
-xclip
 xfce4-terminal
 xorg-server
 xorg-xev

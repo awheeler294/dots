@@ -92,7 +92,7 @@ def move_group_to_next_screen():
         qtile.cmd_next_screen()
     return func
 
-terminal        = "termite --title Termite"
+terminal        = "alacritty"
 browser         = "vivaldi-stable"
 file_manager    = "pcmanfm"
 package_manager = "pamac-manager"
