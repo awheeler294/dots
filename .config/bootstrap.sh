@@ -36,11 +36,18 @@ function global_setup {
       echo "[[ -f ~/.config/extend-rc/extendrc ]] && . ~/.config/extend-rc/extendrc --profile" >> $HOME/.profile 
    fi
 
-   read -r -p "set Vivaldi as default browser? [Y/n]" response
+   read -r -p "Set Vivaldi as default browser? [Y/n]" response
    response=${response,,} # tolower
    if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
       xdg-mime default vivaldi-stable.desktop x-scheme-handler/http
       xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
+   fi
+
+   read -r -p "Create fstab entry for vaulty-server? [Y/n]" response
+   response=${response,,} # tolower
+   if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+      sudo echo "//192.168.0.10/storage     /mnt/vaulty-server cifs credentials=/root/.vaulty-server_credentials,uid=andrew,gid=storage 0 0" >> /etc/fstab
+      sudo mount -a
    fi
 
    pip install --user jedi
@@ -98,3 +105,4 @@ while true; do
       * ) echo "Please answer A, U, R.";;
    esac
 done
+
