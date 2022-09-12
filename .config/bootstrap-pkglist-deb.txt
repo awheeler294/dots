@@ -5,6 +5,7 @@ bat
 bspwm
 chromium
 discord
+dunst
 exa
 feh
 firefox
