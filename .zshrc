@@ -1,3 +1,10 @@
+eval "$(homebrew/bin/brew shellenv)"
+source /Users/andrew/homebrew/share/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-autosuggestions
+antigen apply
+
 ## Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -91,10 +98,14 @@ function hostname_if_ssh() {
 
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
+
 # Maia prompt
-PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
+PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
+
+# Print some system information when the shell is first started
 # Print a greeting message when shell is started
-echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
+echo $USER@$HOST  $(uname -srm)
+
 ## Prompt on right side:
 #  - shows status of git when in git repository (code adapted from https://techanic.net/2012/12/30/my_git_prompt_for_zsh.html)
 #  - shows exit status of previous command (if previous command finished with an error)
@@ -196,53 +207,26 @@ function load_plugin() {
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-load_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#load_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
-load_plugin zsh-history-substring-search/zsh-history-substring-search.zsh
+#load_plugin zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
-bindkey '^[[B' history-substring-search-down
+#zmodload zsh/terminfo
+#bindkey "$terminfo[kcuu1]" history-substring-search-up
+#bindkey "$terminfo[kcud1]" history-substring-search-down
+#bindkey '^[[A' history-substring-search-up			
+#bindkey '^[[B' history-substring-search-down
 
-# Apply different settigns for different terminals
-case $(basename "$(cat "/proc/$PPID/comm")") in
-  login)
-    	RPROMPT="%{$fg[red]%} %(?..[%?])" 
-    	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
-    ;;
-#  'tmux: server')
-#        RPROMPT='$(git_prompt_string)'
-#		## Base16 Shell color themes.
-#		#possible themes: 3024, apathy, ashes, atelierdune, atelierforest, atelierhearth,
-#		#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties, 
-#		#embers, flat, google, grayscale, greenscreen, harmonic16, isotope, londontube,
-#		#marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
-#		#solarized, summerfruit, tomorrow, twilight
-#		#theme="eighties"
-#		#Possible variants: dark and light
-#		#shade="dark"
-#		#BASE16_SHELL="/usr/share/zsh/scripts/base16-shell/base16-$theme.$shade.sh"
-#		#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-#		# Use autosuggestion
-#		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-#  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-#     ;;
-  *)
-        RPROMPT='$(git_prompt_string)'
-		# Use autosuggestion
-		load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
-		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-    ;;
-esac
+RPROMPT='$(git_prompt_string)'
+	# Use autosuggestion
+	#load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
+	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # HSTR configuration - add this to ~/.zshrc
 alias hh=hstr                     # hh to be alias for hstr
 export HISTFILE=~/.zsh_history    # ensure history file visibility
 export HSTR_CONFIG=hicolor        # get more colors
 
-export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
