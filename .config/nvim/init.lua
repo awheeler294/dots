@@ -7,10 +7,10 @@
 -- vim.g.localleader = "\\"
 
 -- IMPORTS
+require('plug')      -- Plugins
 require('vars')      -- Variables
 require('opts')      -- Options
 require('keys')      -- Keymaps
-require('plug')      -- Plugins
 
 -- PLUGINS
 require('impatient')
@@ -22,11 +22,14 @@ require('ayu').setup({
 })
 
 require('lualine').setup {
-  options = {
-    --theme = 'ayu_mirage'
-    theme = 'gruvbox-material'
-  }
+      options = {
+         theme = vim.g.colors_name
+      }
 }
+
+require 'colorizer'.setup()
+
+require'nvim-lastplace'.setup{}
 
 require('nvim-autopairs').setup{}
 
@@ -84,34 +87,34 @@ require('mason-tool-installer').setup {
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
 
-    'rust-analyzer',
-    'codelldb',
+   'rust-analyzer',
+   'codelldb',
 
-    -- you can pin a tool to a particular version
-    { 'golangci-lint', version = 'v1.47.0' },
+   -- you can pin a tool to a particular version
+   { 'golangci-lint', version = 'v1.47.0' },
 
-    -- you can turn off/on auto_update per tool
-    { 'bash-language-server', auto_update = true },
+   -- you can turn off/on auto_update per tool
+   { 'bash-language-server', auto_update = true },
 
-    'lua-language-server',
-    'vim-language-server',
-    'gopls',
-    'stylua',
-    'shellcheck',
-    'editorconfig-checker',
-    'gofumpt',
-    'golines',
-    'gomodifytags',
-    'gotests',
-    'impl',
-    'json-to-struct',
-    'luacheck',
-    'misspell',
-    'revive',
-    'shellcheck',
-    'shfmt',
-    'staticcheck',
-    'vint',
+   'lua-language-server',
+   'vim-language-server',
+   'gopls',
+   'stylua',
+   'shellcheck',
+   'editorconfig-checker',
+   'gofumpt',
+   'golines',
+   'gomodifytags',
+   'gotests',
+   'impl',
+   'json-to-struct',
+   'luacheck',
+   'misspell',
+   'revive',
+   'shellcheck',
+   'shfmt',
+   'staticcheck',
+   'vint',
   },
 
   -- if set to true this will check each tool for updates. If updates

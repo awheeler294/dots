@@ -23,8 +23,10 @@ map('n', '<Tab><down>' , ':tabl<cr>'  , {noremap = true})
 map('n', '<Tab><left>' , ':tabp<cr>'  , {noremap = true}) 
 map('n', '<Tab><right>', ':tabn<cr>'  , {noremap = true}) 
 
+map('n', '<C-h>'       , ':noh<cr>'   , {noremap = true})
+
 -- Toggle plugins
-map('n', '<C-n>'    , ':NvimTreeToggle<cr>'         , {})
+map('n', '<C-n>'    , [[:NvimTreeToggle<cr>]]       , {})
 map('n', '<leader>l', [[:IndentLinesToggle<cr>]]    , {})
 map('n', '<leader>t', [[:TagbarToggle<cr>]]         , {})
 

@@ -11,6 +11,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+-- print("packer bootstrap: " .. tostring(packer_bootstrap))
 
 return require('packer').startup(function(use)
    use 'wbthomason/packer.nvim'
@@ -23,6 +24,9 @@ return require('packer').startup(function(use)
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
    }
    use 'lewis6991/impatient.nvim'                     -- Speed up nvim lua loading
+   use 'norcalli/nvim-colorizer.lua'                  -- highlight colors
+   use 'ethanholz/nvim-lastplace'                     -- restore cursor position on file load
+
 
    -- [[ Theme ]]
    use { 'mhinz/vim-startify' }                       -- start screen
@@ -81,25 +85,35 @@ return require('packer').startup(function(use)
    }
 
    -- Debugging
-   use {
-      "mfussenegger/nvim-dap",
-      opt = true,
-      event = "BufReadPre",
-      module = { "dap" },
-      wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
-      requires = {
-         "Pocco81/DAPInstall.nvim",
-         "theHamsta/nvim-dap-virtual-text",
-         "rcarriga/nvim-dap-ui",
-         "mfussenegger/nvim-dap-python",
-         "nvim-telescope/telescope-dap.nvim",
-         { "leoluz/nvim-dap-go", module = "dap-go" },
-         { "jbyuki/one-small-step-for-vimkind", module = "osv" },
-      },
-      config = function()
-        require("config.dap").setup()
-      end,
-   }
+ --   use {
+ --      "mfussenegger/nvim-dap",
+ --      opt = true,
+ --      event = "BufReadPre",
+ --      module = { "dap" },
+ --      wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
+ --      requires = {
+ --         "Pocco81/DAPInstall.nvim",
+ --         "theHamsta/nvim-dap-virtual-text",
+ --         "rcarriga/nvim-dap-ui",
+ --         "mfussenegger/nvim-dap-python",
+ --         "nvim-telescope/telescope-dap.nvim",
+ --         { "leoluz/nvim-dap-go", module = "dap-go" },
+ --         { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+ --         { "folke/which-key.nvim", config = 
+ --            function()
+ --               require("which-key").setup {
+ --                  -- your configuration comes here
+ --                  -- or leave it empty to use the default settings
+ --                  -- refer to the configuration section below
+ --               }
+ --            end
+ --         },
+	-- },
+	--
+ --      config = function()
+ --        require("config.dap").setup()
+ --      end,
+ --   }
 
    -- Automatically set up your configuration after cloning packer.nvim
    -- Put this at the end after all plugins

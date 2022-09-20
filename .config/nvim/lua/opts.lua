@@ -20,19 +20,20 @@ opt.termguicolors = true         -- bool: If term supports ui color then enable
 opt.linebreak = true             -- bool: Break lines at word
 opt.breakindent = true           -- bool: Indent breaked lines
 opt.listchars='eol:¬,tab:▶-,trail:·,extends:>,precedes:<,nbsp:·'
-vim.api.nvim_set_hl(0, 'ColorColumn' , {cterm=None, ctermbg=235})
-vim.api.nvim_set_hl(0, 'CursorLine'  , {cterm=None, ctermbg=235})
-vim.api.nvim_set_hl(0, 'Cursorcolumn', {cterm=None, ctermbg=235})
-vim.api.nvim_set_hl(0, 'Cursor'      , {cterm=None, ctermbg=DarkGray})
---cmd('colorscheme ayu-mirage')    -- cmd:  Set the colorscheme
-g.gruvbox_material_background = 'hard'
-cmd('colorscheme gruvbox-material')-- cmd:  Set the colorscheme
+-- vim.api.nvim_set_hl(0, 'ColorColumn' , {cterm=None, ctermbg=235})
+-- vim.api.nvim_set_hl(0, 'CursorLine'  , {cterm=None, ctermbg=235})
+-- vim.api.nvim_set_hl(0, 'Cursorcolumn', {cterm=None, ctermbg=235})
+-- vim.api.nvim_set_hl(0, 'Cursor'      , {cterm=None, ctermbg=DarkGray})
+
+cmd('colorscheme ayu-mirage')       -- cmd:  Set the colorscheme
+-- g.gruvbox_material_background = 'hard'
+-- cmd('colorscheme gruvbox-material') -- cmd:  Set the colorscheme
 
 -- [[ Search ]]
 opt.ignorecase = true            -- bool: Ignore case in search patterns
 opt.smartcase = true             -- bool: Override ignorecase if search contains capitals
 opt.incsearch = true             -- bool: Use incremental search
-opt.hlsearch = false             -- bool: Highlight search matches
+opt.hlsearch = true             -- bool: Highlight search matches
 
 -- [[ Whitespace ]]
 opt.expandtab = true             -- bool: Use spaces instead of tabs
