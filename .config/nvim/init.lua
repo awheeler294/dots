@@ -21,15 +21,107 @@ require('ayu').setup({
    mirage = true
 })
 
-require('lualine').setup {
-      options = {
-         theme = vim.g.colors_name
-      }
+require 'bubbly'
+
+local tabby_theme = {
+   fill = 'TabLineFill',
+   -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+   head = 'TabLine',
+   current_tab = { fg = '#d9d7ce', bg = '#323A4C'},
+   tab = 'TabLine',
+   win = 'TabLine',
+   tail = 'TabLine',
+   hll = { fg = '#FFA759', bg = '#141925' },
+   hlr = { fg = '#59c2ff', bg = '#141925' },
 }
 
-require 'colorizer'.setup()
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
 
-require'nvim-lastplace'.setup{}
+require('tabby.tabline').set(function(line)
+   vim.o.showtabline = 1
+   return {
+      {
+         { '  ', hl = tabby_theme.hll },
+      },
+      line.tabs().foreach(function(tab)
+         -- print(dump(line.tabs()))
+         -- print(dump(tab.number()))
+         local hl = tab.is_current() and tabby_theme.current_tab or tabby_theme.tab
+
+         local is_modified = false
+         -- print(dump(vim.api.nvim_tabpage_list_wins(tab.number())))
+         if vim.api.nvim_tabpage_is_valid(tab.number()) then
+            for _, win in pairs(vim.api.nvim_tabpage_list_wins(tab.number())) do
+               local buf = vim.api.nvim_win_get_buf(win)
+               if vim.api.nvim_buf_get_option(buf, "modified") then
+                  is_modified = true
+                  break
+               end
+            end
+         end
+
+         local modified = ''
+         if is_modified then 
+            modified = '[+]'
+         end
+
+         return {
+            line.sep('', hl, tabby_theme.fill),
+            tab.is_current() and '' or '',
+            tab.number(),
+            tab.name(),
+            modified,
+            line.sep('', hl, tabby_theme.fill),
+            hl = hl,
+            margin = ' ',
+         }
+      end),
+      line.spacer(),
+      {
+         line.sep('', tabby_theme.tail, tabby_theme.fill),
+         { '  ', hl = tabby_theme.hlr },
+      },
+      hl = tabby_theme.fill,
+   } 
+end, {
+   buf_name = {
+      mode = 'shorten'
+   },
+})
+
+require('toggleterm').setup(
+   (function()
+      vim.o.hidden = true
+      
+      vim.api.nvim_set_keymap('n', "t"    , ":ToggleTerm<CR>"     , {noremap = true})
+
+      vim.api.nvim_set_keymap('t', "<C-n>", "<C-\\><C-n>"         , {noremap = true})
+      vim.api.nvim_set_keymap('t', "<Esc>", "<C-n>:ToggleTerm<CR>", {})
+      
+      return {
+         open_mapping = '<C-t>',
+         direction = 'float',
+         float_opts = {
+            border = 'curved',
+         }
+      }
+   end)()
+)
+
+require('colorizer').setup()
+
+require('nvim-lastplace').setup{}
 
 require('nvim-autopairs').setup{}
 
@@ -108,7 +200,7 @@ require('mason-tool-installer').setup {
    'gotests',
    'impl',
    'json-to-struct',
-   'luacheck',
+   -- 'luacheck',
    'misspell',
    'revive',
    'shellcheck',

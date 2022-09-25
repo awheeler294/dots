@@ -27,14 +27,15 @@ return require('packer').startup(function(use)
    use 'norcalli/nvim-colorizer.lua'                  -- highlight colors
    use 'ethanholz/nvim-lastplace'                     -- restore cursor position on file load
 
-
    -- [[ Theme ]]
    use { 'mhinz/vim-startify' }                       -- start screen
    use { 'DanilaMihailov/beacon.nvim' }               -- cursor jump
    use {
       'nvim-lualine/lualine.nvim',                    -- statusline
-      requires = {'kyazdani42/nvim-web-devicons',
-          opt = true}
+      requires = {
+         'kyazdani42/nvim-web-devicons',
+         opt = true
+      }
    }
    use { 'Shatur/neovim-ayu' }                        -- colorscheme
    use { 'sainnhe/gruvbox-material' }                 -- colorscheme
@@ -75,7 +76,8 @@ return require('packer').startup(function(use)
 
 --   use 'puremourning/vimspector'                      -- debugging
 
-   use 'voldikss/vim-floaterm'                        -- popup terminal
+   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+   end}
 
    use {                                              -- autocommenting
       'numToStr/Comment.nvim',
@@ -83,6 +85,8 @@ return require('packer').startup(function(use)
          require('Comment').setup()
       end
    }
+
+   use 'nanozuki/tabby.nvim'
 
    -- Debugging
  --   use {
