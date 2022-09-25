@@ -1,9 +1,26 @@
-eval "$(homebrew/bin/brew shellenv)"
-source /Users/andrew/homebrew/share/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
-antigen apply
+local DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+[[ -e ~/homebrew ]] && eval "$(homebrew/bin/brew shellenv)"
+
+# Download Znap, if it's not there yet.
+[[ -f .config/zsh/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git .config/zsh/zsh-snap
+
+source .config/zsh/zsh-snap/znap.zsh  # Start Znap
+
+# `znap source` automatically downloads and starts your plugins.
+# znap source 'marlonrichert/zsh-autocomplete'
+znap source 'zsh-users/zsh-autosuggestions'
+znap source 'zsh-users/zsh-history-substring-search'
+znap source 'zsh-users/zsh-syntax-highlighting'
+
+# Print some system information when the shell is first started
+# Print a greeting message when shell is started
+echo $USER@$HOST  $(uname -srm)
+
+# `znap prompt` makes your prompt visible in just 15-40ms!
+# export SPACESHIP_CONFIG_FILE="$HOME/.config/spaceship/spaceship.zsh"
+# znap prompt "spaceship-prompt/spaceship-prompt"
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -27,13 +44,11 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 #HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=500
-#export EDITOR=/usr/bin/nano
-#export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
 ## Keybindings section
-bindkey -v                                        # vi mode
+# bindkey -v                                        # vi mode
 bindkey '^[[7~' beginning-of-line                 # Home key
 bindkey '^[[H' beginning-of-line                  # Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
@@ -64,7 +79,6 @@ if [ -f ~/.config/extend-rc/aliases ]; then
    #echo "source aliases"
     . ~/.config/extend-rc/aliases
 else
-
    ## Alias section 
    alias cp="cp -i"                                  # Confirm before overwriting something
    alias df='df -h'                                  # Human-readable sizes
@@ -78,7 +92,6 @@ else
    #alias tmux="TERM=xterm-256color tmux"
    #alias tmux="TERM=tmux-256color tmux"
    #alias ssh='TERM=xterm-color ssh'                  # Force xterm-color on ssh sessions
-
 fi
 
 # Theming section  
@@ -96,20 +109,20 @@ function hostname_if_ssh() {
    fi
 }
 
-# Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
- #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
+## Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
+# #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
 
 # Maia prompt
-PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
+# PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
 
 # Print some system information when the shell is first started
 # Print a greeting message when shell is started
-echo $USER@$HOST  $(uname -srm)
+# echo $USER@$HOST  $(uname -srm)
 
-## Prompt on right side:
-#  - shows status of git when in git repository (code adapted from https://techanic.net/2012/12/30/my_git_prompt_for_zsh.html)
-#  - shows exit status of previous command (if previous command finished with an error)
-#  - is invisible, if neither is the case
+### Prompt on right side:
+##  - shows status of git when in git repository (code adapted from https://techanic.net/2012/12/30/my_git_prompt_for_zsh.html)
+##  - shows exit status of previous command (if previous command finished with an error)
+##  - is invisible, if neither is the case
 
 # Modify the colors and symbols in these variables as desired.
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"                              # plus/minus     - clean repo
@@ -192,31 +205,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-function load_plugin() {
-   for plugin_path in ${HOME}/.config/zsh-plugins/ /usr/share/zsh/plugins/ /usr/share
-   
-   do
-      if [ -f "$plugin_path"/"$1" ]; then
-         source "$plugin_path"/"$1"
-         return
-      fi
-   done
-
-   echo "Could not load $1"
-}
-
-## Plugins section: Enable fish style features
-# Use syntax highlighting
-#load_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Use history substring search
-#load_plugin zsh-history-substring-search/zsh-history-substring-search.zsh
-# bind UP and DOWN arrow keys to history substring search
-#zmodload zsh/terminfo
-#bindkey "$terminfo[kcuu1]" history-substring-search-up
-#bindkey "$terminfo[kcud1]" history-substring-search-down
-#bindkey '^[[A' history-substring-search-up			
-#bindkey '^[[B' history-substring-search-down
-
 RPROMPT='$(git_prompt_string)'
 	# Use autosuggestion
 	#load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
@@ -224,9 +212,13 @@ RPROMPT='$(git_prompt_string)'
 	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # HSTR configuration - add this to ~/.zshrc
-alias hh=hstr                     # hh to be alias for hstr
-export HISTFILE=~/.zsh_history    # ensure history file visibility
-export HSTR_CONFIG=hicolor        # get more colors
+alias hh=hstr                             # hh to be alias for hstr
+export HISTFILE="$DATA_HOME"/.zsh_history # ensure history file visibility
+[[ -e "$HISTFILE" ]] || touch "$HISTFILE"
+export HSTR_CONFIG=hicolor                # get more colors
 
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+
+export STARSHIP_CACHE="$DATA_HOME"/starship/cache
+eval "$(starship init zsh)"
