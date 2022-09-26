@@ -2,7 +2,7 @@ local DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 [[ -e ~/homebrew ]] && eval "$(homebrew/bin/brew shellenv)"
 
 # Download Znap, if it's not there yet.
-[[ -f .config/zsh/zsh-snap/znap.zsh ]] ||
+[[ -f "$HOME"/.config/zsh/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git .config/zsh/zsh-snap
 
@@ -112,9 +112,6 @@ function hostname_if_ssh() {
 ## Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
 # #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
 
-# Maia prompt
-# PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
-
 # Print some system information when the shell is first started
 # Print a greeting message when shell is started
 # echo $USER@$HOST  $(uname -srm)
@@ -205,11 +202,10 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-RPROMPT='$(git_prompt_string)'
-	# Use autosuggestion
-	#load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
-	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+# Use autosuggestion
+#load_plugin zsh-autosuggestions/zsh-autosuggestions.zsh 
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # HSTR configuration - add this to ~/.zshrc
 alias hh=hstr                             # hh to be alias for hstr
@@ -220,5 +216,12 @@ export HSTR_CONFIG=hicolor                # get more colors
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
-export STARSHIP_CACHE="$DATA_HOME"/starship/cache
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+   export STARSHIP_CACHE="$DATA_HOME"/starship/cache
+   eval "$(starship init zsh)"
+else
+   echo " --- starship command not found, using fallback prompt --- "
+   # Maia prompt
+   PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
+   RPROMPT='$(git_prompt_string)'
+fi
