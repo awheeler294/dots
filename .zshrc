@@ -1,12 +1,12 @@
 local DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-[[ -e ~/homebrew ]] && eval "$(homebrew/bin/brew shellenv)"
+[[ -e "$HOME"/homebrew ]] && eval "$($HOME/homebrew/bin/brew shellenv)"
 
 # Download Znap, if it's not there yet.
 [[ -f "$HOME"/.config/zsh/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git .config/zsh/zsh-snap
 
-source .config/zsh/zsh-snap/znap.zsh  # Start Znap
+source "$HOME"/.config/zsh/zsh-snap/znap.zsh  # Start Znap
 
 # `znap source` automatically downloads and starts your plugins.
 # znap source 'marlonrichert/zsh-autocomplete'
@@ -75,9 +75,9 @@ bindkey '^H' backward-kill-word                   # delete previous word with ct
 bindkey '^[[Z' undo                               # Shift+tab undo last action
 
 
-if [ -f ~/.config/extend-rc/aliases ]; then
+if [ -f "$HOME"/.config/extend-rc/aliases ]; then
    #echo "source aliases"
-    . ~/.config/extend-rc/aliases
+    . "$HOME"/.config/extend-rc/aliases
 else
    ## Alias section 
    alias cp="cp -i"                                  # Confirm before overwriting something
@@ -185,7 +185,8 @@ git_prompt_string() {
 # Show vi mode in prompt
 function zle-line-init zle-keymap-select {
    VIM_PROMPT="%{$bg[blue]%}%{$fg[black]%} Normal %{$reset_color%} "
-   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_string) $EPS1"
+   # RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_string) $EPS1"
+   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
    zle reset-prompt
 }
 
