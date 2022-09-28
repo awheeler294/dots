@@ -12,15 +12,15 @@ function arch_install_arm {
 }
 
 function ubuntu_install {
-   git clone https://github.com/zsh-users/zsh-history-substring-search ${HOME}/.config/zsh-plugins/zsh-history-substring-search
-   git clone https://github.com/zsh-users/zsh-autosuggestions          ${HOME}/.config/zsh-plugins/zsh-autosuggestions
-
+   
    sudo apt update
    sudo apt upgrade
 
    sudo apt-get install software-properties-common
 
    xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
+
+   cargo install ripgrep
 }
 
 function global_setup {

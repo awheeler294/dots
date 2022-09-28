@@ -8,6 +8,7 @@ discord
 dunst
 exa
 feh
+fd-find
 firefox
 gimp
 git
@@ -23,6 +24,7 @@ npm
 polybar
 python3-pip
 ranger
+ripgrep
 rsync 
 spectrwm
 sxhkd

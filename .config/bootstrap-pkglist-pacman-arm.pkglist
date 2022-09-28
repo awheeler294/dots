@@ -9,9 +9,9 @@ bspwm
 caffeine-ng
 chromium
 cifs-utils
-dmenu-extended-git
 exa
 feh
+fd
 file-roller
 firefox
 gimp
@@ -44,6 +44,7 @@ python-xlib
 qtile
 ranger
 reiserfsprogs
+ripgrep
 rofi
 rsync
 smbclient

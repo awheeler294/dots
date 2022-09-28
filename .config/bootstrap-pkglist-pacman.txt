@@ -12,9 +12,9 @@ chromium
 cifs-utils
 clipit
 discord
-dmenu-extended-git
 exa
 feh
+fd
 file-roller
 firefox
 gimp
@@ -52,6 +52,7 @@ python-xlib
 qtile
 ranger
 reiserfsprogs
+ripgrep
 rofi
 rsync
 slack-desktop
