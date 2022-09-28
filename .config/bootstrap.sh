@@ -20,6 +20,7 @@ function ubuntu_install {
 
    xargs -a <(awk '! /^ *(#|$)/' "$HOME/.config/bootstrap-pkglist-deb.txt") -r -- sudo apt-get install
 
+   curl -sS https://starship.rs/install.sh | sh
    cargo install ripgrep
 }
 

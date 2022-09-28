@@ -50,6 +50,7 @@ rsync
 smbclient
 snapd
 spectrwm
+starship
 sxhkd
 thunar
 thunar-archive-plugin
