@@ -1,5 +1,8 @@
 local DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-[[ -e "$HOME"/homebrew ]] && eval "$($HOME/homebrew/bin/brew shellenv)"
+if [[ -e "$HOME"/homebrew ]]; then 
+   eval "$($HOME/homebrew/bin/brew shellenv)"
+   export HOMEBREW_BUNDLE_FILE=$HOME/.config/Brewfile
+fi
 
 # Download Znap, if it's not there yet.
 [[ -f "$HOME"/.config/zsh/zsh-snap/znap.zsh ]] ||

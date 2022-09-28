@@ -1,4 +1,4 @@
---[[ init.lua ]]
+
 
 -- LEADER
 -- These keybindings need to be defined before the first /
@@ -71,17 +71,12 @@ require('tabby.tabline').set(function(line)
             end
          end
 
-         local modified = ''
-         if is_modified then 
-            modified = '[+]'
-         end
-
          return {
             line.sep('', hl, tabby_theme.fill),
-            tab.is_current() and '' or '',
+            tab.is_current() and ' ' or ' ',
             tab.number(),
             tab.name(),
-            modified,
+            is_modified and ' ' or '',
             line.sep('', hl, tabby_theme.fill),
             hl = hl,
             margin = ' ',
