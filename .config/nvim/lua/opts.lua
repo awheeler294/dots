@@ -61,6 +61,10 @@ opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 opt.shortmess = opt.shortmess + { c = true }
 vim.api.nvim_set_option('updatetime', 300) 
 
+-- opt.spell = true
+opt.spelllang = { 'en_us' }
+opt.spelloptions = "camel"
+
 -- Fixed column for diagnostics to appear
 -- Show autodiagnostic popup on cursor hover_range
 -- Goto previous / next diagnostic warning / error 

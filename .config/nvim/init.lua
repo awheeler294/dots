@@ -331,6 +331,7 @@ cmp.setup({
     { name = 'buffer', keyword_length = 2 },        -- source current buffer
     { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
     { name = 'calc'},                               -- source for math calculation
+    { name = 'spell' },                             -- source for spelling
   },
   window = {
       completion = cmp.config.window.bordered(),

@@ -16,6 +16,11 @@ map('n', '<leader>p', '"+p',        {})
 map('v', '<leader>p', 'c<ESC>"+pa', {})
 map('i', '<C-v>'    , '<ESC>"+pa' , {})
 
+vim.keymap.set('n', '<C-s>', function()
+  vim.o.spell = not vim.o.spell
+  print('spell: ' .. (vim.o.spell and 'on' or 'off'))
+end)
+
 -- [[ tab management ]]
 map('n', '<Tab><Tab>'  , ':tabnew<cr>'    , {noremap = true}) 
 map('n', '<Tab><up>'   , ':+tabmove<cr>'  , {noremap = true}) 
@@ -39,7 +44,3 @@ map('n', 'fg'       , [[:Telescope live_grep<cr>]]  , {noremap = true})
 map('n', 'fs'       , [[:Telescope grep_string<cr>]], {noremap = true})
 map('n', 'fr'       , [[:Telescope registers<cr>]]  , {noremap = true})
 
--- FloaTerm configuration
--- map('n', "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ", {})
--- map('n', "t", ":FloatermToggle myfloat<CR>", {})
--- map('t', "<Esc>", "<C-\\><C-n>:q<CR>"      , {})

@@ -71,6 +71,7 @@ return require('packer').startup(function(use)
    use 'hrsh7th/cmp-path'                              
    use 'hrsh7th/cmp-buffer'                            
    use 'hrsh7th/vim-vsnip'
+   use 'f3fora/cmp-spell'
 
    use 'nvim-treesitter/nvim-treesitter'
 
