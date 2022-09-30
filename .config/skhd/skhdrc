@@ -77,13 +77,13 @@ alt + shift - 0 : yabai -m window --space 10
 
 
 # # mirror tree y-axis
-alt + shift - y : yabai -m space --mirror y-axis
+alt - y : yabai -m space --mirror y-axis
 
 # # mirror tree x-axis
-alt + shift - x : yabai -m space --mirror x-axis
+alt - x : yabai -m space --mirror x-axis
 
 # balance size of windows
-alt + shift - 0 : yabai -m space --balance
+alt - b : yabai -m space --balance
 
 
 # change layout of desktop
@@ -93,8 +93,8 @@ alt - s : yabai -m space --layout stack
 
 
 # cycle through stack windows
-alt + shift - p : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-alt + shift - n : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+alt - p : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - n : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 # forwards
 # alt - p : yabai -m query --spaces --space \

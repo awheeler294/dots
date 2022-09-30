@@ -53,11 +53,11 @@ yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  7
-yabai -m config bottom_padding               7
-yabai -m config left_padding                 7
-yabai -m config right_padding                7
-yabai -m config window_gap                   7
+yabai -m config top_padding                  14
+yabai -m config bottom_padding               14
+yabai -m config left_padding                 14
+yabai -m config right_padding                14
+yabai -m config window_gap                   14
 
 # float system preferences
 yabai -m rule --add app='^System Information$' manage=off
@@ -68,5 +68,6 @@ yabai -m rule --add title='Settings$'       manage=off
 yabai -m rule --add title='Preferences$'    manage=off
 yabai -m rule --add title='OpenVPN Connect' manage=off
 yabai -m rule --add title='Simulator'       manage=off
+yabai -m rule --add title='Install'       manage=off
 
 echo "yabai configuration loaded.."
