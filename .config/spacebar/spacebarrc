@@ -32,44 +32,58 @@
 # Fixes a bug on the newest MacOS version, Thanks to Kamen Vakavchiev!
 # see: https://github.com/cmacrae/spacebar/issues/101#issuecomment-1083252227
 
+# AYU Dark
+# bg="0xf00A0E14"
+# fg="0xffB3B1AD"
+# icon_color="0xff4D5566"
+# workspace_color="0xffE6B450"
+
+# AYU Mirage
+bg="0xf81f2430"
+fg="0xffedf0f5"
+icon_color="0xff707a9c"
+workspace_color="0xffffcc66 "
+
 spacebar -m config display                     all
 spacebar -m config position                    top
-spacebar -m config height                      26
+spacebar -m config height                      30
 spacebar -m config padding_left                20
 spacebar -m config padding_right               20
 spacebar -m config spacing_left                25
 spacebar -m config spacing_right               25
-spacebar -m config text_font                   "Mononoki Nerd Font:Regular:16.0"
-spacebar -m config icon_font                   "Mononoki Nerd Font:Bold:16.0"
+spacebar -m config text_font                   "Mononoki Nerd Font:Regular:18.0"
+spacebar -m config icon_font                   "Mononoki Nerd Font:Bold:18.0"
 # spacebar -m config icon_font                   "Hack Nerd Font Mono:Solid:14.0"
-spacebar -m config background_color            0xf00A0E14
-spacebar -m config foreground_color            0xffB3B1AD
+spacebar -m config background_color            $bg
+spacebar -m config foreground_color            $fg
 
-spacebar -m config right_shell                 off
-spacebar -m config right_shell_icon            
-spacebar -m config right_shell_command         "whoami"
+# spacebar -m config right_shell                 off
+# spacebar -m config right_shell_icon            
+# spacebar -m config right_shell_command         "whoami"
 
 spacebar -m config title                       on
 
 spacebar -m config spaces                      on
 spacebar -m config space_icon                  
-spacebar -m config space_icon_color            0xffE6B450
-spacebar -m config space_icon_color_secondary  0xffE6B450
-spacebar -m config space_icon_color_tertiary   0xffE6B450
+spacebar -m config space_icon_color            $workspace_color
+spacebar -m config space_icon_color_secondary  $workspace_color
+spacebar -m config space_icon_color_tertiary   $workspace_color
 spacebar -m config space_icon_strip            1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
 
 spacebar -m config title                       on
 
 spacebar -m config power                       on
-spacebar -m config battery_icon_color          0xff4D5566
-spacebar -m config power_icon_color            0xff4D5566
+spacebar -m config battery_icon_color          $icon_color
+spacebar -m config power_icon_color            $icon_color
 spacebar -m config power_icon_strip            BATT AC
 
 spacebar -m config clock                       on
 spacebar -m config clock_format                "%A, %d %B %Y  %R"
-# spacebar -m config clock_icon                  " "
 spacebar -m config clock_icon                  
 spacebar -m config clock_icon_color            0xff4D5566
 
+spacebar -m config right_shell                 on
+spacebar -m config right_shell_icon            " "
+spacebar -m config right_shell_command         "$HOME/.config/polybar/weather"
 
 echo "spacebar configuration loaded.."
