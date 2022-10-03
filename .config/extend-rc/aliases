@@ -44,6 +44,7 @@ fi
 
 if hash nvim 2>/dev/null; then
    alias nv='nvim'
+   alias vin='nvim'
 else
    echo "nvim not found"
 fi
