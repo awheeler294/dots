@@ -24,7 +24,8 @@ return require('packer').startup(function(use)
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
    }
    use 'lewis6991/impatient.nvim'                     -- Speed up nvim lua loading
-   use 'norcalli/nvim-colorizer.lua'                  -- highlight colors
+   -- use 'norcalli/nvim-colorizer.lua'                  -- highlight colors
+   use 'NvChad/nvim-colorizer.lua'                  -- highlight colors
    use 'ethanholz/nvim-lastplace'                     -- restore cursor position on file load
 
    -- [[ Theme ]]
