@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
    }
    use 'lewis6991/impatient.nvim'                     -- Speed up nvim lua loading
    -- use 'norcalli/nvim-colorizer.lua'                  -- highlight colors
-   use 'NvChad/nvim-colorizer.lua'                  -- highlight colors
+   use 'NvChad/nvim-colorizer.lua'                    -- highlight colors
    use 'ethanholz/nvim-lastplace'                     -- restore cursor position on file load
 
    -- [[ Theme ]]
@@ -47,7 +47,8 @@ return require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
    }
    use { 'majutsushi/tagbar' }                        -- code structure
-   use { 'Yggdroot/indentLine' }                      -- see indentation
+   -- use { 'Yggdroot/indentLine' }                      -- see indentation
+   use { 'lukas-reineke/indent-blankline.nvim' }      -- see indentation
    use { 'tpope/vim-fugitive' }                       -- git integration
    use { 'junegunn/gv.vim' }                          -- commit history
    use { 'windwp/nvim-autopairs' }                    -- auto close brackets, etc.

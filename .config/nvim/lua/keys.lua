@@ -32,7 +32,7 @@ map('n', '<C-h>'       , ':noh<cr>' , {noremap = true})
 
 -- Toggle plugins
 map('n', '<C-n>'    , [[:NvimTreeToggle<cr>]]       , {})
-map('n', '<leader>l', [[:IndentLinesToggle<cr>]]    , {})
+map('n', '<leader>l', [[:IndentBlanklineToggle<cr>]], {})
 map('n', '<leader>t', [[:TagbarToggle<cr>]]         , {})
 
 -- Telescope
