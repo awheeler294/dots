@@ -47,7 +47,6 @@ return require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
    }
    use { 'majutsushi/tagbar' }                        -- code structure
-   -- use { 'Yggdroot/indentLine' }                      -- see indentation
    use { 'lukas-reineke/indent-blankline.nvim' }      -- see indentation
    use { 'tpope/vim-fugitive' }                       -- git integration
    use { 'junegunn/gv.vim' }                          -- commit history
