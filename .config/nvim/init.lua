@@ -24,6 +24,7 @@ require('ayu').setup({
 require 'bubbly'
 
 local tabby_theme = {
+   -- fill = { fg = '#CBCCC6', bg = '#191E2A' },
    fill = 'TabLineFill',
    -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
    head = 'TabLine',
@@ -53,6 +54,8 @@ require('tabby.tabline').set(function(line)
    return {
       {
          { '  ', hl = tabby_theme.hll },
+         line.sep('', tabby_theme.tail, tabby_theme.fill),
+
       },
       line.tabs().foreach(function(tab)
          -- print(dump(line.tabs()))
