@@ -70,7 +70,7 @@ Print
 
 # select autorandr profile
 super + o
-   autorandr| rofi -dmenu -p "autorandr" | cut -d ' ' -f 1 | xargs --no-run-if-empty autorandr --change --force
+   autorandr | rofi -dmenu -p "autorandr" | cut -d ' ' -f 1 | xargs --no-run-if-empty autorandr --change --force
 
 # force autorandr
 super + shift + o
