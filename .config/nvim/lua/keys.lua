@@ -3,7 +3,7 @@ local map = vim.api.nvim_set_keymap
 
 -- [[ whitespace management ]]
 map('n', '<space>', ':set list!<cr>'  , {noremap = true})
-map('n', 'H', ':set cursorcolumn!<cr>', {noremap = true})
+map('n', '<leader>h', ':set cursorcolumn!<cr>', {noremap = true})
 
 -- [[ copy / paste ]]
 map('n', '<leader>y', '"+y', {})

@@ -38,6 +38,8 @@ alt + ctrl - right : yabai -m window --insert east
 
 # restart yabai
 alt + shift - r : brew services restart yabai
+#restart spacebar
+alt + shift - y : brew services restart spacebar
 
 # go back to previous workspace (kind of like back_and_forth in i3)
 # alt - b : yabai -m space --focus recent # requires disabling security
@@ -112,7 +114,7 @@ alt - n : yabai -m window --focus stack.prev || yabai -m window --focus stack.la
 
 
 # close focused window
-alt - w : yabai -m window --close
+alt - q : yabai -m window --close
 
 
 # enter fullscreen mode for the focused container
