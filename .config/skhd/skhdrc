@@ -37,7 +37,7 @@ alt + ctrl - up    : yabai -m window --insert north
 alt + ctrl - right : yabai -m window --insert east
 
 # restart yabai
-alt + shift - r : brew services restart yabai
+alt + shift - r : yabai --restart-service
 #restart spacebar
 alt + shift - y : brew services restart spacebar
 
