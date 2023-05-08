@@ -48,6 +48,7 @@ require('lualine').setup {
       theme = ayu_bubbles_theme,
       component_separators = '|',
       section_separators = { left = '', right = '' },
+      always_divide_middle = true,
    },
    sections = {
       lualine_a = {
