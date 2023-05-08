@@ -16,6 +16,16 @@ map('n', '<leader>p', '"+p',        {})
 map('v', '<leader>p', 'c<ESC>"+pa', {})
 map('i', '<C-v>'    , '<ESC>"+pa' , {})
 
+map('n', 'MiddleMouse',   '<Nop>', {}) 
+map('n', '2-MiddleMouse', '<Nop>', {})
+map('n', '3-MiddleMouse', '<Nop>', {})
+map('n', '4-MiddleMouse', '<Nop>', {})
+
+map('i', 'MiddleMouse',   '<Nop>', {}) 
+map('i', '2-MiddleMouse', '<Nop>', {})
+map('i', '3-MiddleMouse', '<Nop>', {})
+map('i', '4-MiddleMouse', '<Nop>', {})
+
 vim.keymap.set('n', '<C-s>', function()
   vim.o.spell = not vim.o.spell
   print('spell: ' .. (vim.o.spell and 'on' or 'off'))
