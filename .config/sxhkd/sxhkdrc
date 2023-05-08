@@ -45,9 +45,9 @@ super + z
 
 # compositor
 super + t
-   picom -b && notify-send 'Launch picom'
+   picom -b && notify-send 'Launch Picom' || notify-send 'Failed to launch Picom'
 super + ctrl + t 
-   pkill picom && notify-send 'Kill picom'
+   pkill picom && notify-send 'Kill Picom' || notify-send 'Failed to kill Picom'
 
 # screenshots
 Print 

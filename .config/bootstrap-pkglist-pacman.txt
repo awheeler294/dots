@@ -12,6 +12,7 @@ chromium
 cifs-utils
 clipit
 discord
+dunst
 exa
 feh
 fd
@@ -44,6 +45,7 @@ npm
 openssh
 pa-applet-git
 pcmanfm
+picom
 polkit-gnome
 polybar
 powertop
