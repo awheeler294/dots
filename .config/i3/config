@@ -370,8 +370,8 @@ exec --no-startup-id 'i3-msg "workspace 8; layout tabbed"'
 
 # class                   border  backgr. text    indic.   child_border
   client.focused          #59c2ff #273747 #ffa759 #FDF6E3  #73d0ff
-  client.focused_inactive #ffa759 #0a0e14 #e6b673 #454948
-  client.unfocused        #454948 #0a0e14 #e6b673 #454948
+  client.focused_inactive #ffa759 #0a0e14 #abb0b6 #454948
+  client.unfocused        #59c2ff #0a0e14 #abb0b6 #454948
   client.urgent           #ff3333 #ffa759 #223b4d #454948
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
