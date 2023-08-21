@@ -61,7 +61,7 @@ opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 opt.shortmess = opt.shortmess + { c = true }
 vim.api.nvim_set_option('updatetime', 300) 
 
--- opt.spell = true
+opt.spell = true
 opt.spelllang = { 'en_us' }
 opt.spelloptions = "camel"
 
