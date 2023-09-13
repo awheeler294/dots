@@ -3,17 +3,17 @@
 alias grep='grep -i'
 
 #echo "aliases"
-if hash exa 2>/dev/null; then
+if hash eza 2>/dev/null; then
 
-   #echo "found exa"
-   # use exa for ls and tree
-   alias ls='exa --icons'
-   alias ll='exa --icons -lhag'
-   alias tree='exa --icons --tree'
+   #echo "found eza"
+   # use eza for ls and tree
+   alias ls='eza --icons'
+   alias ll='eza --icons -lhag'
+   alias tree='eza --icons --tree'
 
 else
 
-   echo "exa not found"
+   echo "eza not found"
 
    if hash grc 2>/dev/null; then
       
