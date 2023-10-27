@@ -170,7 +170,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
 assign [title="Steam"] $ws5
-assign [class="Slack"] $ws8
+assign [class="Slack"] $ws1
 assign [class="Mattermost"] $ws8
 assign [class="chat.google.com"] $ws8
 assign [class="discord"] $ws9
