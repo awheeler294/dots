@@ -36,17 +36,27 @@ local tabby_theme = {
    hlr = { fg = '#59c2ff', bg = '#141925' },
 }
 
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
+-- function dump(o)
+--    if type(o) == 'table' then
+--       local s = '{ '
+--       for k,v in pairs(o) do
+--          if type(k) ~= 'number' then k = '"'..k..'"' end
+--          s = s .. '['..k..'] = ' .. dump(v) .. ','
+--       end
+--       return s .. '} '
+--    else
+--       return tostring(o)
+--    end
+-- end
+
+function tab_is_modified(tab_id)
+    wins = require("tabby.module.api").get_tab_wins(tab_id)
+    for i, x in pairs(wins) do
+        if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
+            return true
+        end
+    end
+    return false
 end
 
 require('tabby.tabline').set(function(line)
@@ -62,24 +72,12 @@ require('tabby.tabline').set(function(line)
          -- print(dump(tab.number()))
          local hl = tab.is_current() and tabby_theme.current_tab or tabby_theme.tab
 
-         local is_modified = false
-         -- print(dump(vim.api.nvim_tabpage_list_wins(tab.number())))
-         if vim.api.nvim_tabpage_is_valid(tab.number()) then
-            for _, win in pairs(vim.api.nvim_tabpage_list_wins(tab.number())) do
-               local buf = vim.api.nvim_win_get_buf(win)
-               if vim.api.nvim_buf_get_option(buf, "modified") then
-                  is_modified = true
-                  break
-               end
-            end
-         end
-
          return {
             line.sep('', hl, tabby_theme.fill),
             tab.is_current() and ' ' or ' ',
             tab.number(),
             tab.name(),
-            is_modified and ' ' or '',
+            tab_is_modified(tab.id) and ' ' or '',
             line.sep('', hl, tabby_theme.fill),
             hl = hl,
             margin = ' ',
@@ -277,7 +275,7 @@ local on_attach = function(client, bufnr)
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
    end, bufopts)
    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+   vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
