@@ -82,7 +82,7 @@ if [ -f "$aliases_file" ]; then
    # echo "sourcing aliases from $aliases_file"
    # cat "$aliases_file"
 
-    . "aliases_file"
+    . "$aliases_file"
 else
    ## Alias section 
    alias cp="cp -i"                                  # Confirm before overwriting something
