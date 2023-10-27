@@ -77,10 +77,12 @@ bindkey '^[[1;5C' forward-word                    #
 bindkey '^H' backward-kill-word                   # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                               # Shift+tab undo last action
 
+aliases_file="$HOME/.config/extend-rc/aliases"
+if [ -f "$aliases_file" ]; then
+   # echo "sourcing aliases from $aliases_file"
+   # cat "$aliases_file"
 
-if [ -f "$HOME"/.config/extend-rc/aliases ]; then
-   #echo "source aliases"
-    . "$HOME"/.config/extend-rc/aliases
+    . "aliases_file"
 else
    ## Alias section 
    alias cp="cp -i"                                  # Confirm before overwriting something
@@ -97,6 +99,13 @@ else
    #alias ssh='TERM=xterm-color ssh'                  # Force xterm-color on ssh sessions
 fi
 
+env_file="$HOME/.config/extend-rc/env"
+if [ -f "$env_file" ]; then
+   # echo "sourcing env from $env_file"
+   # cat "$env_file"
+
+    . "$env_file"
+fi
 # Theming section  
 autoload -U compinit colors zcalc
 compinit -d
