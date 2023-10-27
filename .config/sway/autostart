@@ -1,0 +1,4 @@
+exec_always import-gtk-settings.sh
+exec nm-applet
+exec_always swww_random.sh /home/andrew/Pictures/wallpapers/169/ eDP-1
+exec_always swww_random.sh /home/andrew/Pictures/wallpapers/ultrawide DP-1

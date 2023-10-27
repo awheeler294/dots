@@ -1,0 +1,120 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	alacritty
+
+# program launcher
+super + d
+   rofi -modi drun -show drun -display-drun "Apps" -line-padding 4 -columns 2 -padding 50 -hidescrollbar -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
+	#dmenu_recency -i -nb '#1f2430' -nf '#cbccc6' -sb '#34455a' -sf '#edf0f5'
+
+# launcher
+# super + z
+#    dmenu_extended_run
+	#dmenu_recency -i -nb '#1f2430' -nf '#cbccc6' -sb '#34455a' -sf '#edf0f5'
+
+# Steam
+super + F1
+   killall -q steam; while pgrep -x steam >/dev/null; do sleep 1; done; steam-runtime; notify-send 'steam-runtime'; 
+super + shift + F1
+   notify-send 'steam-native'; steam-native
+
+# browser
+super + F2
+   vivaldi-stable
+
+# file manager
+super + F3
+   thunar
+super + shift + F3
+   gksudo thunar
+
+# package manager
+super + F4
+   pamac-manager
+
+# google chat
+super + F5 exec --no-startup-id $HOME/bin/ssb-launcher https://chat.google.com --profile_name work --process_name chat
+
+# launch categorized menu
+super + z 
+   morc_menu
+
+# compositor
+super + t
+   picom -b && notify-send 'Launch Picom' || notify-send 'Failed to launch Picom'
+super + ctrl + t 
+   pkill picom && notify-send 'Kill Picom' || notify-send 'Failed to kill Picom'
+
+# screenshots
+Print 
+   i3-scrot
+@super + Print
+   i3-scrot -w
+@super + shift + Print
+   i3-scrot -s
+
+# xkill
+@super + ctrl + x
+   xkill
+
+# type a shrug
+@super + u
+   xdotool type --clearmodifiers --delay 15 '¯\_(ツ)_/¯'
+
+@super + shift + u 
+   xdotool type --clearmodifiers --delay 15 '¯\\\_(ツ)_/¯'
+
+# select autorandr profile
+super + o
+   autorandr | rofi -dmenu -p "autorandr" | cut -d ' ' -f 1 | xargs --no-run-if-empty autorandr --change --force
+
+# force autorandr
+super + shift + o
+   notify-send 'force autorandr'; autorandr --change --force
+
+# restart polybar
+super + y
+   notify-send 'restart polybar'; $HOME/.config/polybar/launch.sh
+
+# audio control panel
+super + ctrl + m
+   pavucontrol
+
+# Media Controls
+XF86AudioPlay
+   ~/bin/mediactl play
+XF86AudioPrev 
+   ~/bin/mediactl previous
+XF86AudioNext 
+   ~/bin/mediactl next
+super + p 
+   ~/bin/mediactl launch
+super + shift + p 
+   ~/bin/mediactl quit
+
+# Headset Battery
+super + shift + h
+   notify-send "$(headsetcontrol -b | (read _ name; echo $name))" "$(headsetcontrol -b | grep Battery)"
+
+# lock screen
+super + l
+   xset s activate
+
+# Turn off screen immediately
+super + shift + l
+   sleep 1; xset dpms force off
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# mouse autoscroll
+~button2
+    ~/.config/sxhkd/autoscroll.sh
+    #notify-send 'autoscroll' && ~/.config/sxkhd/autoscroll.sh
+@button2
+
