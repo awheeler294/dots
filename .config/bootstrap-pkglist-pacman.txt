@@ -38,7 +38,6 @@ mattermost-desktop-bin
 mpv
 ncdu
 neovim
-nerd-fonts-complete
 network-manager-applet
 nodejs
 npm
@@ -69,9 +68,12 @@ tmux
 ttf-bitstream-vera
 ttf-dejavu
 ttf-droid
+ttf-hack-nerd
 ttf-inconsolata
 ttf-indic-otf
 ttf-liberation
+ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-mono
 tumbler
 vi
 viewnior
