@@ -49,9 +49,9 @@ local tabby_theme = {
 --    end
 -- end
 
-function tab_is_modified(tab_id)
-    wins = require("tabby.module.api").get_tab_wins(tab_id)
-    for i, x in pairs(wins) do
+local function tab_is_modified(tab_id)
+    local wins = require("tabby.module.api").get_tab_wins(tab_id)
+    for _, x in pairs(wins) do
         if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
             return true
         end
@@ -89,7 +89,7 @@ require('tabby.tabline').set(function(line)
          { '  ', hl = tabby_theme.hlr },
       },
       hl = tabby_theme.fill,
-   } 
+   }
 end, {
    buf_name = {
       mode = 'shorten'
@@ -99,12 +99,12 @@ end, {
 require('toggleterm').setup(
    (function()
       vim.o.hidden = true
-      
+
       vim.api.nvim_set_keymap('n', "t"    , ":ToggleTerm<CR>"     , {noremap = true})
 
       vim.api.nvim_set_keymap('t', "<C-n>", "<C-\\><C-n>"         , {noremap = true})
       vim.api.nvim_set_keymap('t', "<Esc>", "<C-n>:ToggleTerm<CR>", {})
-      
+
       return {
          open_mapping = '<C-t>',
          direction = 'float',
@@ -445,7 +445,7 @@ require('nvim-treesitter.configs').setup {
       enable = true,
       additional_vim_regex_highlighting=false,
    },
-   ident = { enable = true }, 
+   ident = { enable = true },
    rainbow = {
       enable = true,
       extended_mode = true,
