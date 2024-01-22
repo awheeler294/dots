@@ -38,7 +38,10 @@ setopt histignorealldups                                        # If a new comma
 setopt autocd                                                   # if only directory path is entered, cd there.
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+
+                                                                # More info on setting LS_COLORS: https://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ow=01;32:di=01;34" # Colored completion (different colors for dirs/files/etc)
+
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
