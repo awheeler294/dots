@@ -426,6 +426,7 @@ require('nvim-treesitter.configs').setup {
       "python",
       "racket",
       "regex",
+      "ron",
       "ruby",
       "rust",
       "scala",

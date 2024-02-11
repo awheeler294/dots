@@ -84,6 +84,13 @@ super + y
 super + ctrl + m
    pavucontrol
 
+super + ctrl + c
+   system76-power charge-thresholds --list-profiles | rofi -dmenu -p "charge thresholds | $(system76-power charge-thresholds | head -n 1)" | xargs --no-run-if-empty system76-power charge-thresholds --profile
+
+super + ctrl + p
+   echo -en "battery \nbalanced \nperformance" | rofi -dmenu -p "power profiles | $(system76-power profile | head -n 1)" | xargs --no-run-if-empty system76-power profile
+
+super + 
 # Media Controls
 XF86AudioPlay
    ~/bin/mediactl play
