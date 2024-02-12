@@ -44,7 +44,7 @@ fi
 
 if hash nvim 2>/dev/null; then
    alias nv='nvim'
-   alias vin='nvim'
+   alias vin='NVIM_APPNAME=nvim-kickstart nvim'
 else
    echo "nvim not found"
 fi
