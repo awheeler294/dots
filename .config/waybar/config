@@ -143,7 +143,7 @@
     },
 
 }, {
-   "output": "LG Electronics LG HDR WQHD 0x00009626",
+   "output": "LG Electronics LG HDR WQHD 0x00069026",
    
    // Waybar at top layer
    "layer": "top",
