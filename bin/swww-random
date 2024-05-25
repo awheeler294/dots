@@ -1,0 +1,5 @@
+#!/bin/bash
+#!/usr/bin/env bash
+
+swww img -o eDP-1 "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)" 
+swww img -o DP-1 "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)"
