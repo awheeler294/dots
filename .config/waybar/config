@@ -22,7 +22,7 @@
       ],
 
       // Choose the order of the modules
-      "modules-left": ["sway/workspaces", "sway/scratchpad", "keyboard-state", "sway/window", "sway/mode"],
+      "modules-left": ["sway/workspaces", "sway/scratchpad", "niri/workspaces", "keyboard-state", "sway/window", "sway/mode", "niri/window"],
 
       "modules-center": ["clock"],
 
@@ -74,7 +74,7 @@
       ],
       
       // Choose the order of the modules
-      "modules-left": ["sway/workspaces", "sway/scratchpad", "keyboard-state", "sway/window", "sway/mode"],
+      "modules-left": ["sway/workspaces", "sway/scratchpad", "niri/workspaces", "keyboard-state", "sway/window", "sway/mode", "niri/window"],
 
       "modules-center": ["mpris"],
 

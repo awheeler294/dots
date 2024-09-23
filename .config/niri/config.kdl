@@ -24,7 +24,7 @@ input {
         tap
         // dwt
         // dwtp
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
     }
@@ -48,7 +48,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
+output "BOE 0x094A Unknown" {
     // Uncomment this line to disable this output.
     // off
 
@@ -59,7 +59,7 @@ output "eDP-1" {
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     // mode "1920x1080@120.030"
-    mode "1920x1080@120.030"
+    mode "1920x1080@60.004"
 
     // Scale is a floating-point number, but at the moment only integer values work.
     scale 1.0
@@ -80,7 +80,7 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-output "DP-1" {
+output "LG Electronics LG HDR WQHD 0x00069026" {
     mode "3440x1440"
     position x=1920 y=-180
 }
@@ -105,15 +105,16 @@ layout {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
-        proportion 0.45
         proportion 0.55
+        proportion 0.5
+        proportion 0.45
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
     }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.55; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -244,6 +245,28 @@ window-rule {
     // block-out-from "screencast"
 }
 
+/-window-rule {
+    open-maximized true
+}
+
+window-rule {
+    match is-active-in-column=false
+
+    max-height 400
+}
+
+window-rule {
+    match is-active-in-column=true
+
+    min-height 900
+}
+
+window-rule {
+    match is-active-in-column=false
+
+    max-height 400
+}
+
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -262,6 +285,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "alacritty"; }
     Mod+D { spawn "fuzzel"; }
+    Mod+X { spawn "bash" "-c" "Xwayland& env DISPLAY=:0 i3 -c ~/.config/i3/config-xwayland"; }
     Mod+Y { spawn "systemctl" "--user" "restart" "waybar"; }
     Mod+F2 { spawn "vivaldi-stable" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
     Mod+F3 { spawn "thunar"; }
@@ -290,12 +314,12 @@ binds {
     Mod+L     { focus-column-right; }
 
     Mod+Shift+Left  { move-column-left; }
-    Mod+Shift+Down  { move-window-down; }
-    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Down  { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Up    { move-window-up-or-to-workspace-up; }
     Mod+Shift+Right { move-column-right; }
     Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-window-down; }
-    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K     { move-window-up-or-to-workspace-up; }
     Mod+Shift+L     { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
@@ -326,8 +350,8 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    Mod+BracketLeft  { move-column-to-monitor-left; }
-    Mod+BracketRight { move-column-to-monitor-right; }
+    Mod+BracketLeft        { move-column-to-monitor-left; }
+    Mod+BracketRight       { move-column-to-monitor-right; }
     Mod+Shift+BracketLeft  { move-window-to-monitor-left; }
     Mod+Shift+BracketRight { move-window-to-monitor-right; }
 
@@ -339,10 +363,10 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    Mod+Page_Down       { focus-workspace-down; }
+    Mod+Page_Up         { focus-workspace-up; }
+    Mod+U               { focus-workspace-down; }
+    Mod+I               { focus-workspace-up; }
     Mod+Shift+Page_Down { move-column-to-workspace-down; }
     Mod+Shift+Page_Up   { move-column-to-workspace-up; }
     Mod+Shift+U         { move-column-to-workspace-down; }
@@ -352,10 +376,12 @@ binds {
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
-    Mod+Ctrl+Page_Down { move-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-workspace-up; }
-    Mod+Ctrl+U         { move-workspace-down; }
-    Mod+Ctrl+I         { move-workspace-up; }
+    Mod+Ctrl+Page_Down    { move-workspace-down; }
+    Mod+Ctrl+Page_Up      { move-workspace-up; }
+    Mod+Ctrl+U            { move-workspace-down; }
+    Mod+Ctrl+I            { move-workspace-up; }
+    Mod+Ctrl+BracketLeft  { move-workspace-to-monitor-left; }
+    Mod+Ctrl+BracketRight { move-workspace-to-monitor-right; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -462,8 +488,37 @@ binds {
     Alt+Print { screenshot-window; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-
+    //Mod+Shift+E { quit; }
+    Mod+Shift+E { spawn "bash" "-c" r#"PATH="$HOME/bin:$PATH" $HOME/bin/niri-exit"#; }
+//    Mod+Shift+E { spawn "bash" "-c" r#"PATH="$HOME/bin:$PATH" \
+//command="$(echo -e " Reboot\n" "Shutdown\n" "Lock\n" "Suspend\n" "Hibernate\n" "Exit" | fuzzel --dmenu --index)" \
+//case $command in \
+//   0) \
+//      echo "rebooting" \
+//      sustemctl reboot \
+//      ;; \
+//   1) \
+//      echo "shutting down" \
+//      sustemctl poweroff \
+//      ;; \
+//   2) \
+//      echo "locking" \
+//      swaylock-swww -g 0 -f 0 \
+//      echo "resuming" \
+//      ;; \
+//   3) \
+//      echo "suspending" \
+//      systemctl suspend \
+//      ;; \
+//   4) \
+//      echo "hibernating" \
+//      systemctl hibernate \
+//      ;; \
+//   5) \
+//      echo "exiting" \
+//      niri msg action quit \
+//      ;; \
+//esac"#; }
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other keyw
     Mod+Shift+P { power-off-monitors; }

@@ -17,6 +17,10 @@
       "tooltip-format": "{app}: {title}"
    },
 
+   "niri/window": {
+      "separate-outputs": true
+   },
+
    "mpris": {
       "format": "{status}: {dynamic}",
       "format-paused": "{status}: {dynamic}"
@@ -88,15 +92,19 @@
    },
 
    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}",
-        "format-bluetooth": " {volume}% {icon}",
-        "format-bluetooth-muted": " ",
-        "format-muted": "",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pactl set-sink-mute 0 toggle",
-        "on-click-right": "pgrep pavucontrol && killall pavucontrol || pavucontrol"
+      // "scroll-step": 1, // %, can be a float
+      "format": "{volume}% {icon}",
+      "format-bluetooth": " {volume}% {icon}",
+      "format-bluetooth-muted": " ",
+      "format-muted": "",
+      "format-icons": {
+         "default": ["", "", ""]
+      },
+      "on-click": "pactl set-sink-mute 0 toggle",
+      "on-click-right": "pgrep pavucontrol && killall pavucontrol || pavucontrol"
+   },
+
+   "wlr/taskbar": {
+      "tooltip-format": "{title} | {app_id}"
    }
 }
