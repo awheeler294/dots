@@ -230,6 +230,7 @@ export HISTFILE="$DATA_HOME"/.zsh_history # ensure history file visibility
 export HSTR_CONFIG=hicolor                # get more colors
 
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
+NVIM_APPNAME=nvim-kickstart; export NVIM_APPNAME
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 if command -v starship >/dev/null 2>&1; then

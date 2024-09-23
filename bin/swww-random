@@ -1,5 +1,7 @@
 #!/bin/bash
 #!/usr/bin/env bash
 
-swww img -o eDP-1 "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)" 
-swww img -o DP-1 "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)"
+echo "$(niri msg --json outputs | jq -r 'keys[]')" | while read -r output
+do   
+   swww img -o "$output" "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)" 
+done
