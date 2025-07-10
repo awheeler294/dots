@@ -1,12 +1,61 @@
 {
+   "custom/divider-left": {
+      "format" : "",
+      "tooltip": false
+   },
+
+   "custom/divider-right": {
+      "format" : "",
+      "tooltip": false
+   },
+
+   "custom/launcher": {
+      "format":"",
+      "tooltip": false,
+      "on-click": "pgrep fuzzel && killall fuzzel || fuzzel"
+   },
+
+   "group/group-tools": {
+      "orientation": "inherit",
+      "drawer": {
+         "transition-duration": 500,
+         "children-class": "not-info",
+         // "click-to-reveal": true,
+         "transition-left-to-right": false
+      },
+      "modules": [
+         "custom/infolabel",
+         "custom/htop",
+         "custom/shot",
+         "tray" 
+      ]
+   }, 
+
+   "custom/infolabel": {
+      "format": " ",
+      "tooltip": false
+   },
+
+   "custom/htop": {
+      "format":"",
+      "tooltip-format": "top",
+      "on-click":"alacritty -e btop"
+   },
+
+   "custom/shot": {
+      "format":"",
+      "tooltip-format": "screenshot",
+      "on-click":"niri msg action screenshot-screen"
+   },
+
    "keyboard-state": {
-       "numlock": false,
-       "capslock": true,
-       "format": "{icon}",
-       "format-icons": {
-           "locked": "caps",
-           "unlocked": ""
-       }
+      "numlock": false,
+      "capslock": true,
+      "format": "{icon}",
+      "format-icons": {
+        "locked": "caps",
+        "unlocked": ""
+      }
    },
 
    "sway/scratchpad": {
@@ -22,8 +71,15 @@
    },
 
    "mpris": {
-      "format": "{status}: {dynamic}",
-      "format-paused": "{status}: {dynamic}"
+      "format": "{player_icon} {title}",
+      "format-paused": "{status_icon} {title}",
+      "player-icons": {
+         "default": "",
+         "mpv": ""
+      },
+      "status-icons": {
+         "paused": ""
+      }
    },
 
    "idle_inhibitor": {
@@ -65,12 +121,10 @@
             "weeks":      "<span color='#95e6cb'><b>W{}</b></span>",
             "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
             "today":      "<span color='#ff6699'><b>{}</b></span>"
-            }
-         },
+         }
+      },
       "actions": {
          "on-click-right": "mode",
-         "on-click-forward": "tz_up",
-         "on-click-backward": "tz_down",
          "on-scroll-up": "shift_up",
          "on-scroll-down": "shift_down"
       }
@@ -82,10 +136,10 @@
          "warning": 30,
          "critical": 15
       },
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% 󰂄",
-      "format-plugged": "{capacity}% ",
-      "format-alt": "{time} {icon}",
+      "format": "{icon}  {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": " {capacity}% ",
+      "format-alt": "{icon} {time}",
       // "format-good": "", // An empty format will hide the module
       // "format-full": "",
       "format-icons": ["", "", "", "", ""]
@@ -93,9 +147,9 @@
 
    "pulseaudio": {
       // "scroll-step": 1, // %, can be a float
-      "format": "{volume}% {icon}",
-      "format-bluetooth": " {volume}% {icon}",
-      "format-bluetooth-muted": " ",
+      "format": "{icon} {volume}%",
+      // "format-bluetooth": "{icon} {volume}%",
+      // "format-bluetooth-muted": "",
       "format-muted": "",
       "format-icons": {
          "default": ["", "", ""]
@@ -106,5 +160,26 @@
 
    "wlr/taskbar": {
       "tooltip-format": "{title} | {app_id}"
-   }
+   },
+
+   "network": {
+      "format":"",
+      "on-click":"alacritty -e nmtui",
+      "format-ethernet":"󰈀",
+      "format-wifi":"{icon} {signalStrength}%",
+      "format-disconnected":"󰤭",
+      "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+      "tooltip-format-wifi":"{essid}: ({signalStrength}%)",
+      "tooltip-format-ethernet":"{ifname}",
+      "tooltip-format-disconnected":"󰈂",
+   },
+
+   "niri/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+         "active": " ",
+         "default": " "
+      }
+   },
+
 }

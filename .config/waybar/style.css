@@ -8,15 +8,20 @@
 @define-color blue      #7aa6da;
 @define-color green     #b9ca4a;
 
+@define-color background #262626;
+@define-color background-alt #0f0f0f;
+@define-color background-alpha rgba(38, 38, 38, 0.99);
+
 * {
    /* `otf-font-awesome` is required to be installed for icons */
    font-family: Mononoki Nerd Font, NotoSansMono Nerd Font, FontAwesome, Bitstream Vera Sans Roman, Roboto, Helvetica, Arial, sans-serif;
-   font-size: 16pt;
+   font-size: 18pt;
 }
 
 window#waybar {
-   background-color: @bg;
+   background-color: @background-alpha;
    color: @fg;
+   font-weight: bold;
    transition-property: background-color;
    transition-duration: .5s;
 }
@@ -45,7 +50,7 @@ window#waybar.chromium {
 
 button {
    /* Use box-shadow instead of border so the text isn't offset */
-   box-shadow: inset 0 -3px transparent;
+   box-shadow: inset 0 3px transparent;
    /* Avoid rounded borders under each button name */
    border: none;
    border-radius: 0;
@@ -54,13 +59,50 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
    background: inherit;
-   box-shadow: inset 0 -3px @fg-alt;
+   box-shadow: inset 0 3px @fg-alt;
+}
+
+#custom-launcher,
+#custom-infolabel,
+#custom-htop,
+#custom-shot,
+#custom-pick,
+#wireplumber,
+#battery,
+#bluetooth,
+#idle_inhibitor,
+#network {
+   margin: 0 15px;
+}
+
+#custom-launcher {
+   padding: 0 30px 0 30px;
+   margin: 0 0 0 5px;
+   background: @blue;
+   color: @background-alt;
+   border-radius: 16px 0 0 16px;
+}
+
+#custom-divider-left {
+   font-size: 32;
+   color: @blue;
+   background: @background;
+   padding: 0;
+   margin: 0;
+}
+
+#custom-divider-right {
+   font-size: 32;
+   color: @blue;
+   background: @background;
+   padding: 0;
+   margin: 0;
 }
 
 #workspaces button {
    /*        T   R   B   L  */
-   padding: 4px 6px 2px 6px;
-   margin: 0px 2px 0 2px;
+   padding: 0px 6px 0px 6px;
+   margin: 0px 2px 0px 2px;
    background-color: transparent;
    color: @fg-alt;
 }
@@ -72,7 +114,7 @@ button:hover {
 #workspaces button.focused {
    color: @fg;
    background-color: @bg-alt;
-   box-shadow: inset 0 -3px @primary;
+   box-shadow: inset 0 3px @primary;
 }
 
 #workspaces button.urgent {
@@ -87,30 +129,39 @@ button:hover {
 }
 
 /* If workspaces is the leftmost module, shorten left margin */
-.modules-left > widget:first-child > #workspaces {
-   margin-left: 4px;
-}
+/* .modules-left > widget:first-child > #workspaces { */
+/*    margin-left: 4px; */
+/* } */
 
 /* If workspaces is the rightmost module, shorten right margin */
-.modules-right > widget:last-child > #workspaces {
-   margin-right: 4px;
+/* .modules-right > widget:last-child > #workspaces { */
+/*    margin-right: 4px; */
+/* } */
+
+#window {
+   padding: 0 30px 0 15px;
+   background: @blue;
+   color: @background-alt;
+   border-radius: 0 16px 16px 0;
 }
 
 #mode {
-   padding: 2px 2px 0 2px;
+   padding: 0 2px;
    margin: 2px 8px;
    color: @bg;
    background-color: @secondary;
 }
 
 #clock {
-   padding: 2px 2px 0 2px;
-   margin: 2px 8px;
+   padding: 0 15px 0 30px;
+   background: @blue;
+   color: @background-alt;
+   border-radius: 16px 0 0 16px;
 }
 
 #scratchpad {
    color: @fg-alt;
-   padding: 2px 2px 0 2px;
+   padding: 0 2px;
    margin: 2px 8px;
 }
 
@@ -119,7 +170,7 @@ button:hover {
 }
 
 #mpris {
-   padding: 2px 2px 0 2px;
+   padding: 0 2px;
    margin: 2px 8px;
 }
 
@@ -128,20 +179,19 @@ label:focus {
 }
 
 #pulseaudio {
-   padding: 2px 6px 0 2px;
+   padding: 0 6px 0 2px;
    margin: 2px 8px;
 }
 
 #pulseaudio.muted {
    background-color: @alert;
    color: @bg;
-   padding: 2px 18px 0 12px;
+   padding: 0 18px 0 12px;
    margin: 2px 8px;
 }
 
 #battery {
-   padding: 2px 20px 0 2px;
-   margin: 2px 8px;
+   padding: 0 2px 0 2px;
 }
 
 #battery.charging, #battery.plugged {
@@ -170,8 +220,10 @@ label:focus {
 }
 
 #tray {
-   padding: 2px 2px 0 2px;
-   margin: 2px 4px 2px 2px;
+   padding: 0 20px 0 20px;
+   margin: 4px 2px 4px 2px;
+   background-color: @bg;
+   border-radius: 16px 16px 16px 16px;
 }
 
 #tray > .passive {
@@ -185,13 +237,15 @@ label:focus {
 
 #bluetooth {
    color: #0082fc;
-   padding: 2px 8px 0 2px;
+   padding: 0 10px 0 0px;
 }
 
 #idle_inhibitor {
    color: @fg-alt;
    background-color: @bg-alt;
-   padding: 2px 12px 0 2px;
+   border-radius: 16px 16px 16px 16px;
+   padding: 0 16px 0 2px;
+   margin: 4px 12px 4px 2px;
 }
 
 #idle_inhibitor.activated {
@@ -200,9 +254,17 @@ label:focus {
 }
 
 #keyboard-state > label.locked {
-   padding: 2px 2px 0 2px;
+   padding: 0 2px;
    margin: 2px 4px 2px 2px;
    background-color: @alert;
    color: @bg;
    font-weight: bold;
+}
+
+#group-tools {
+   padding: 0 15px 0 0;
+   margin: 0 5px 0 0;
+   background: @blue;
+   color: @background-alt;
+   border-radius: 0 16px 16px 0;
 }
