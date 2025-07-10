@@ -83,6 +83,12 @@ output "BOE 0x094A Unknown" {
 output "LG Electronics LG HDR WQHD 0x00069026" {
     mode "3440x1440"
     position x=1920 y=-180
+    focus-at-startup
+}
+
+output "Seiko Epson Corporation EPSON PJ 0x01010101" {
+    mode "1920x1080"
+    position x=1920 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -301,6 +307,11 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    
+    // Open/close the Overview: a zoomed-out view of workspaces and windows.
+    // You can also move the mouse into the top-left hot corner,
+    // or do a four-finger swipe up on a touchpad.
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Q { close-window; }
 
@@ -350,10 +361,8 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    Mod+BracketLeft        { move-column-to-monitor-left; }
-    Mod+BracketRight       { move-column-to-monitor-right; }
-    Mod+Shift+BracketLeft  { move-window-to-monitor-left; }
-    Mod+Shift+BracketRight { move-window-to-monitor-right; }
+    Mod+BracketLeft  { move-window-to-monitor-left; }
+    Mod+BracketRight { move-window-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -457,6 +466,7 @@ binds {
 
     Mod+R { switch-preset-column-width; }
     Mod+W { maximize-column; }
+    Mod+E { toggle-column-tabbed-display; }
     Mod+F { fullscreen-window; }
     // Mod+C { center-column; }
 
