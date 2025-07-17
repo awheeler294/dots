@@ -72,37 +72,31 @@ button:hover {
 #bluetooth,
 #idle_inhibitor,
 #network {
-   margin: 0 15px;
+   margin: 0 .5em;
 }
 
-#custom-launcher {
-   padding: 0 30px 0 30px;
+#custom-launcher,
+#clock {
+   padding: 0 1em 0 1em;
    margin: 0 0 0 5px;
    background: @blue;
    color: @background-alt;
-   border-radius: 16px 0 0 16px;
+   border-radius: 1em .2em 1.8em 1em;
 }
 
-#custom-divider-left {
-   font-size: 32;
-   color: @blue;
-   background: @background;
-   padding: 0;
-   margin: 0;
-}
-
-#custom-divider-right {
-   font-size: 32;
-   color: @blue;
-   background: @background;
-   padding: 0;
-   margin: 0;
+#window,
+#group-tools {
+   padding: 0 1em 0 1em;
+   margin: 0 5px 0 0;
+   background: @blue;
+   color: @background-alt;
+   border-radius: 1.8em 1em 1em .2em;
 }
 
 #workspaces button {
    /*        T   R   B   L  */
-   padding: 0px 6px 0px 6px;
-   margin: 0px 2px 0px 2px;
+   padding: 0px .25em 0px .25em;
+   margin: 0px .1em 0px .1em;
    background-color: transparent;
    color: @fg-alt;
 }
@@ -124,8 +118,8 @@ button:hover {
 
 #workspaces {
    /*        TB  RL */
-   padding: 0px 2px;
-   margin: 0px 8px;
+   padding: 0 .1em;
+   margin: 0 .25em;
 }
 
 /* If workspaces is the leftmost module, shorten left margin */
@@ -138,31 +132,24 @@ button:hover {
 /*    margin-right: 4px; */
 /* } */
 
-#window {
-   padding: 0 30px 0 15px;
-   background: @blue;
-   color: @background-alt;
-   border-radius: 0 16px 16px 0;
-}
-
 #mode {
-   padding: 0 2px;
-   margin: 2px 8px;
+   padding: 0 .1em;
+   margin: .1em .25em;
    color: @bg;
    background-color: @secondary;
 }
 
-#clock {
-   padding: 0 15px 0 30px;
-   background: @blue;
-   color: @background-alt;
-   border-radius: 16px 0 0 16px;
-}
+/* #clock { */
+/*    padding: 0 15px 0 30px; */
+/*    background: @blue; */
+/*    color: @background-alt; */
+/*    border-radius: 16px 0 0 16px; */
+/* } */
 
 #scratchpad {
    color: @fg-alt;
-   padding: 0 2px;
-   margin: 2px 8px;
+   padding: 0 .1em;
+   margin: .1em .25em;
 }
 
 #scratchpad.empty {
@@ -170,8 +157,8 @@ button:hover {
 }
 
 #mpris {
-   padding: 0 2px;
-   margin: 2px 8px;
+   padding: 0 .1em;
+   margin:.1em .25em;
 }
 
 label:focus {
@@ -179,19 +166,19 @@ label:focus {
 }
 
 #pulseaudio {
-   padding: 0 6px 0 2px;
-   margin: 2px 8px;
+   padding: 0 .25em 0 .1em;
+   margin: .2em .25em;
 }
 
 #pulseaudio.muted {
    background-color: @alert;
    color: @bg;
-   padding: 0 18px 0 12px;
-   margin: 2px 8px;
+   padding: 0 .75em 0 .5em;
+   margin: .2em .5em;
 }
 
 #battery {
-   padding: 0 2px 0 2px;
+   padding: 0 .1em;
 }
 
 #battery.charging, #battery.plugged {
@@ -220,10 +207,10 @@ label:focus {
 }
 
 #tray {
-   padding: 0 20px 0 20px;
-   margin: 4px 2px 4px 2px;
+   padding: 0 1em 0 1em;
+   margin: .2em .1em;
    background-color: @bg;
-   border-radius: 16px 16px 16px 16px;
+   border-radius: 1em;
 }
 
 #tray > .passive {
@@ -237,15 +224,14 @@ label:focus {
 
 #bluetooth {
    color: #0082fc;
-   padding: 0 10px 0 0px;
 }
 
 #idle_inhibitor {
    color: @fg-alt;
    background-color: @bg-alt;
-   border-radius: 16px 16px 16px 16px;
-   padding: 0 16px 0 2px;
-   margin: 4px 12px 4px 2px;
+   border-radius: 1em;
+   padding: 0 .66em 0 .1em;
+   margin: .2em .5em .2em 0;
 }
 
 #idle_inhibitor.activated {
@@ -254,17 +240,10 @@ label:focus {
 }
 
 #keyboard-state > label.locked {
-   padding: 0 2px;
-   margin: 2px 4px 2px 2px;
+   padding: 0 .1em;
+   margin: .1em .2em .1em .1em;
    background-color: @alert;
    color: @bg;
    font-weight: bold;
-}
-
-#group-tools {
-   padding: 0 15px 0 0;
-   margin: 0 5px 0 0;
-   background: @blue;
-   color: @background-alt;
-   border-radius: 0 16px 16px 0;
+   border-radius: .2em;
 }

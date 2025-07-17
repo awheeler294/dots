@@ -24,14 +24,12 @@
       // Choose the order of the modules
       "modules-left": [
          "custom/launcher", 
-         "custom/divider-left", 
          "sway/workspaces", 
          "sway/scratchpad", 
          "niri/workspaces", 
          "keyboard-state", 
          "sway/window", 
          "sway/mode", 
-         "custom/divider-right", 
          "niri/window"
       ],
 
@@ -39,13 +37,11 @@
 
       "modules-right": [
          "clock",
-         "custom/divider-left", 
          "pulseaudio", 
          "battery", 
          "network",
          "bluetooth", 
          "idle_inhibitor", 
-         "custom/divider-right",
          "group/group-tools"
       ],
 
@@ -97,14 +93,12 @@
       // Choose the order of the modules
       "modules-left": [
          "custom/launcher", 
-         "custom/divider-left", 
          "sway/workspaces", 
          "sway/scratchpad", 
          "niri/workspaces", 
          "keyboard-state", 
          "sway/window", 
          "sway/mode", 
-         "custom/divider-right", 
          "niri/window"
       ],
 
@@ -112,14 +106,14 @@
 
       "modules-right": [
          "clock",
-         "custom/divider-left", 
+         // "custom/divider-left", 
          "pulseaudio", 
          "battery", 
          // "tray", 
          "network",
          "bluetooth", 
          "idle_inhibitor", 
-         "custom/divider-right",
+         // "custom/divider-right",
          "group/group-tools"
       ]
 

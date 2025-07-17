@@ -1,14 +1,4 @@
 {
-   "custom/divider-left": {
-      "format" : "",
-      "tooltip": false
-   },
-
-   "custom/divider-right": {
-      "format" : "",
-      "tooltip": false
-   },
-
    "custom/launcher": {
       "format":"",
       "tooltip": false,
