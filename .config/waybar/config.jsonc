@@ -39,6 +39,7 @@
          "clock",
          "pulseaudio", 
          "battery", 
+         "backlight",
          "network",
          "bluetooth", 
          "idle_inhibitor", 

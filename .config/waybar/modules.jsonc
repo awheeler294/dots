@@ -164,6 +164,12 @@
       "tooltip-format-disconnected":"󰈂",
    },
 
+   "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
+    "scroll-step": 5,
+   },
+
    "niri/workspaces": {
       "format": "{icon}",
       "format-icons": {

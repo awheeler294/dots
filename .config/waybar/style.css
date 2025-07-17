@@ -8,9 +8,7 @@
 @define-color blue      #7aa6da;
 @define-color green     #b9ca4a;
 
-@define-color background #262626;
-@define-color background-alt #0f0f0f;
-@define-color background-alpha rgba(38, 38, 38, 0.99);
+@define-color background-alpha rgba(38, 38, 38, 0.98);
 
 * {
    /* `otf-font-awesome` is required to be installed for icons */
@@ -71,7 +69,8 @@ button:hover {
 #battery,
 #bluetooth,
 #idle_inhibitor,
-#network {
+#network,
+#backlight {
    margin: 0 .5em;
 }
 
@@ -80,7 +79,7 @@ button:hover {
    padding: 0 1em 0 1em;
    margin: 0 0 0 5px;
    background: @blue;
-   color: @background-alt;
+   color: @bg;
    border-radius: 1em .2em 1.8em 1em;
 }
 
@@ -93,7 +92,7 @@ button:hover {
    padding: 0 1em 0 1em;
    margin: 0 5px 0 0;
    background: @blue;
-   color: @background-alt;
+   color: @bg;
    border-radius: 1.8em 1em 1em .2em;
 }
 
@@ -142,13 +141,6 @@ button:hover {
    color: @bg;
    background-color: @secondary;
 }
-
-/* #clock { */
-/*    padding: 0 15px 0 30px; */
-/*    background: @blue; */
-/*    color: @background-alt; */
-/*    border-radius: 16px 0 0 16px; */
-/* } */
 
 #scratchpad {
    color: @fg-alt;
