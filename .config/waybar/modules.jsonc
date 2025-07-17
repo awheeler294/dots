@@ -48,6 +48,12 @@
       }
    },
 
+   "sway/window": {
+      "all-outputs": true,
+      "offscreen-css": true,
+      "offscreen-css-text": "󰨇",
+   },
+
    "sway/scratchpad": {
       "format": "{icon} {count}",
       "show-empty": false,

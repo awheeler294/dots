@@ -28,8 +28,8 @@
          "sway/scratchpad", 
          "niri/workspaces", 
          "keyboard-state", 
-         "sway/window", 
          "sway/mode", 
+         "sway/window", 
          "niri/window"
       ],
 
@@ -98,8 +98,8 @@
          "sway/scratchpad", 
          "niri/workspaces", 
          "keyboard-state", 
-         "sway/window", 
-         "sway/mode", 
+         "sway/mode",
+         "sway/window",
          "niri/window"
       ],
 
@@ -107,14 +107,11 @@
 
       "modules-right": [
          "clock",
-         // "custom/divider-left", 
          "pulseaudio", 
          "battery", 
-         // "tray", 
          "network",
          "bluetooth", 
          "idle_inhibitor", 
-         // "custom/divider-right",
          "group/group-tools"
       ]
 

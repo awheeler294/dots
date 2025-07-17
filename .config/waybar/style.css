@@ -138,6 +138,7 @@ button:hover {
 #mode {
    padding: 0 .1em;
    margin: .1em .25em;
+   border-radius: .2em;
    color: @bg;
    background-color: @secondary;
 }
