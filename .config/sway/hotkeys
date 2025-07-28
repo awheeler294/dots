@@ -23,6 +23,10 @@ bindsym $mod+Shift+F3 exec gksudo thunar
 ## restart bar
 bindsym $mod+y exec "killall waybar; waybar"
 
+## kill focused window
+bindsym $mod+Ctrl+x exec swaymsg -t get_tree | \
+          jq '.. | select(.type?) | select(.focused==true).pid' | \
+          xargs -L 1 kill -9
 ## screenshots
 #Print 
 #   i3-scrot
