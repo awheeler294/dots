@@ -1,0 +1,14 @@
+[Unit]
+Description=Polybar
+
+[Service]
+StandardError=journal
+StandardOutput=journal
+; Environment=SYSTEMD_LOG_LEVEL=debug
+Environment=HOME=%h
+ExecSearchPath=%h/bin/
+ExecSearchPath=/usr/bin/
+ExecStart=bash -c %h/.config/polybar/launch.sh
+
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+Restart=on-failure

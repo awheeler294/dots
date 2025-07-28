@@ -1,0 +1,14 @@
+[Unit]
+Description=sxhkd
+
+[Service]
+Type=simple
+StandardError=journal
+StandardOutput=journal
+; Environment=SYSTEMD_LOG_LEVEL=debug
+Environment=HOME=%h
+ExecSearchPath=%h/bin/
+ExecSearchPath=/usr/bin/
+ExecStart=/usr/bin/sxhkd -c %h/.config/sxhkd/sxhkdrc
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+Restart=on-failure

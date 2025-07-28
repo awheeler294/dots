@@ -1,0 +1,10 @@
+[Unit]
+Description=picom
+
+[Service]
+Type=simple
+StandardError=journal
+StandardOutput=journal
+; Environment=SYSTEMD_LOG_LEVEL=debug
+ExecStart=/usr/bin/picom -b
+Restart=on-failure

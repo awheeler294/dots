@@ -1,0 +1,10 @@
+[Unit]
+Description=pa-applet
+
+[Service]
+Type=simple
+StandardError=journal
+StandardOutput=journal
+; Environment=SYSTEMD_LOG_LEVEL=debug
+ExecStart=/usr/bin/pa-applet
+Restart=on-failure

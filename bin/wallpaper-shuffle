@@ -17,6 +17,11 @@ function shuffle_files() {
 
 dir=$1 
 [ -d "$SHUFFLE/$dir" ] || mkdir -p "$SHUFFLE/$dir"
+
+exec 200>"$SHUFFLE/$dir/shuffle.lock" || exit 1
+flock -w 2 200 || exit 1
+trap "rm -f $SHUFFLE/$dir/shuffle.lock" EXIT
+
 [ -s "$SHUFFLE/$dir/shuffle" ] || shuffle_files "$dir"
 [ $(stat -c '%s' "$SHUFFLE/$dir/shuffle") -gt 1 ] || shuffle_files "$dir"
 
