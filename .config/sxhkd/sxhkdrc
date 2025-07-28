@@ -18,9 +18,9 @@ super + d
 
 # Steam
 super + F1
-   killall -q steam; while pgrep -x steam >/dev/null; do sleep 1; done; steam-runtime; notify-send 'steam-runtime'; 
+   killall -q steam; while pgrep -x steam >/dev/null; do sleep 1; done; notify-send 'steam'; steam || notify-send 'Failed to launch Steam'
 super + shift + F1
-   notify-send 'steam-native'; steam-native
+    notify-send 'steam-native'; steam-native || notify-send 'Failed to launch Steam' 
 
 # browser
 super + F2

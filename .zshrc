@@ -241,3 +241,9 @@ else
    PROMPT="$(hostname_if_ssh)%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[green]%}>%B%(?.%{$fg[green]%}.%{$fg[red]%})>%{$reset_color%}%b " 
    RPROMPT='$(git_prompt_string)'
 fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/andrew/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/andrew/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
