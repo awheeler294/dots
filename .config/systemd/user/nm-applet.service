@@ -1,0 +1,10 @@
+[Unit]
+Description=nm-applet
+
+[Service]
+Type=simple
+StandardError=journal
+StandardOutput=journal
+; Environment=SYSTEMD_LOG_LEVEL=debug
+ExecStart=/usr/bin/nm-applet
+Restart=on-failure
