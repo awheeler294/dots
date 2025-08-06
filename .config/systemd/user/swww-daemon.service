@@ -1,9 +1,9 @@
-[unit]
-PareOf=graphical-session.target
+[Unit]
+PartOf=graphical-session.target
 After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swww-daemon
+ExecStart=/usr/bin/swww-daemon --no-cache
 Restart=on-failure
 

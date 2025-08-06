@@ -5,11 +5,33 @@
       "on-click": "pgrep fuzzel && killall fuzzel || fuzzel"
    },
 
+   "group/group-tray": {
+      "orientation": "inherit",
+      "modules": [
+         "tray" 
+      ]
+   },
+
    "group/group-tools": {
       "orientation": "inherit",
       "drawer": {
          "transition-duration": 500,
-         "children-class": "not-info",
+         "children-class": "tools-drawer",
+         // "click-to-reveal": true,
+         "transition-left-to-right": false
+      },
+      "modules": [
+         "custom/infolabel",
+         "custom/htop",
+         "custom/shot"
+      ]
+   },
+
+   "group/group-tools-compact": {
+      "orientation": "inherit",
+      "drawer": {
+         "transition-duration": 500,
+         "children-class": "tools-drawer",
          // "click-to-reveal": true,
          "transition-left-to-right": false
       },
@@ -17,9 +39,10 @@
          "custom/infolabel",
          "custom/htop",
          "custom/shot",
+         "backlight",
          "tray" 
       ]
-   }, 
+   },
 
    "custom/infolabel": {
       "format": " ",
@@ -51,7 +74,7 @@
    "sway/window": {
       "all-outputs": true,
       "offscreen-css": true,
-      "offscreen-css-text": "󰨇",
+      "offscreen-css-text": "󰨇"
    },
 
    "sway/scratchpad": {
@@ -63,7 +86,19 @@
    },
 
    "niri/window": {
-      "separate-outputs": true
+      "format": "{title}",
+      "rewrite": {
+         "(.*) - YouTube (- Vivaldi)*(- Mozilla Firefox)*.*": "🌎  $1",
+         // "(.*) - YouTube - Vivaldi.*": "🌎  $1",
+         // "(.*) - YouTube - Mozilla Firefox.*": "󰈹  $1",
+         "(.*) - Mozilla Firefox": "🌎 $1",
+         "(.*) - Vivaldi": "🌎 $1",
+         // "(.*) - YouTube.*": " $1 ",
+         "(.*) - vim": " $1",
+         "(.*) - zsh": " [$1]"
+      },
+      "separate-outputs": true,
+      "on-click": "niri msg --json focused-window | jq -r '.title' | wl-copy"
    },
 
    "mpris": {
@@ -160,7 +195,7 @@
 
    "network": {
       "format":"",
-      "on-click":"alacritty -e nmtui",
+      "on-click":"nm-connection-editor",
       "format-ethernet":"󰈀",
       "format-wifi":"{icon} {signalStrength}%",
       "format-disconnected":"󰤭",
@@ -179,8 +214,8 @@
    "niri/workspaces": {
       "format": "{icon}",
       "format-icons": {
-         "active": " ",
-         "default": " "
+         "active": "",
+         "default": ""
       }
    },
 

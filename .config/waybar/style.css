@@ -1,18 +1,33 @@
-@define-color bg        #1f2430;
-@define-color bg-alt    #273747;
-@define-color fg        #edf0f5;
+@define-color bg        #283044;
+@define-color bg-alt    #39393A;
+@define-color fg        #EDF0F5;
 @define-color fg-alt    #70719c;
-@define-color primary   #ffcc66;
-@define-color secondary #ffa759;
-@define-color alert     #ff3333;
-@define-color blue      #7aa6da;
-@define-color green     #b9ca4a;
+@define-color primary   #B8D0EB;
+@define-color secondary #CC5803;
+@define-color alert     #DF2935;
+@define-color warn      #FDCA40;
+@define-color okay      #B9CA4A;
+
+@define-color ayu-red         #ff3333;
+@define-color ayu-blue        #7aa6da;
+@define-color ayu-green       #b9ca4a;
+@define-color ayu-yellow      #ffcc66;
+@define-color ayu-orange      #ffa759;
+
+@define-color battleship-gray #9B9B93;
+@define-color jet             #39393A;
+@define-color tawny           #CC5803;
+@define-color pear            #C2E812;
+@define-color fuchsia-rose    #C94277;
+@define-color columbia-blue   #B8D0EB;
+@define-color sunglow         #FDCA40;
+@define-color poppy           #DF2935;
 
 @define-color background-alpha rgba(38, 38, 38, 0.98);
 
 * {
    /* `otf-font-awesome` is required to be installed for icons */
-   font-family: Mononoki Nerd Font, NotoSansMono Nerd Font, FontAwesome, Bitstream Vera Sans Roman, Roboto, Helvetica, Arial, sans-serif;
+   font-family:Mononoki Nerd Font Propo, FontAwesome, Bitstream Vera Sans Roman, Roboto, Helvetica, Arial, sans-serif;
    font-size: 18pt;
 }
 
@@ -67,7 +82,6 @@ button:hover {
 #custom-pick,
 #wireplumber,
 #battery,
-#bluetooth,
 #idle_inhibitor,
 #network,
 #backlight {
@@ -77,8 +91,9 @@ button:hover {
 #custom-launcher,
 #clock {
    padding: 0 1em 0 1em;
-   margin: 0 0 0 5px;
-   background: @blue;
+   background: @primary;
+   /* background: #B8D0EB; */
+   /* background: linear-gradient(127deg, rgba(184, 208, 235, 1) 50%, rgba(122, 166, 218, 1) 85%); */
    color: @bg;
    border-radius: 1em .2em 1.8em 1em;
 }
@@ -88,12 +103,39 @@ button:hover {
 }
 
 #window,
-#group-tools {
+#group-tools-compact {
    padding: 0 1em 0 1em;
    margin: 0 5px 0 0;
-   background: @blue;
+   background: @primary;
+   /* background: #7AA6DA; */
+   /* background: linear-gradient(127deg, rgba(122, 166, 218, 1) 15%, rgba(184, 208, 235, 1) 50%); */
    color: @bg;
    border-radius: 1.8em 1em 1em .2em;
+}
+
+#group-tray {
+   padding: 0 0 0 1em;
+   margin: 0 0 0 0;
+   background: @primary;
+   /* background: #7AA6DA; */
+   /* background: linear-gradient(127deg, rgba(122, 166, 218, 1) 15%, rgba(184, 208, 235, 1) 50%); */
+   color: @bg;
+   border-radius: 1.8em 0 0 .2em;
+}
+
+#group-tools {
+   padding: 0 1em 0 0;
+   margin: 0 5px 0 0;
+   background: @primary;
+   color: @bg;
+   border-radius: 0 1em 1em 0;
+}
+
+#tray {
+   padding: 0 1em 0 1em;
+   margin: .2em .1em;
+   background-color: @bg;
+   border-radius: 1em;
 }
 
 #workspaces button {
@@ -167,6 +209,10 @@ label:focus {
    margin: .2em .25em;
 }
 
+#pulseaudio.icon {
+   padding-right: .25em 
+}
+
 #pulseaudio.muted {
    background-color: @alert;
    color: @bg;
@@ -174,12 +220,8 @@ label:focus {
    margin: .2em .5em;
 }
 
-#battery {
-   padding: 0 .1em;
-}
-
 #battery.charging, #battery.plugged {
-    color: @green;
+    color: @okay;
 }
 
 #battery.discharging {
@@ -203,13 +245,6 @@ label:focus {
     animation-direction: alternate;
 }
 
-#tray {
-   padding: 0 1em 0 1em;
-   margin: .2em .1em;
-   background-color: @bg;
-   border-radius: 1em;
-}
-
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
@@ -220,6 +255,7 @@ label:focus {
 }
 
 #bluetooth {
+   margin: 0 .5em 0 0;
    color: #0082fc;
 }
 
@@ -227,12 +263,12 @@ label:focus {
    color: @fg-alt;
    background-color: @bg-alt;
    border-radius: 1em;
-   padding: 0 .66em 0 .1em;
+   padding: 0 .1em 0 .1em;
    margin: .2em .5em .2em 0;
 }
 
 #idle_inhibitor.activated {
-    background-color: @primary;
+    background-color: @yellow;
     color: @bg;
 }
 

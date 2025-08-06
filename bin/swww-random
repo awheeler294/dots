@@ -1,7 +1,55 @@
-#!/bin/bash
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-echo "$(niri msg --json outputs | jq -r 'keys[]')" | while read -r output
-do   
-   swww img -o "$output" "$(wallpaper-shuffle Pictures/wallpapers/waneella/animated/horizontal/)" 
-done
+# import argparse
+import subprocess
+
+from pathlib import Path
+
+TOLERANCE = 0.1
+
+wallpaper_path = Path.home() / Path("Pictures/wallpapers")
+
+# arg_parser = argparse.ArgumentParser("Set a random wallpaper on each display using swww")
+
+output_data = subprocess.check_output(["swww", "query"], text=True).splitlines()
+print(output_data)
+
+for output in output_data:
+   data, _, _ = output.partition(',')
+   name, resolution = data.split(": ")
+   print(name)
+   print(resolution)
+   width, height = resolution.split('x')
+   width = int(width)
+   height = int(height)
+   # print(width)
+   # print(height)
+
+   aspect_ratio = width / height
+   # print(aspect_ratio)
+   
+   paths = [wallpaper_path / Path("waneella/animated/horizontal")]
+
+   if abs(aspect_ratio - 21/9) <= TOLERANCE:
+      print("ultrawide")
+      paths.append(wallpaper_path / Path("ultrawide"))
+
+   elif abs(aspect_ratio - 16/9) <= TOLERANCE:
+      print("widescreen")
+      paths.append(wallpaper_path / Path("169"))
+   
+   elif abs(aspect_ratio - 16/10) <= TOLERANCE:
+      print("tall widescreen")
+      paths.append(wallpaper_path / Path("waneella/vertical"))
+
+   elif abs(aspect_ratio - 4/3) <= TOLERANCE:
+      print("standard")
+      paths.append(wallpaper_path / Path("waneella/horizontal"))
+
+   # print(paths)
+
+   wallpaper = subprocess.check_output(["wallpaper-shuffle", *paths], text=True)
+   wallpaper = wallpaper.strip()
+   print(wallpaper)
+
+   subprocess.run(["swww", "img", "-o", name, wallpaper, "--transition-type", "random"])

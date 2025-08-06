@@ -39,11 +39,10 @@
          "clock",
          "pulseaudio", 
          "battery", 
-         "backlight",
          "network",
          "bluetooth", 
          "idle_inhibitor", 
-         "group/group-tools"
+         "group/group-tools-compact"
       ],
 
       "clock": {
@@ -112,6 +111,7 @@
          "network",
          "bluetooth", 
          "idle_inhibitor", 
+         "group/group-tray",
          "group/group-tools"
       ]
 
