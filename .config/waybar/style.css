@@ -268,7 +268,7 @@ label:focus {
 }
 
 #idle_inhibitor.activated {
-    background-color: @yellow;
+    background-color: @warn;
     color: @bg;
 }
 
