@@ -2,7 +2,7 @@
    "custom/launcher": {
       "format":"",
       "tooltip": false,
-      "on-click": "pgrep fuzzel && killall fuzzel || fuzzel"
+      "on-click": "pgrep fuzzel && killall fuzzel || fuzzel -a top-left"
    },
 
    "group/group-tray": {
@@ -88,11 +88,11 @@
    "niri/window": {
       "format": "{title}",
       "rewrite": {
-         "(.*) - YouTube (- Vivaldi)*(- Mozilla Firefox)*.*": "🌎  $1",
+         "(.*) - YouTube (- Vivaldi)*(- Mozilla Firefox)*.*": "󰖟  $1",
          // "(.*) - YouTube - Vivaldi.*": "🌎  $1",
          // "(.*) - YouTube - Mozilla Firefox.*": "󰈹  $1",
-         "(.*) - Mozilla Firefox": "🌎 $1",
-         "(.*) - Vivaldi": "🌎 $1",
+         "(.*) - Mozilla Firefox": " $1",
+         "(.*) - Vivaldi": "󰖟 $1",
          // "(.*) - YouTube.*": " $1 ",
          "(.*) - vim": " $1",
          "(.*) - zsh": " [$1]"
