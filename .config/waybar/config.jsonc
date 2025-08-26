@@ -1,6 +1,6 @@
 [
    {
-      "output": "eDP-1",
+      "output": [ "eDP-1", "LG Electronics LG ULTRAWIDE 0x0004C1A8", "HDMI-A-1"],
       
       // Waybar at top layer
       "layer": "top",
@@ -46,8 +46,8 @@
       ],
 
       "clock": {
-         "format": "{:%H:%M}",
-      },
+         "format": "{:%H:%M}"
+      }
 
       // Modules configuration
       // "sway/workspaces": {
@@ -69,7 +69,7 @@
    },
 
    {
-      "output": "!eDP-1",
+      "output": [ "DP-2", "ICB DP Unknown", "LG Electronics LG HDR WQHD 0x00009626", "LG Electronics LG HDR WQHD 0x00069026" ],
       
       // Waybar at top layer
       "layer": "top",

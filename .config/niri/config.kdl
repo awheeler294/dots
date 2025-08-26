@@ -124,6 +124,14 @@ output "PNP(ICB) DP Unknown" {
     backdrop-color "#15131A"
 }
 
+output "PNP(ICB) HDMI3 Unknown" {
+    mode "3440x1440"
+    position x=2560 y=0
+    focus-at-startup
+    background-color "#15131A"
+    backdrop-color "#15131A"
+}
+
 output "LG Display 0x0625 Unknown" {
     mode "1920x1080"
     position x=6000 y=150

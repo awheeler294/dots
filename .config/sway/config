@@ -52,6 +52,11 @@
    output 'LG Electronics LG HDR WQHD 0x00009626' resolution 3440x1440 position 1599,0
    output 'LG Electronics LG HDR WQHD 0x00069026' resolution 3440x1440 position 1599,0
 
+   output 'LG Electronics LG ULTRAWIDE 0x0004C1A8' resolution 2560x1080@59.978Hz position 0,180
+   output 'ICB DP Unknown'                         resolution 3440x1440 position 2560,0
+   # output 'DP-2'                                   resolution 3440x1440 position 2560,0
+   output 'LG Display 0x0625 Unknown'              resolution 1920x1080 position 6000,0 scale 1.2
+
 ### Idle configuration
 #
 # Example configuration:
