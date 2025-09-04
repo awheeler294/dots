@@ -1,8 +1,6 @@
 #!/bin/bash
 
-alias grep='grep -i'
-
-#echo "aliases"
+# echo "aliases"
 if hash eza 2>/dev/null; then
 
    #echo "found eza"
@@ -49,11 +47,13 @@ else
    echo "nvim not found"
 fi
 
-
 alias cp="cp -i"       # Confirm before overwriting something            
 alias df='df -h'       # Human-readable sizes
 alias free='free -m'   # Show sizes in MB
+alias grep='grep -i'
+alias rg="rg -i"
 alias ssh='TERM=xterm-256color ssh'
+
 steam-id() {
    grep -n "name" ~/.steam/steam/steamapps/*.acf | sed -e 's/^.*_//;s/\.acf:.:/ /;s/name//;s/"//g;s/\t//g;s/ /-/' | awk -F"-" '{printf "%-40s %s\n", $2, $1}' | sort
 }

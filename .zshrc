@@ -1,13 +1,13 @@
 local DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 if [[ -e "$HOME"/homebrew ]]; then 
    eval "$($HOME/homebrew/bin/brew shellenv)"
-   export HOMEBREW_BUNDLE_FILE=$HOME/.config/Brewfile
+   export HOMEBREW_BUNDLE_FILE="$HOME"/.config/Brewfile
 fi
 
 # Download Znap, if it's not there yet.
 [[ -f "$HOME"/.config/zsh/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git .config/zsh/zsh-snap
+        https://github.com/marlonrichert/zsh-snap.git "$HOME"/.config/zsh/zsh-snap
 
 source "$HOME"/.config/zsh/zsh-snap/znap.zsh  # Start Znap
 
@@ -80,12 +80,17 @@ bindkey '^[[1;5C' forward-word                    #
 bindkey '^H' backward-kill-word                   # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                               # Shift+tab undo last action
 
-aliases_file="$HOME/.config/extend-rc/aliases"
-if [ -f "$aliases_file" ]; then
+aliases_path="$HOME/.config/extend-rc/aliases.d"
+if [ -d  "$aliases_path" ]; then
+   for aliases_file in $(ls -I "*.zwc" "$aliases_path"); do
+      source "$aliases_path/$aliases_file"
+   done
+# aliases_file="$HOME/.config/extend-rc/aliases"
+# if [ -f "$aliases_file" ]; then
    # echo "sourcing aliases from $aliases_file"
    # cat "$aliases_file"
 
-    . "$aliases_file"
+    # . "$aliases_file"
 else
    ## Alias section 
    alias cp="cp -i"                                  # Confirm before overwriting something
@@ -102,13 +107,13 @@ else
    #alias ssh='TERM=xterm-color ssh'                  # Force xterm-color on ssh sessions
 fi
 
-env_file="$HOME/.config/extend-rc/env"
-if [ -f "$env_file" ]; then
-   # echo "sourcing env from $env_file"
-   # cat "$env_file"
-
-    . "$env_file"
+env_path="$HOME/.config/extend-rc/env.d"
+if [ -d "$env_path" ]; then
+   for env_file in $(ls -I "*.zwc" "$env_path"); do
+      source "$env_path/$env_file"
+   done
 fi
+
 # Theming section  
 autoload -U compinit colors zcalc
 compinit -d
