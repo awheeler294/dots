@@ -6,8 +6,9 @@ if hash eza 2>/dev/null; then
    #echo "found eza"
    # use eza for ls and tree
    alias ls='eza --icons'
-   alias ll='eza --icons -lhag'
+   alias ll='eza --icons --group-directories-first --long --binary --header --all --group'
    alias tree='eza --icons --tree'
+   alias lt='ll --tree'
 
 else
 
