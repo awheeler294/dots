@@ -1,7 +1,7 @@
 daemonize
 clock
 timestr=%H:%M
-datestr=%A, %e %B %Y
+datestr=%a, %e %b %Y
 indicator-idle-visible
 fade-in=1.0
 effect-greyscale
