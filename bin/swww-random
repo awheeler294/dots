@@ -16,7 +16,7 @@ print(output_data)
 
 for output in output_data:
    data, _, _ = output.partition(',')
-   name, resolution = data.split(": ")
+   name, resolution = data.split(": ")[1:]
    print(name)
    print(resolution)
    width, height = resolution.split('x')
