@@ -33,8 +33,8 @@ image_args=""
 
 while IFS=":" read -a line
 do
-   output=$(trim "${line[0]}")
-   image=$(trim "${line[4]}")
+   output=$(trim "${line[1]}")
+   image=$(trim "${line[5]}")
 
    image_args+="-i $output:$image "
    # echo "$output"
