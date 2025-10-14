@@ -35,8 +35,10 @@ while IFS=":" read -a line
 do
    output=$(trim "${line[1]}")
    image=$(trim "${line[5]}")
+   image_arg="$output:$image"
+   image_arg=$(builtin printf '%q' "$image_arg")
 
-   image_args+="-i $output:$image "
+   image_args+="-i $image_arg "
    # echo "$output"
    # echo "$image"
 
@@ -54,4 +56,6 @@ done < <(swww query)
 
 # echo "$image_args"
 
+echo "swaylock --config $HOME/.config/swaylock/config-fx --grace $grace --fade-in $fade_in $image_args"
+# swaylock --config "$HOME/.config/swaylock/config-fx" --grace "$grace" --fade-in "$fade_in" $image_args
 swaylock --config "$HOME/.config/swaylock/config-fx" --grace "$grace" --fade-in "$fade_in" $image_args
