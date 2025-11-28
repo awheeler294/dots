@@ -236,13 +236,15 @@ label:focus {
 }
 
 #battery.critical:not(.charging) {
-    background-color: @alert;
-    color: @bg;
-    animation-name: blink-battery-alert;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+   background-color: @alert;
+   color: @bg;
+   animation-name: blink-battery-alert;
+   animation-duration: 0.5s;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+   padding: 0 .75em 0 .5em;
+   margin: .2em .5em;
 }
 
 #tray > .passive {
