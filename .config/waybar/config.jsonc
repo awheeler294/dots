@@ -69,7 +69,7 @@
    },
 
    {
-      "output": [ "DP-2", "ICB DP Unknown", "LG Electronics LG HDR WQHD 0x00009626", "LG Electronics LG HDR WQHD 0x00069026" ],
+      "output": [ "DP-1", "DP-2", "ICB DP Unknown", "LG Electronics LG HDR WQHD 0x00009626", "LG Electronics LG HDR WQHD 0x00069026" ],
       
       // Waybar at top layer
       "layer": "top",
