@@ -3,12 +3,14 @@
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
-    "x": 16,
-    "y": 196,
-    "width": 1341,
-    "height": 1016
+    "x": 6000,
+    "y": 150,
+    "width": 1507,
+    "height": 1012
   },
   "chromiumSwitches": {},
   "BACKGROUND_COLOR": "#121214",
-  "offloadAdmControls": false
+  "offloadAdmControls": true,
+  "enableHardwareAcceleration": true,
+  "asyncVideoInputDeviceInit": false
 }
