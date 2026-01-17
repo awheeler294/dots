@@ -28,7 +28,7 @@ for output in output_data:
    aspect_ratio = width / height
    # print(aspect_ratio)
    
-   paths = [wallpaper_path / Path("waneella/animated/horizontal")]
+   paths = [wallpaper_path / Path("animated/horizontal")]
 
    if abs(aspect_ratio - 21/9) <= TOLERANCE:
       print("ultrawide")
@@ -36,15 +36,15 @@ for output in output_data:
 
    elif abs(aspect_ratio - 16/9) <= TOLERANCE:
       print("widescreen")
-      paths.append(wallpaper_path / Path("169"))
+      paths.append(wallpaper_path / Path("hd"))
    
    elif abs(aspect_ratio - 16/10) <= TOLERANCE:
       print("tall widescreen")
-      paths.append(wallpaper_path / Path("waneella/vertical"))
+      paths.append(wallpaper_path / Path("vertical"))
 
    elif abs(aspect_ratio - 4/3) <= TOLERANCE:
       print("standard")
-      paths.append(wallpaper_path / Path("waneella/horizontal"))
+      paths.append(wallpaper_path / Path("horizontal"))
 
    # print(paths)
 
